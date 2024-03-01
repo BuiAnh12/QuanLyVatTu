@@ -1,6 +1,7 @@
 ﻿using DevExpress.DXTemplateGallery.Extensions;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
+using DevExpress.XtraTab;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -157,9 +158,33 @@ namespace QuanLyVatTu
 
             if (result == DialogResult.Yes)
             {
-                // Close the application
-                this.Close();
+                XtraTabControl tabControl = FindTabControl(this);
+
+                if (tabControl != null)
+                {
+                    // Get the parent tab page
+                    XtraTabPage tabPage = tabControl.SelectedTabPage;
+
+                    if (tabPage != null)
+                    {
+                        // Remove the current tab page
+                        tabControl.TabPages.Remove(tabPage);
+                    }
+                }
             }
+        }
+
+        private XtraTabControl FindTabControl(Control control)
+        {
+            while (control != null)
+            {
+                if (control is XtraTabControl tabControl)
+                {
+                    return tabControl;
+                }
+                control = control.Parent;
+            }
+            return null;
         }
     }
 }

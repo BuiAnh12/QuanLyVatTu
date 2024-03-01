@@ -49,6 +49,7 @@ namespace QuanLyVatTu
                 Program.conn.ConnectionString = Program.connstr;
                 Program.conn.Open();
                 return 1;
+
             }
 
             catch (Exception e)
