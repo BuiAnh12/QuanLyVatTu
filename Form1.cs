@@ -75,14 +75,50 @@ namespace QuanLyVatTu
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            manv.Text = "MANV";
-            nhom.Text = "NHOM";
-            hoten.Text = "HOTEN";
-            Program.mlogin = "";
-            Program.password = "";
-            Program.mGroup = "";
-            Program.mHoten = "";
-            Program.username = "";
+            
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                manv.Text = "MANV";
+                nhom.Text = "NHOM";
+                hoten.Text = "HOTEN";
+                Program.mlogin = "";
+                Program.password = "";
+                Program.mGroup = "";
+                Program.mHoten = "";
+                Program.username = "";
+                categoryPage.Visible = false;
+                businessPage.Visible = false;
+                reportPage.Visible = false;
+                XtraTabControl tabControl = FindTabControl(this);
+
+                if (tabControl != null)
+                {
+                    // Clear all tab pages
+                    tabControl.TabPages.Clear();
+                }
+            }
+        }
+
+        private XtraTabControl FindTabControl(Control control)
+        {
+            foreach (Control ctrl in control.Controls)
+            {
+                if (ctrl is XtraTabControl)
+                {
+                    return (XtraTabControl)ctrl;
+                }
+                else
+                {
+                    XtraTabControl tabControl = FindTabControl(ctrl);
+                    if (tabControl != null)
+                    {
+                        return tabControl;
+                    }
+                }
+            }
+            return null;
         }
 
         private void xtraTabControl_Click(object sender, EventArgs e)

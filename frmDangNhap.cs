@@ -154,7 +154,7 @@ namespace QuanLyVatTu
         private void btnThoat_Click(object sender, EventArgs e)
         {
             // Ask the user for confirmation before exiting
-            DialogResult result = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát khỏi tab này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {

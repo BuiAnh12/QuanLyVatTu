@@ -41,6 +41,13 @@ namespace QuanLyVatTu
                     = btnReload.Enabled = btnSua.Enabled = btnThem.Enabled 
                     = btnXoa.Enabled = false;
             }
+            else
+            {
+                cmbChiNhanhMain.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                btnThoat.Enabled = btnSua.Enabled = btnThem.Enabled = btnIn.Enabled
+                    = btnReload.Enabled = btnXoa.Enabled = true;
+            }
+
 
         }
 
@@ -312,7 +319,7 @@ namespace QuanLyVatTu
         }
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát khỏi tab này không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
