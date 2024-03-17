@@ -32,6 +32,8 @@
             this.btnDangNhap = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaoTk = new DevExpress.XtraBars.BarButtonItem();
             this.btnDangXuat = new DevExpress.XtraBars.BarButtonItem();
+            this.nhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.khoBtn = new DevExpress.XtraBars.BarButtonItem();
             this.systemPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.groupAction = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.categoryPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -45,7 +47,7 @@
             this.hoten = new System.Windows.Forms.ToolStripStatusLabel();
             this.nhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.nhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.vatTuBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -61,10 +63,12 @@
             this.btnDangNhap,
             this.btnTaoTk,
             this.btnDangXuat,
-            this.nhanVienBtn});
+            this.nhanVienBtn,
+            this.khoBtn,
+            this.vatTuBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl1.MaxItemId = 5;
+            this.ribbonControl1.MaxItemId = 7;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -94,6 +98,20 @@
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDangXuat_ItemClick);
             // 
+            // nhanVienBtn
+            // 
+            this.nhanVienBtn.Caption = "Nhân viên";
+            this.nhanVienBtn.Id = 4;
+            this.nhanVienBtn.Name = "nhanVienBtn";
+            this.nhanVienBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
+            // khoBtn
+            // 
+            this.khoBtn.Caption = "Kho";
+            this.khoBtn.Id = 5;
+            this.khoBtn.Name = "khoBtn";
+            this.khoBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.khoBtn_ItemClick);
+            // 
             // systemPage
             // 
             this.systemPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -119,6 +137,8 @@
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.nhanVienBtn);
+            this.ribbonPageGroup2.ItemLinks.Add(this.khoBtn);
+            this.ribbonPageGroup2.ItemLinks.Add(this.vatTuBtn);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
@@ -190,12 +210,12 @@
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.Click += new System.EventHandler(this.xtraTabControl_Click);
             // 
-            // nhanVienBtn
+            // vatTuBtn
             // 
-            this.nhanVienBtn.Caption = "Nhân viên";
-            this.nhanVienBtn.Id = 4;
-            this.nhanVienBtn.Name = "nhanVienBtn";
-            this.nhanVienBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.vatTuBtn.Caption = "Vật tư";
+            this.vatTuBtn.Id = 6;
+            this.vatTuBtn.Name = "vatTuBtn";
+            this.vatTuBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.vatTuBtn_ItemClick);
             // 
             // Form1
             // 
@@ -239,6 +259,8 @@
         private System.Windows.Forms.ToolStripStatusLabel nhom;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl;
         private DevExpress.XtraBars.BarButtonItem nhanVienBtn;
+        private DevExpress.XtraBars.BarButtonItem khoBtn;
+        private DevExpress.XtraBars.BarButtonItem vatTuBtn;
     }
 }
 

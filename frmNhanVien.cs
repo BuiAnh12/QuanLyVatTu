@@ -34,6 +34,14 @@ namespace QuanLyVatTu
             cmbChiNhanhMain.DisplayMember = "TENCN";
             cmbChiNhanhMain.ValueMember = "TENSERVER";
             cmbChiNhanhMain.SelectedIndex = Program.mChinhanh;
+
+            
+            cmbChiNhanh.DataSource = Program.bds_dspm;
+            cmbChiNhanh.DisplayMember = "TENCN";
+            cmbChiNhanh.ValueMember = "TENSERVER";
+            cmbChiNhanh.SelectedIndex = Program.mChinhanh;
+            
+
             if (Program.mGroup == "CONGTY")
             {
                 cmbChiNhanhMain.Enabled = btnThoat.Enabled = true;
@@ -65,7 +73,7 @@ namespace QuanLyVatTu
         {
             this.Validate();
             this.bdsNhanVien.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DS);
+            this.tableAdapterManager.UpdateAll(this.nhanVienDS);
 
         }
 
@@ -81,7 +89,7 @@ namespace QuanLyVatTu
             bdsNhanVien.AddNew();
 
             cmbChiNhanh.SelectedText = macn;
-            deDob.EditValue = "";
+            DeNgaySinh.EditValue = "";
             btnIn.Enabled = btnReload.Enabled = 
                 btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;
             btnThoat.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = true;
@@ -115,7 +123,7 @@ namespace QuanLyVatTu
         {
             try
             {
-                this.nhanVienTableAdapter.Fill(this.DS.NhanVien);
+                this.nhanVienTableAdapter.Fill(this.nhanVienDS.NhanVien);
             }
             catch (Exception ex)
             {
@@ -124,7 +132,7 @@ namespace QuanLyVatTu
                 return;
             }
             
-        }
+        } 
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -155,13 +163,13 @@ namespace QuanLyVatTu
                     manv = int.Parse(((DataRowView)bdsNhanVien[bdsNhanVien.Position])["MANV"].ToString());
                     bdsNhanVien.RemoveCurrent();
                     nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
-                    nhanVienTableAdapter.Update(DS.NhanVien);
+                    nhanVienTableAdapter.Update(nhanVienDS.NhanVien);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi xóa nhân viên. Bạn hãy xóa lại\n" + ex.Message + ""
                     , "", MessageBoxButtons.OK);
-                    this.nhanVienTableAdapter.Fill(DS.NhanVien);
+                    this.nhanVienTableAdapter.Fill(nhanVienDS.NhanVien);
                     bdsNhanVien.Position = bdsNhanVien.Find("MANV", manv);
                     return;
                 }
@@ -177,18 +185,25 @@ namespace QuanLyVatTu
 
         private void frmNhanVien_Load(object sender, EventArgs e)
         {
-            DS.EnforceConstraints = false;
+            // TODO: This line of code loads data into the 'nhanVienDS.DatHang' table. You can move, or remove it, as needed.
+            this.datHangTableAdapter.Fill(this.nhanVienDS.DatHang);
+            // TODO: This line of code loads data into the 'nhanVienDS.CTPX' table. You can move, or remove it, as needed.
+            this.phieuXuatTableAdapter.Fill(this.nhanVienDS.CTPX);
+            // TODO: This line of code loads data into the 'nhanVienDS.CTPN' table. You can move, or remove it, as needed.
+            this.phieuNhapTableAdapter.Fill(this.nhanVienDS.CTPN);
+
+            nhanVienDS.EnforceConstraints = false;
             nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
-            nhanVienTableAdapter.Fill(DS.NhanVien);
+            nhanVienTableAdapter.Fill(nhanVienDS.NhanVien);
 
             phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
+            this.phieuNhapTableAdapter.Fill(this.nhanVienDS.CTPN);
 
             phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.phieuXuatTableAdapter.Fill(this.DS.PhieuXuat);
+            this.phieuXuatTableAdapter.Fill(this.nhanVienDS.CTPX);
 
             datHangTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.datHangTableAdapter.Fill(this.DS.DatHang);
+            this.datHangTableAdapter.Fill(this.nhanVienDS.DatHang);
 
         }
 
@@ -229,11 +244,11 @@ namespace QuanLyVatTu
                 txtDiaChi.Focus(); 
                 return;
             }
-            if (deDob.Text.Trim() == "")
+            if (DeNgaySinh.Text.Trim() == "")
             {
                 MessageBox.Show("Ngày sinh không được để trống"
                     , "", MessageBoxButtons.OK);
-                deDob.Focus();
+                DeNgaySinh.Focus();
                 return;
             }
             try
@@ -241,7 +256,7 @@ namespace QuanLyVatTu
                 bdsNhanVien.EndEdit();
                 bdsNhanVien.ResetCurrentItem();
                 nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
-                nhanVienTableAdapter.Update(this.DS.NhanVien);
+                nhanVienTableAdapter.Update(this.nhanVienDS.NhanVien);
             }
             catch (Exception ex)
             { 
@@ -263,7 +278,7 @@ namespace QuanLyVatTu
                 return;
             }
             Program.servername = cmbChiNhanhMain.SelectedValue.ToString();
-            if (cmbChiNhanh.SelectedIndex != Program.mChinhanh)
+            if (cmbChiNhanhMain.SelectedIndex != Program.mChinhanh)
             {
                 Program.mlogin = Program.remotelogin;
                 Program.password = Program.remotepassword;
@@ -282,16 +297,16 @@ namespace QuanLyVatTu
             else
             {
                 nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
-                nhanVienTableAdapter.Fill(DS.NhanVien);
+                nhanVienTableAdapter.Fill(nhanVienDS.NhanVien);
 
                 phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-                phieuNhapTableAdapter.Fill(this.DS.PhieuNhap);
+                phieuNhapTableAdapter.Fill(this.nhanVienDS.CTPN);
 
                 phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
-                phieuXuatTableAdapter.Fill(this.DS.PhieuXuat);
+                phieuXuatTableAdapter.Fill(this.nhanVienDS.CTPX);
 
                 datHangTableAdapter.Connection.ConnectionString = Program.connstr;
-                datHangTableAdapter.Fill(this.DS.DatHang);
+                datHangTableAdapter.Fill(this.nhanVienDS.DatHang);
 
                 try
                 {
@@ -342,6 +357,21 @@ namespace QuanLyVatTu
         private void gcNhanVien_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hOTextEdit_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sOCMNDTextEdit_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
