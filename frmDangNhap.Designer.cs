@@ -101,6 +101,7 @@
             // 
             // cmbChiNhanh
             // 
+            this.cmbChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cmbChiNhanh, "cmbChiNhanh");
             this.cmbChiNhanh.FormattingEnabled = true;
             this.cmbChiNhanh.Name = "cmbChiNhanh";

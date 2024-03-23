@@ -34,6 +34,8 @@
             this.btnDangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.nhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
             this.khoBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.vatTuBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPhieuNhanVienLapTheoNam = new DevExpress.XtraBars.BarButtonItem();
             this.systemPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.groupAction = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.categoryPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -47,7 +49,6 @@
             this.hoten = new System.Windows.Forms.ToolStripStatusLabel();
             this.nhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.vatTuBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -55,7 +56,7 @@
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(55, 51, 55, 51);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -65,18 +66,19 @@
             this.btnDangXuat,
             this.nhanVienBtn,
             this.khoBtn,
-            this.vatTuBtn});
+            this.vatTuBtn,
+            this.btnPhieuNhanVienLapTheoNam});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl1.MaxItemId = 7;
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonControl1.MaxItemId = 8;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 385;
+            this.ribbonControl1.OptionsMenuMinWidth = 605;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.systemPage,
             this.categoryPage,
             this.businessPage,
             this.reportPage});
-            this.ribbonControl1.Size = new System.Drawing.Size(1078, 193);
+            this.ribbonControl1.Size = new System.Drawing.Size(1694, 193);
             // 
             // btnDangNhap
             // 
@@ -111,6 +113,20 @@
             this.khoBtn.Id = 5;
             this.khoBtn.Name = "khoBtn";
             this.khoBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.khoBtn_ItemClick);
+            // 
+            // vatTuBtn
+            // 
+            this.vatTuBtn.Caption = "Vật tư";
+            this.vatTuBtn.Id = 6;
+            this.vatTuBtn.Name = "vatTuBtn";
+            this.vatTuBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.vatTuBtn_ItemClick);
+            // 
+            // btnPhieuNhanVienLapTheoNam
+            // 
+            this.btnPhieuNhanVienLapTheoNam.Caption = "In DS Phiếu NV theo năm";
+            this.btnPhieuNhanVienLapTheoNam.Id = 7;
+            this.btnPhieuNhanVienLapTheoNam.Name = "btnPhieuNhanVienLapTheoNam";
+            this.btnPhieuNhanVienLapTheoNam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhieuNhanVienLapTheoNam_ItemClick);
             // 
             // systemPage
             // 
@@ -152,6 +168,7 @@
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnPhieuNhanVienLapTheoNam);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
             // 
@@ -175,10 +192,10 @@
             this.manv,
             this.hoten,
             this.nhom});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 693);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 963);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1078, 26);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 25, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1694, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -205,27 +222,23 @@
             this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal;
             this.xtraTabControl.Location = new System.Drawing.Point(0, 193);
+            this.xtraTabControl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.xtraTabControl.Name = "xtraTabControl";
-            this.xtraTabControl.Size = new System.Drawing.Size(1078, 500);
+            this.xtraTabControl.Size = new System.Drawing.Size(1694, 770);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.Click += new System.EventHandler(this.xtraTabControl_Click);
             // 
-            // vatTuBtn
-            // 
-            this.vatTuBtn.Caption = "Vật tư";
-            this.vatTuBtn.Id = 6;
-            this.vatTuBtn.Name = "vatTuBtn";
-            this.vatTuBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.vatTuBtn_ItemClick);
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.Appearance.Options.UseFont = true;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1078, 719);
+            this.ClientSize = new System.Drawing.Size(1694, 989);
             this.Controls.Add(this.xtraTabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonControl1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Ribbon = this.ribbonControl1;
             this.Text = "Form1";
@@ -261,6 +274,7 @@
         private DevExpress.XtraBars.BarButtonItem nhanVienBtn;
         private DevExpress.XtraBars.BarButtonItem khoBtn;
         private DevExpress.XtraBars.BarButtonItem vatTuBtn;
+        private DevExpress.XtraBars.BarButtonItem btnPhieuNhanVienLapTheoNam;
     }
 }
 
