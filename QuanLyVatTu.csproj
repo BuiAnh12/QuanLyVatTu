@@ -33,16 +33,30 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v21.2" />
+    <Reference Include="DevExpress.Charts.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v21.2" />
     <Reference Include="DevExpress.Data.v21.2" />
+    <Reference Include="DevExpress.DataAccess.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v21.2.Core" />
+    <Reference Include="DevExpress.RichEdit.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v21.2.Export, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v21.2" />
+    <Reference Include="DevExpress.Utils.v21.2.UI, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v21.2" />
     <Reference Include="DevExpress.Sparkline.v21.2.Core" />
+    <Reference Include="DevExpress.XtraCharts.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v21.2" />
+    <Reference Include="DevExpress.XtraGauges.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v21.2.Extensions, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,6 +79,12 @@
     </Compile>
     <Compile Include="frmKho.Designer.cs">
       <DependentUpon>frmKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhieuNhap.Designer.cs">
+      <DependentUpon>frmPhieuNhap.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVatTu.cs">
       <SubType>Form</SubType>
@@ -90,8 +110,35 @@
     <Compile Include="frmNhanVien.Designer.cs">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frpt_PhieuNvLapTrongNamTheoLoai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frpt_PhieuNvLapTrongNamTheoLoai.Designer.cs">
+      <DependentUpon>Frpt_PhieuNvLapTrongNamTheoLoai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVienDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhanVienDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VatTuDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VatTuDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Xrpt_PhieuNvLapTrongNamTheoLoai.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_PhieuNvLapTrongNamTheoLoai.Designer.cs">
+      <DependentUpon>Xrpt_PhieuNvLapTrongNamTheoLoai.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,8 +154,14 @@
     <EmbeddedResource Include="frmNhanVien.resx">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPhieuNhap.resx">
+      <DependentUpon>frmPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVatTu.resx">
       <DependentUpon>frmVatTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frpt_PhieuNvLapTrongNamTheoLoai.resx">
+      <DependentUpon>Frpt_PhieuNvLapTrongNamTheoLoai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -121,6 +174,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Xrpt_PhieuNvLapTrongNamTheoLoai.resx">
+      <DependentUpon>Xrpt_PhieuNvLapTrongNamTheoLoai.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DS.xsc">
       <DependentUpon>DS.xsd</DependentUpon>
@@ -133,6 +189,28 @@
     <None Include="DS.xss">
       <DependentUpon>DS.xsd</DependentUpon>
     </None>
+    <None Include="KhoDS.xsc">
+      <DependentUpon>KhoDS.xsd</DependentUpon>
+    </None>
+    <None Include="KhoDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KhoDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KhoDS.xss">
+      <DependentUpon>KhoDS.xsd</DependentUpon>
+    </None>
+    <None Include="NhanVienDS.xsc">
+      <DependentUpon>NhanVienDS.xsd</DependentUpon>
+    </None>
+    <None Include="NhanVienDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NhanVienDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NhanVienDS.xss">
+      <DependentUpon>NhanVienDS.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,6 +220,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="VatTuDS.xsc">
+      <DependentUpon>VatTuDS.xsd</DependentUpon>
+    </None>
+    <None Include="VatTuDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VatTuDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VatTuDS.xss">
+      <DependentUpon>VatTuDS.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\button.png" />

@@ -40,7 +40,9 @@ namespace QuanLyVatTu
         public static int KetNoi()
         {
             if (Program.conn != null && Program.conn.State == ConnectionState.Open)
+            {
                 Program.conn.Close();
+            }
             try
             {
                 Program.connstr = "Data Source=" + Program.servername + ";Initial Catalog=" +
