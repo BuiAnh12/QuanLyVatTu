@@ -32,6 +32,7 @@ namespace QuanLyVatTu
                 btnThoat.Enabled = btnSua.Enabled = btnThem.Enabled = btnIn.Enabled
                     = btnReload.Enabled = btnXoa.Enabled = true;
             }
+            groupBox1.Enabled = false;
         }
 
         private void gridControl1_Click(object sender, EventArgs e)
@@ -61,7 +62,7 @@ namespace QuanLyVatTu
         {
             vitri = bdsVatTu.Position;
             groupBox1.Enabled = true;
-            bdsVatTu.AddNew();
+            //bdsVatTu.AddNew();
 
             btnReload.Enabled =
                 btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;

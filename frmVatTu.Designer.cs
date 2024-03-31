@@ -88,10 +88,13 @@
             // gcVatTu
             // 
             this.gcVatTu.DataSource = this.bdsVatTu;
-            this.gcVatTu.Location = new System.Drawing.Point(0, 69);
+            this.gcVatTu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcVatTu.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gcVatTu.Location = new System.Drawing.Point(0, 50);
             this.gcVatTu.MainView = this.gridView1;
+            this.gcVatTu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gcVatTu.Name = "gcVatTu";
-            this.gcVatTu.Size = new System.Drawing.Size(1788, 330);
+            this.gcVatTu.Size = new System.Drawing.Size(1368, 498);
             this.gcVatTu.TabIndex = 3;
             this.gcVatTu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -114,6 +117,7 @@
             this.colTENVT,
             this.colDVT,
             this.colSOLUONGTON});
+            this.gridView1.DetailHeight = 284;
             this.gridView1.GridControl = this.gcVatTu;
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", null, "")});
@@ -122,38 +126,38 @@
             // colMAVT
             // 
             this.colMAVT.FieldName = "MAVT";
-            this.colMAVT.MinWidth = 25;
+            this.colMAVT.MinWidth = 19;
             this.colMAVT.Name = "colMAVT";
             this.colMAVT.Visible = true;
             this.colMAVT.VisibleIndex = 0;
-            this.colMAVT.Width = 94;
+            this.colMAVT.Width = 70;
             // 
             // colTENVT
             // 
             this.colTENVT.FieldName = "TENVT";
-            this.colTENVT.MinWidth = 25;
+            this.colTENVT.MinWidth = 19;
             this.colTENVT.Name = "colTENVT";
             this.colTENVT.Visible = true;
             this.colTENVT.VisibleIndex = 1;
-            this.colTENVT.Width = 94;
+            this.colTENVT.Width = 70;
             // 
             // colDVT
             // 
-            this.colDVT.FieldName = "DVT";
+            this.colDVT.FieldName = "SOLUONGTON";
             this.colDVT.MinWidth = 25;
             this.colDVT.Name = "colDVT";
             this.colDVT.Visible = true;
             this.colDVT.VisibleIndex = 2;
-            this.colDVT.Width = 94;
+            this.colDVT.Width = 70;
             // 
             // colSOLUONGTON
             // 
             this.colSOLUONGTON.FieldName = "SOLUONGTON";
-            this.colSOLUONGTON.MinWidth = 25;
+            this.colSOLUONGTON.MinWidth = 19;
             this.colSOLUONGTON.Name = "colSOLUONGTON";
             this.colSOLUONGTON.Visible = true;
             this.colSOLUONGTON.VisibleIndex = 3;
-            this.colSOLUONGTON.Width = 94;
+            this.colSOLUONGTON.Width = 70;
             // 
             // groupBox1
             // 
@@ -165,25 +169,55 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 405);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(0, 328);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1788, 367);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(1368, 220);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
             // txtSoLuongTon
             // 
-            this.txtSoLuongTon.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "SOLUONGTON", true));
-            this.txtSoLuongTon.Location = new System.Drawing.Point(190, 262);
-            this.txtSoLuongTon.MenuManager = this.barManager1;
-            this.txtSoLuongTon.Name = "txtSoLuongTon";
-            this.txtSoLuongTon.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoLuongTon.Properties.Appearance.Options.UseFont = true;
-            this.txtSoLuongTon.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtSoLuongTon.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtSoLuongTon.Size = new System.Drawing.Size(301, 28);
-            this.txtSoLuongTon.TabIndex = 15;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(26, 262);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 22);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Số lượng tồn ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(25, 194);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 22);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Đơn vị tính";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(26, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 22);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Tên vật tư";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(26, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 22);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã vật tư";
             // 
             // barManager1
             // 
@@ -326,72 +360,80 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1788, 62);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlTop.Size = new System.Drawing.Size(1368, 50);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 780);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 548);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1788, 20);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1368, 20);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 62);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 50);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 718);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 498);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1788, 62);
+            this.barDockControlRight.Location = new System.Drawing.Point(1368, 50);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 718);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 498);
             // 
             // txtDVT
             // 
             this.txtDVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "DVT", true));
-            this.txtDVT.Location = new System.Drawing.Point(190, 191);
+            this.txtDVT.Location = new System.Drawing.Point(142, 116);
+            this.txtDVT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDVT.MenuManager = this.barManager1;
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDVT.Properties.Appearance.Options.UseFont = true;
-            this.txtDVT.Size = new System.Drawing.Size(301, 28);
+            this.txtDVT.Size = new System.Drawing.Size(226, 26);
             this.txtDVT.TabIndex = 14;
             // 
             // txtTenVT
             // 
             this.txtTenVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "TENVT", true));
-            this.txtTenVT.Location = new System.Drawing.Point(190, 124);
+            this.txtTenVT.Location = new System.Drawing.Point(142, 71);
+            this.txtTenVT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTenVT.MenuManager = this.barManager1;
             this.txtTenVT.Name = "txtTenVT";
             this.txtTenVT.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenVT.Properties.Appearance.Options.UseFont = true;
-            this.txtTenVT.Size = new System.Drawing.Size(301, 28);
+            this.txtTenVT.Size = new System.Drawing.Size(226, 26);
             this.txtTenVT.TabIndex = 13;
             // 
             // txtMaVT
             // 
             this.txtMaVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "MAVT", true));
-            this.txtMaVT.Location = new System.Drawing.Point(190, 48);
+            this.txtMaVT.Location = new System.Drawing.Point(142, 27);
+            this.txtMaVT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtMaVT.MenuManager = this.barManager1;
             this.txtMaVT.Name = "txtMaVT";
             this.txtMaVT.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaVT.Properties.Appearance.Options.UseFont = true;
-            this.txtMaVT.Size = new System.Drawing.Size(301, 28);
+            this.txtMaVT.Size = new System.Drawing.Size(226, 26);
             this.txtMaVT.TabIndex = 12;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 262);
+            this.label5.Location = new System.Drawing.Point(42, 167);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 22);
+            this.label5.Size = new System.Drawing.Size(91, 19);
             this.label5.TabIndex = 6;
             this.label5.Text = "Số lượng tồn ";
             // 
@@ -399,31 +441,22 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(25, 194);
+            this.label4.Location = new System.Drawing.Point(42, 123);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 22);
+            this.label4.Size = new System.Drawing.Size(74, 19);
             this.label4.TabIndex = 2;
             this.label4.Text = "Đơn vị tính";
             // 
-            // label2
+            // VatTuDS
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 127);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 22);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Tên vật tư";
+            this.VatTuDS.DataSetName = "VatTuDS";
+            this.VatTuDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 22);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã vật tư";
+            this.bdsVatTu.DataMember = "Vattu";
+            this.bdsVatTu.DataSource = this.VatTuDS;
             // 
             // vattuTableAdapter
             // 
@@ -467,15 +500,16 @@
             // 
             // frmVatTu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1788, 800);
+            this.ClientSize = new System.Drawing.Size(1368, 568);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gcVatTu);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmVatTu";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.frmVatTu_Load);
