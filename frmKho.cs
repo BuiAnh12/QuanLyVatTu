@@ -42,7 +42,7 @@ namespace QuanLyVatTu
 
             cmbChiNhanh.Enabled = false;
 
-
+          
 
 
             if (Program.mGroup == "CONGTY")
