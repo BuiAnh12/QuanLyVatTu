@@ -17,7 +17,9 @@ namespace QuanLyVatTu
         {
             InitializeComponent();
             this.IsMdiContainer = true;
+            btnTaoTk.Enabled = false;
             btnDangNhap.PerformClick();
+
         }
 
         private Form CheckExists(Type ftype)
@@ -71,6 +73,7 @@ namespace QuanLyVatTu
             categoryPage.Visible = true;
             businessPage.Visible = true;
             reportPage.Visible = true;
+            btnTaoTk.Enabled = true;
         }
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -91,6 +94,7 @@ namespace QuanLyVatTu
                 categoryPage.Visible = false;
                 businessPage.Visible = false;
                 reportPage.Visible = false;
+                btnTaoTk.Enabled = false;
                 XtraTabControl tabControl = FindTabControl(this);
 
                 if (tabControl != null)
@@ -229,6 +233,34 @@ namespace QuanLyVatTu
 
                 XtraTabPage tabPage = new XtraTabPage();
                 tabPage.Text = "In nhân viên"; // Set the tab page text
+
+                // Create a panel to host the form
+                Panel panel = new Panel();
+                panel.Dock = DockStyle.Fill; // Dock the panel to fill the tab page
+                tabPage.Controls.Add(panel); // Add the panel to the tab page
+                f.Parent = panel; // Set the panel as the parent of the form
+
+                // Show the form
+                f.Show();
+
+                xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
+                xtraTabControl.SelectedTabPage = tabPage;
+            }
+        }
+
+        private void btnTaoTk_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmTaoTaiKhoan));
+            if (frm != null) frm.Activate();
+            else
+            {
+
+                frmTaoTaiKhoan f = new frmTaoTaiKhoan();
+                f.TopLevel = false; // Set TopLevel to false
+                f.FormBorderStyle = FormBorderStyle.None; // Optionally remove border
+
+                XtraTabPage tabPage = new XtraTabPage();
+                tabPage.Text = "Tạo tài khoản"; // Set the tab page text
 
                 // Create a panel to host the form
                 Panel panel = new Panel();

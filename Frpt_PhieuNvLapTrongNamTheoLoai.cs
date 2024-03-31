@@ -100,7 +100,7 @@ namespace QuanLyVatTu
         private void btnPreview_Click(object sender, EventArgs e)
         {
             Xrpt_PhieuNvLapTrongNamTheoLoai rpt = new Xrpt_PhieuNvLapTrongNamTheoLoai(MaNV, cmbLoai.Text.Substring(0, 1), int.Parse(cmbNam.Text));
-            rpt.lbTieuDe.Text = "DANH SÁCH PHIẾU " + cmbLoai.Text.ToUpper() + "NHÂN VIÊN TRONG NĂM " + cmbNam.Text;
+            rpt.lbTieuDe.Text = "DANH SÁCH PHIẾU " + cmbLoai.Text.ToUpper() + " NHÂN VIÊN TRONG NĂM " + cmbNam.Text;
             rpt.lbHoTen.Text = cmbHoTen.Text.ToString();
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.ShowPreviewDialog();

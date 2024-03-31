@@ -1,0 +1,33 @@
+USE [QLVT_DATHANG]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_LayLogin]    Script Date: 3/31/2024 9:19:55 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_LayLogin]
+    @MANV INT
+AS
+BEGIN
+    DECLARE @TENUSER NVARCHAR(50), @UID INT, @TENLOGIN NVARCHAR(20)
+
+    SELECT @UID = UID, @TENUSER = NAME 
+    FROM sys.sysusers 
+    WHERE NAME = CAST(@MANV AS VARCHAR(50))
+
+    SELECT @TENLOGIN = SUSER_SNAME((SELECT sid FROM sys.sysusers WHERE NAME = CAST(@MANV AS VARCHAR(50)))) 
+
+    SELECT TENLOGIN = @TENLOGIN,
+           TENNHOM = NAME
+    FROM sys.sysusers
+    WHERE UID = (SELECT GROUPUID
+                 FROM SYS.SYSMEMBERS
+                 WHERE MEMBERUID = @UID)
+END
+
+GO
+
+

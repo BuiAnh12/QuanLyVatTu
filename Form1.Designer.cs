@@ -69,7 +69,7 @@
             this.vatTuBtn,
             this.btnPhieuNhanVienLapTheoNam});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
             this.ribbonControl1.MaxItemId = 8;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 605;
@@ -92,6 +92,7 @@
             this.btnTaoTk.Caption = "Tạo tài khoản";
             this.btnTaoTk.Id = 2;
             this.btnTaoTk.Name = "btnTaoTk";
+            this.btnTaoTk.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaoTk_ItemClick);
             // 
             // btnDangXuat
             // 
@@ -238,7 +239,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonControl1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Ribbon = this.ribbonControl1;
             this.Text = "Form1";
