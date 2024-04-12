@@ -36,6 +36,7 @@ namespace QuanLyVatTu
                 cmbChiNhanh.DataSource = dt;
                 cmbChiNhanh.DisplayMember = "TENCN";
                 cmbChiNhanh.ValueMember = "TENSERVER";
+                cmbChiNhanh.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -50,6 +51,7 @@ namespace QuanLyVatTu
         {
             InitializeComponent();
             frmDangNhap_Load(this, EventArgs.Empty);
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -136,7 +138,9 @@ namespace QuanLyVatTu
                 return;
             }
             layDSPM("USE [QLVT_DATHANG] SELECT * FROM V_DS_PHANMANH");
-            cmbChiNhanh.SelectedIndex = 1; cmbChiNhanh.SelectedIndex = 0;
+            cmbChiNhanh.SelectedIndex = 1;
+            cmbChiNhanh.SelectedIndex = 0;
+            
         }
 
         private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)

@@ -19,7 +19,7 @@ namespace QuanLyVatTu
             this.IsMdiContainer = true;
             btnTaoTk.Enabled = false;
             btnDangNhap.PerformClick();
-
+           
         }
 
         private Form CheckExists(Type ftype)
@@ -62,7 +62,7 @@ namespace QuanLyVatTu
                 xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
                 xtraTabControl.SelectedTabPage = tabPage;
             }
-
+            btnDangXuat.Enabled = true;
         }
 
         public void HienThiMenu()
@@ -78,7 +78,7 @@ namespace QuanLyVatTu
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            
             DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -103,6 +103,7 @@ namespace QuanLyVatTu
                     tabControl.TabPages.Clear();
                 }
             }
+            btnDangXuat.Enabled = false;
         }
 
         private XtraTabControl FindTabControl(Control control)
@@ -270,6 +271,36 @@ namespace QuanLyVatTu
 
                 // Show the form
                 f.Show();
+
+                xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
+                xtraTabControl.SelectedTabPage = tabPage;
+            }
+        }
+
+        private void barButtonItem1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmDondathang));
+            if (frm != null) frm.Activate();
+            else
+            {
+
+                frmDondathang f = new frmDondathang();
+                f.TopLevel = false; // Set TopLevel to false
+                f.FormBorderStyle = FormBorderStyle.None; // Optionally remove border
+
+                XtraTabPage tabPage = new XtraTabPage();
+                tabPage.Text = "Đặt hàng"; // Set the tab page text
+
+                // Create a panel to host the form
+                Panel panel = new Panel();
+                panel.Dock = DockStyle.Fill; // Dock the panel to fill the tab page
+                tabPage.Controls.Add(panel); // Add the panel to the tab page
+                f.Parent = panel; // Set the panel as the parent of the form
+
+                // Show the form
+                f.Show();
+
+
 
                 xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
                 xtraTabControl.SelectedTabPage = tabPage;

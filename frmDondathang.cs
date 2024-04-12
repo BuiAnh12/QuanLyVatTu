@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraTab;
+using QuanLyVatTu.SubForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace QuanLyVatTu
 {
     public partial class frmDondathang : Form
     {
-
+        String macn = "";
         private Form checkExist(Type ftype)
         {
             foreach (Form f in this.MdiChildren)
@@ -21,11 +22,27 @@ namespace QuanLyVatTu
                     return f;
             return null;
         }
+        public void setButtonCTDDH()
+        {
+            themCTDDHbtn.Enabled = ghiCTDDHbtn.Enabled = suaCTDDHbtn.Enabled = false;
+            xoaCTDDHbtn.Enabled = phuchoiCTDDHbtn.Enabled = false;
+        }
         public frmDondathang()
         {   
 
             InitializeComponent();
             datHangDS.EnforceConstraints = false;
+
+            CbChiNhanh.DataSource = Program.bds_dspm;
+            CbChiNhanh.DisplayMember = "TENCN";
+            CbChiNhanh.ValueMember = "TENSERVER";
+            CbChiNhanh.SelectedIndex = Program.mChinhanh;
+
+            cTDDHGridControl.Enabled = true;
+
+            setButtonCTDDH();
+
+            groupBox2.Enabled = groupBox3.Enabled = false;
 
             if (Program.mGroup == "CONGTY")
             {
@@ -33,7 +50,6 @@ namespace QuanLyVatTu
                 PhuchoiBtn.Enabled = reloadBtn.Enabled = false;
                 ThoatBtn.Enabled =CbChiNhanh.Enabled= true;
                 //groupBox1.Enabled = groupBox2.Enabled = false;
-                panelControl3.Enabled = false;
 
                 CbChiNhanh.DataSource = Program.bds_dspm;
                 CbChiNhanh.DisplayMember = "TENCN";
@@ -48,8 +64,7 @@ namespace QuanLyVatTu
                 ThoatBtn.Enabled  = true;
                 reloadBtn.Enabled = true;
                 //groupBox1.Enabled = groupBox2.Enabled = false;
-                panelControl3.Enabled = false;
-
+               
 
 
             }
@@ -58,8 +73,6 @@ namespace QuanLyVatTu
                 SuaBtn.Enabled = GhiBtn.Enabled = XoaBtn.Enabled = false;
                 PhuchoiBtn.Enabled  =CbChiNhanh.Enabled= false;
                 ThoatBtn.Enabled =ThemBtn.Enabled=reloadBtn.Enabled=true;
-                //groupBox1.Enabled = groupBox2.Enabled = false;
-                panelControl3.Enabled = false;
             }
 
         }
@@ -70,21 +83,36 @@ namespace QuanLyVatTu
         {
             this.Validate();
             this.bdsDathang.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.dS);
+            this.tableAdapterManager.UpdateAll(this.datHangDS);
 
         }
 
         private void Dondathang_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'datHangDS.Vattu' table. You can move, or remove it, as needed.
+            this.vattuTableAdapter.Fill(this.datHangDS.Vattu);
             // TODO: This line of code loads data into the 'datHangDS.CTDDH' table. You can move, or remove it, as needed.
-            this.cTDDHTableAdapter1.Fill(this.datHangDS.CTDDH);
+            this.cTDDHTableAdapter.Fill(this.datHangDS.CTDDH);
             // TODO: This line of code loads data into the 'datHangDS.DatHang' table. You can move, or remove it, as needed.
-            this.datHangTableAdapter1.Fill(this.datHangDS.DatHang);
-            // TODO: This line of code loads data into the 'dS.CTDDH' table. You can move, or remove it, as needed.
-            this.CTDDHTableAdapter.Fill(this.dS.CTDDH);
+            this.datHangTableAdapter.Fill(this.datHangDS.DatHang);
+            // TODO: This line of code loads data into the 'datHangDS.DatHang' table. You can move, or remove it, as needed.
+            this.datHangTableAdapter.Fill(this.datHangDS.DatHang);
+            // TODO: This line of code loads data into the 'datHangDS.CTDDH' table. You can move, or remove it, as needed.
+            this.cTDDHTableAdapter.Fill(this.datHangDS.CTDDH);
+            // TODO: This line of code loads data into the 'datHangDS.Vattu' table. You can move, or remove it, as needed.
+            this.vattuTableAdapter.Fill(this.datHangDS.Vattu);
+            // TODO: This line of code loads data into the 'datHangDS.CTDDH' table. You can move, or remove it, as needed.
+            this.cTDDHTableAdapter.Fill(this.datHangDS.CTDDH);
+            // TODO: This line of code loads data into the 'datHangDS.DatHang' table. You can move, or remove it, as needed.
+            this.datHangTableAdapter.Fill(this.datHangDS.DatHang);
+            // TODO: This line of code loads data into the 'datHangDS.CTDDH' table. You can move, or remove it, as needed.
+           
+            this.datHangTableAdapter.Fill(this.datHangDS.DatHang);
+       
+  
             // TODO: This line of code loads data into the 'dS.DatHang' table. You can move, or remove it, as needed.
-            dS.EnforceConstraints = false;
-            this.datHangTableAdapter.Fill(this.dS.DatHang);
+            datHangDS.EnforceConstraints = false;
+            this.datHangTableAdapter.Fill(this.datHangDS.DatHang);
 
         }
 
@@ -99,7 +127,7 @@ namespace QuanLyVatTu
             if (CbChiNhanh.SelectedIndex == Program.mChinhanh)
             {
                 Program.mlogin = Program.mloginDN;
-                Program.password = Program.mloginDN;
+                Program.password = Program.password;
             }
             else
             {
@@ -112,7 +140,18 @@ namespace QuanLyVatTu
             }
             else
             {
-                this.CTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
+                datHangTableAdapter.Connection.ConnectionString = Program.connstr;
+                datHangTableAdapter.Fill(datHangDS.DatHang);
+                //try
+                //{
+                //    macn = ((DataRowView)bdsNhanVien[0])["MACN"].ToString();
+                //}
+                //catch (Exception ex)
+                //{
+
+                //    MessageBox.Show("Lỗi loadMACN : " + ex.Message, "", MessageBoxButtons.OK);
+                //}
+
                 //this.CTDDHTableAdapter.Fill(this.)
             }
             //        if (CbChiNhanh.SelectedIndex != Program.mChinhanh)
@@ -179,19 +218,81 @@ namespace QuanLyVatTu
             }
         }
 
-        private void panelControl3_Paint(object sender, PaintEventArgs e)
+
+        private void datHangBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
         {
+            this.Validate();
+            this.bdsDathang.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.datHangDS);
 
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
+        private void datHangBindingNavigatorSaveItem_Click_2(object sender, EventArgs e)
         {
+            this.Validate();
+            this.bdsDathang.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.datHangDS);
 
         }
 
-        private void panelControl3_Paint_1(object sender, PaintEventArgs e)
+        private void datHangBindingNavigatorSaveItem_Click_3(object sender, EventArgs e)
         {
+            this.Validate();
+            this.bdsDathang.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.datHangDS);
 
+        }
+
+        private void reloadBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                this.datHangTableAdapter.Fill(datHangDS.DatHang);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Lỗi Reload : " + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            frmChonVatTu frm = new frmChonVatTu();
+            frm.ShowDialog();
+            this.maVatTutxt.Text = Program.maVatTudcChon;
+            this.tenVatTutxt.Text = Program.tenVattudcChon;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            frmChonKhohang frm = new frmChonKhohang();
+            frm.ShowDialog();
+            this.maKhotxt.Text = Program.maKhodcChon;
+
+            //Hien Thi Cac Truong Lien Quan
+            ngayTxt.Text = DateTime.Now.ToString("M/d/yyyy");
+            maNVtxt.Text = Program.username;
+            // Hien thi Form CTDDH 
+            themCTDDHbtn.Enabled = phuchoiCTDDHbtn.Enabled = true;
+            cTDDHGridControl.Enabled = true;
+        }
+
+        private void simpleButton1_Click_1(object sender, EventArgs e)
+        {
+            groupBox3.Enabled = true;
+            suaCTDDHbtn.Enabled = xoaCTDDHbtn.Enabled = false;
+        }
+
+        private void ThemBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            datHangGridControl.Enabled = false;
+            groupBox2.Enabled = true;
+            groupBox3.Enabled = false;
+            cTDDHGridControl.DataSource = null;
+            MaDontxt.Text = nhaCCtxt.Text = maKhotxt.Text = ngayTxt.Text = maNVtxt.Text = "";
+            maVatTutxt.Text = tenVatTutxt.Text = soLuongtxt.Text = donGiatxt.Text = "";
         }
     }
 }

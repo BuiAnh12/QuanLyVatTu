@@ -354,24 +354,6 @@ namespace QuanLyVatTu
             }
         }
 
-        private void gcNhanVien_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void hOTextEdit_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sOCMNDTextEdit_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }

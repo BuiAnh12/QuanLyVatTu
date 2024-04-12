@@ -15,7 +15,7 @@ namespace QuanLyVatTu
         /// </summary>
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
-        public static String connstr_publisher = "Data Source=DESKTOP-1MDUK92\\MSSQLSERVER1;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
+        public static String connstr_publisher = "Data Source=GODHART-NGUYEN;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
 
         public static SqlDataReader myReader;
         public static String servername = "";
@@ -24,8 +24,8 @@ namespace QuanLyVatTu
         public static String password = "";
             
         public static String database = "QLVT_DATHANG";
-        public static String remotelogin = "HOTROKETNOI";
-        public static String remotepassword = "123";
+        public static String remotelogin = "HTKN1";
+        public static String remotepassword = "12";
 
         public static String mloginDN = "";
         public static String passwordDN = "";
@@ -33,6 +33,11 @@ namespace QuanLyVatTu
         public static String mHoten = "";
 
         public static int mChinhanh = 0;
+
+        //DonDatHang 
+        public static String maKhodcChon = "";
+        public static String maVatTudcChon = "";
+        public static String tenVattudcChon = "";
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
         public static Form1 frmChinh;
