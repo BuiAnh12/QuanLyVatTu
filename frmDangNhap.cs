@@ -109,8 +109,11 @@ namespace QuanLyVatTu
                 Program.conn.Close();
 
                 Program.frmChinh.HienThiMenu();
-
-               
+                MessageBox.Show("Bạn đã đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK);
+                if (Program.mGroup == "USER")
+                {
+                    
+                }
             }
         }
 

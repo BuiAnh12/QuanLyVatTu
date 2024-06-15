@@ -28,7 +28,7 @@ namespace QuanLyVatTu
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi loadMACN : " + ex.Message, "", MessageBoxButtons.OK);
+                //MessageBox.Show("Lỗi loadMACN : " + ex.Message, "", MessageBoxButtons.OK);
             }
 
             // Set up cmbChiNhanhMain
@@ -39,16 +39,37 @@ namespace QuanLyVatTu
             cmbChiNhanhMain.SelectedIndexChanged += new EventHandler(cmbChiNhanhMain_SelectedIndexChanged);
 
             // Set up cmbPhanQuyen
-            cmbPhanQuyen.Items.AddRange(new string[] { "CONGTY", "CHINHANH", "USER" });
+
+            
             if (Program.mGroup == "CONGTY")
             {
+                cmbPhanQuyen.Items.AddRange(new string[] { "CONGTY", "CHINHANH", "USER" });
                 cmbChiNhanhMain.Enabled = true;
                 cmbPhanQuyen.SelectedIndex = 0;
                 cmbPhanQuyen.Enabled = false;
             }
+            else if (Program.mGroup == "CHINHANH")
+            {
+                cmbPhanQuyen.Items.AddRange(new string[] { "CONGTY", "CHINHANH", "USER" });
+                cmbPhanQuyen.Enabled = true;
+            }
             else
             {
-                cmbPhanQuyen.Enabled = true;
+                // Không cho truy cập với phân quyền là User -> thoát ra ngoài khi vừa khởi tạo
+                MessageBox.Show("User không có quyền truy cập chức năng này! ", "Thông báo", MessageBoxButtons.OK);
+                XtraTabControl tabControl = FindTabControl(this);
+
+                if (tabControl != null)
+                {
+                    // Get the parent tab page
+                    XtraTabPage tabPage = tabControl.SelectedTabPage;
+
+                    if (tabPage != null)
+                    {
+                        // Remove the current tab page
+                        tabControl.TabPages.Remove(tabPage);
+                    }
+                }
             }
             
         }
@@ -205,56 +226,97 @@ namespace QuanLyVatTu
 
         private void btnTaoTK_Click(object sender, EventArgs e)
         {
-
-            int index = cmbHoTenNV.SelectedIndex;
-            try
+            if (Program.mGroup == "CHINHANH" && cmbPhanQuyen.Text == "CONGTY")
             {
-                if (txtMatKhau.Text.Trim() == "")
+                MessageBox.Show("Không thể tạo tài khoản thuộc nhóm công ty", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn tạo login này ?", "Thông báo",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                int index = cmbHoTenNV.SelectedIndex;
+                try
                 {
-                    MessageBox.Show("Mật khẩu không được để trống", "", MessageBoxButtons.OK);
-                    txtMatKhau.Focus();
+                    if (txtMatKhau.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Mật khẩu không được để trống", "", MessageBoxButtons.OK);
+                        txtMatKhau.Focus();
+                        return;
+                    }
+                    if (txtTaiKhoan.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Tên tài khoản được để trống", "", MessageBoxButtons.OK);
+                        txtTaiKhoan.Focus();
+                        return;
+                    }
+
+                    // Call the stored procedure to add login and roles
+                    string strLenh = "EXEC SP_ThemLogin '" + txtTaiKhoan.Text + "', '" + txtMatKhau.Text + "', '" + Program.database + "', '" + txtMaNV.Text + "', '" + this.cmbPhanQuyen.Text + "'";
+                    int result = Program.ExecSqlNonQuery(strLenh);
+                    if (result == 0)
+                    {
+                        MessageBox.Show("Tạo tài khoản thành công", "", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi khi tạo tài khoản", "", MessageBoxButtons.OK);
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tạo tài khoản: " + ex.Message, "", MessageBoxButtons.OK);
                     return;
                 }
-                if (txtTaiKhoan.Text.Trim() == "")
-                {
-                    MessageBox.Show("Tên tài khoản được để trống", "", MessageBoxButtons.OK);
-                    txtTaiKhoan.Focus();
-                    return;
-                }
-
-                // Call the stored procedure to add login and roles
-                string strLenh = "EXEC SP_ThemLogin '" + txtTaiKhoan.Text + "', '" + txtMatKhau.Text + "', '" + Program.database + "', '" + txtMaNV.Text + "', '" + this.cmbPhanQuyen.Text + "'";
-                Program.ExecSqlNonQuery(strLenh);
-
-                MessageBox.Show("Tạo tài khoản thành công", "", MessageBoxButtons.OK);
+                cmbHoTenNV_SelectedIndexChanged(sender, e);
+                cmbHoTenNV.SelectedIndex = index;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tạo tài khoản: " + ex.Message, "", MessageBoxButtons.OK);
-            }
-            cmbHoTenNV_SelectedIndexChanged(sender, e);
-            cmbHoTenNV.SelectedIndex = index;
+                
         }
 
 
 
         private void btnXoaTK_Click(object sender, EventArgs e)
         {
-            int index = cmbHoTenNV.SelectedIndex;
-            try
-            {
-                // Call the stored procedure to delete the login and associated user
-                string strLenh = "EXEC SP_XoaLogin @login = '" + txtTaiKhoan.Text + "', @user = '" + this.txtMaNV.Text + "'";
-                Program.ExecSqlNonQuery(strLenh);
 
-                MessageBox.Show("Xóa tài khoản thành công", "", MessageBoxButtons.OK);
-            }
-            catch (Exception ex)
+
+            if (txtMaNV.Text == Program.username)
             {
-                MessageBox.Show("Lỗi khi xóa tài khoản: " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể xóa chính tài khoản đang đăng nhập", "Thông báo", MessageBoxButtons.OK);
+                return;
             }
-            cmbHoTenNV_SelectedIndexChanged(sender, e);
-            cmbHoTenNV.SelectedIndex = index;
+            if (Program.mGroup == "CHINHANH" && cmbPhanQuyen.Text == "CONGTY")
+            {
+                MessageBox.Show("Không thể xóa tài khoản thuộc nhóm công ty", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            else if (Program.mGroup == "CONGTY" && (cmbPhanQuyen.Text == "USER" || cmbPhanQuyen.Text == "CHINHANH"))
+            {
+                MessageBox.Show("Không thể xóa tài khoản thuộc nhóm chi nhánh hoặc user", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            int index = cmbHoTenNV.SelectedIndex;
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn xóa login này ?", "Thông báo",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    // Call the stored procedure to delete the login and associated user
+                    string strLenh = "EXEC SP_XoaLogin @login = '" + txtTaiKhoan.Text + "', @user = '" + this.txtMaNV.Text + "'";
+                    Program.ExecSqlNonQuery(strLenh);
+
+                    MessageBox.Show("Xóa tài khoản thành công", "", MessageBoxButtons.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa tài khoản: " + ex.Message, "", MessageBoxButtons.OK);
+                }
+                cmbHoTenNV_SelectedIndexChanged(sender, e);
+                cmbHoTenNV.SelectedIndex = index;
+            }
+                
         }
 
         private XtraTabControl FindTabControl(Control control)

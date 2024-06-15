@@ -36,6 +36,12 @@ namespace QuanLyVatTu
 
         private void btnDangNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.mlogin != "")
+            {
+                btnDangNhap.Enabled = false;
+                MessageBox.Show("Bạn đã đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             Form frm = this.CheckExists(typeof(frmDangNhap));
             if (frm != null) frm.Activate();
             else
@@ -61,8 +67,9 @@ namespace QuanLyVatTu
 
                 xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
                 xtraTabControl.SelectedTabPage = tabPage;
+                btnDangXuat.Enabled = true;
             }
-            btnDangXuat.Enabled = true;
+            
         }
 
         public void HienThiMenu()
@@ -104,6 +111,8 @@ namespace QuanLyVatTu
                 }
             }
             btnDangXuat.Enabled = false;
+            btnDangNhap.Enabled = true;
+            btnDangNhap.PerformClick();
         }
 
         private XtraTabControl FindTabControl(Control control)
@@ -251,6 +260,11 @@ namespace QuanLyVatTu
 
         private void btnTaoTk_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.mGroup == "USER")
+            {
+                MessageBox.Show("User không có quyền truy cập chức năng này! ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             Form frm = this.CheckExists(typeof(frmTaoTaiKhoan));
             if (frm != null) frm.Activate();
             else
