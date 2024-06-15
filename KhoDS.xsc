@@ -11,7 +11,7 @@
         <ColumnUISetting Name="MACN">
           <ControlSettings>
             <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
-              <BindableControlInfo Name="ComboBoxEdit" Type="DevExpress.XtraEditors.ComboBoxEdit" AssemblyName="DevExpress.XtraEditors.v21.2" />
+              <BindableControlInfo Name="TextEdit" Type="DevExpress.XtraEditors.TextEdit" AssemblyName="DevExpress.XtraEditors.v21.2" />
             </ControlSetting>
           </ControlSettings>
         </ColumnUISetting>

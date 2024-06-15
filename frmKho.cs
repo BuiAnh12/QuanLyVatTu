@@ -32,7 +32,7 @@ namespace QuanLyVatTu
             catch (Exception ex)
             {
 
-                MessageBox.Show("Lỗi loadMACN : " + ex.Message, "", MessageBoxButtons.OK);
+                //MessageBox.Show("Lỗi loadMACN : " + ex.Message, "", MessageBoxButtons.OK);
             }
 
             cmbChiNhanhMain.DataSource = Program.bds_dspm;
@@ -40,7 +40,7 @@ namespace QuanLyVatTu
             cmbChiNhanhMain.ValueMember = "TENSERVER";
             cmbChiNhanhMain.SelectedIndex = Program.mChinhanh;
 
-            cmbChiNhanh.Enabled = false;
+            txtMACN.Enabled = false;
 
           
 
@@ -121,7 +121,7 @@ namespace QuanLyVatTu
             groupBox1.Enabled = true;
             bdsKho.AddNew();
 
-            cmbChiNhanh.SelectedText = macn;
+            txtMACN.Text = ((DataRowView)bdsKho[0])["MACN"].ToString();
             btnReload.Enabled =
                 btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;
             btnThoat.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = true;
@@ -231,6 +231,22 @@ namespace QuanLyVatTu
                 txtMaKho.Focus();
                 return;
             }
+            if (txtMaKho.Text.Trim().Length != 4)
+            {
+                MessageBox.Show("Sai cú pháp mã kho. Mã kho phải có 4 ký tự."
+                    , "", MessageBoxButtons.OK);
+                txtMaKho.Focus();
+                return;
+            }
+            int viTriConTro = bdsKho.Position;
+            int viTriMaKho = bdsKho.Find("MAKHO", int.Parse(txtMaKho.Text));
+            if (viTriConTro != viTriMaKho && viTriMaKho != -1)
+            {
+                MessageBox.Show("Mã kho này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+
             try
             {
                 foreach (DataRowView rowView in bdsKho)
@@ -265,20 +281,14 @@ namespace QuanLyVatTu
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string selectedMAKHO = ((DataRowView)bdsKho[bdsKho.Position])["MAKHO"].ToString();
-
-            foreach (DataRowView datHangRowView in bdsDatHang)
+            if (bdsDatHang.Count > 0)
             {
-                DataRow datHangRow = datHangRowView.Row;
-                string MAKHO = datHangRow["MAKHO"].ToString();
-
-                if (MAKHO == selectedMAKHO)
-                {
-                    MessageBox.Show("Không thể xóa Kho này vì đã lập đơn đặt hàng", "", MessageBoxButtons.OK);
-                    return;
-                }
+                MessageBox.Show("Không thể xóa kho này vì đã lập đơn đặt hàng"
+                    , "", MessageBoxButtons.OK);
+                return;
             }
-            
-            if (MessageBox.Show("Bạn thật sự muốn xóa Kho này ??"
+
+            if (MessageBox.Show("Bạn thật sự muốn xóa Kho này ?"
                     , "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
