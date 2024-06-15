@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace QuanLyVatTu
 {
@@ -62,8 +63,10 @@ namespace QuanLyVatTu
         {
             vitri = bdsVatTu.Position;
             groupBox1.Enabled = true;
-            //bdsVatTu.AddNew();
-
+            bdsVatTu.AllowNew = true;
+            bdsVatTu.AddNew();
+            txtMaVT.Text = txtTenVT.Text = txtDVT.Text = "";
+            txtSoLuongTon.Text = "1";
             btnReload.Enabled =
                 btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;
             btnThoat.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = true;
@@ -81,6 +84,14 @@ namespace QuanLyVatTu
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (txtMaVT.Text.Trim().Length != 4)
+            {
+                MessageBox.Show("Sai định dạng mã vật tư. Mã phải có độ dài bằng 4!"
+                    , "", MessageBoxButtons.OK);
+                txtMaVT.Focus();
+                return;
+            }
+
             if (txtMaVT.Text.Trim() == "")
             {
                 MessageBox.Show("Mã vật tư không được để trống"
@@ -109,65 +120,70 @@ namespace QuanLyVatTu
                 txtDVT.Focus();
                 return;
             }
-            try
+            if ( int.Parse(txtSoLuongTon.Text) < 0)
             {
-                bdsVatTu.EndEdit();
-                bdsVatTu.ResetCurrentItem();
-                vattuTableAdapter.Connection.ConnectionString = Program.connstr;
-                vattuTableAdapter.Update(this.VatTuDS.Vattu);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi ghi kho mới. \n" + ex.Message + ""
-                    , "", MessageBoxButtons.OK);
+                MessageBox.Show("Sô lượng tồn phải ít nhất bằng 0", "Thông báo", MessageBoxButtons.OK);
+                txtSoLuongTon.Focus();
                 return;
             }
-            gcVatTu.Enabled = true;
-            btnReload.Enabled = btnSua.Enabled
-                = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
-            btnGhi.Enabled = btnPhucHoi.Enabled = false;
-            groupBox1.Enabled = false;
+            int viTriConTro = bdsVatTu.Position;
+            int viTriMaVatTu = bdsVatTu.Find("MAVT", txtMaVT.Text);
+            if (viTriConTro != viTriMaVatTu && viTriMaVatTu != -1)
+            {
+                MessageBox.Show("Mã vật tư này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn ghi dữ liệu vào cơ sở dữ liệu ?", "Thông báo",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    bdsVatTu.EndEdit();
+                    bdsVatTu.ResetCurrentItem();
+                    vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+                    vattuTableAdapter.Update(this.VatTuDS.Vattu);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi ghi vật tư mới. \n" + ex.Message + ""
+                        , "", MessageBoxButtons.OK);
+                    return;
+                }
+                gcVatTu.Enabled = true;
+                btnReload.Enabled = btnSua.Enabled
+                    = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
+                btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                groupBox1.Enabled = false;
+            }  
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string selectedMAVT = ((DataRowView)bdsVatTu[bdsVatTu.Position])["MAVT"].ToString();
 
-            foreach (DataRowView datHangRowView in bdsCTDDH)
-            {
-                DataRow datHangRow = datHangRowView.Row;
-                string MAVT = datHangRow["MAVT"].ToString();
 
-                if (MAVT == selectedMAVT)
-                {
-                    MessageBox.Show("Không thể xóa vật tư này vì đã lập đơn đặt hàng", "", MessageBoxButtons.OK);
-                    return;
-                }
+
+            if (bdsCTPN.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa vật tư này vì đã lập phiếu nhập"
+                    , "", MessageBoxButtons.OK);
+                return;
             }
-            foreach (DataRowView datHangRowView in bdsCTPN)
+            if (bdsCTPX.Count > 0)
             {
-                DataRow phieuNhapRow = datHangRowView.Row;
-                string MAVT = phieuNhapRow["MAVT"].ToString();
-
-                if (MAVT == selectedMAVT)
-                {
-                    MessageBox.Show("Không thể xóa vật tư này vì đã lập phiếu nhập", "", MessageBoxButtons.OK);
-                    return;
-                }
+                MessageBox.Show("Không thể xóa vật tư này vì đã lập phiếu xuất"
+                    , "", MessageBoxButtons.OK);
+                return;
             }
-            foreach (DataRowView datHangRowView in bdsCTPX)
+            if (bdsCTDDH.Count > 0)
             {
-                DataRow phieuXuatRow = datHangRowView.Row;
-                string MAVT = phieuXuatRow["MAVT"].ToString();
-
-                if (MAVT == selectedMAVT)
-                {
-                    MessageBox.Show("Không thể xóa vật tư này vì đã lập phiếu xuất", "", MessageBoxButtons.OK);
-                    return;
-                }
+                MessageBox.Show("Không thể xóa vật tư này vì đã lập đơn đặt hàng"
+                    , "", MessageBoxButtons.OK);
+                return;
             }
 
-            if (MessageBox.Show("Bạn thật sự muốn xóa vật tư này ??"
+            if (MessageBox.Show("Bạn thật sự muốn xóa vật tư này ?"
                     , "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
@@ -195,6 +211,7 @@ namespace QuanLyVatTu
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsVatTu.CancelEdit();
+            this.vattuTableAdapter.Fill(this.VatTuDS.Vattu);
             if (btnThem.Enabled == false)
             {
                 bdsVatTu.Position = vitri;
@@ -253,6 +270,11 @@ namespace QuanLyVatTu
                     }
                 }
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
