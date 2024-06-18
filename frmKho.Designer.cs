@@ -69,6 +69,7 @@
             this.tableAdapterManager = new QuanLyVatTu.KhoDSTableAdapters.TableAdapterManager();
             this.datHangTableAdapter = new QuanLyVatTu.KhoDSTableAdapters.DatHangTableAdapter();
             this.bdsDatHang = new System.Windows.Forms.BindingSource(this.components);
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControl)).BeginInit();
             this.PanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcKho)).BeginInit();
@@ -91,19 +92,19 @@
             this.PanelControl.Controls.Add(this.label3);
             this.PanelControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelControl.Location = new System.Drawing.Point(0, 62);
-            this.PanelControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanelControl.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.PanelControl.Name = "PanelControl";
-            this.PanelControl.Size = new System.Drawing.Size(1824, 56);
+            this.PanelControl.Size = new System.Drawing.Size(1824, 61);
             this.PanelControl.TabIndex = 1;
             // 
             // cmbChiNhanhMain
             // 
             this.cmbChiNhanhMain.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.cmbChiNhanhMain.FormattingEnabled = true;
-            this.cmbChiNhanhMain.Location = new System.Drawing.Point(112, 18);
-            this.cmbChiNhanhMain.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbChiNhanhMain.Location = new System.Drawing.Point(140, 22);
+            this.cmbChiNhanhMain.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cmbChiNhanhMain.Name = "cmbChiNhanhMain";
-            this.cmbChiNhanhMain.Size = new System.Drawing.Size(295, 30);
+            this.cmbChiNhanhMain.Size = new System.Drawing.Size(368, 30);
             this.cmbChiNhanhMain.TabIndex = 9;
             this.cmbChiNhanhMain.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanhMain_SelectedIndexChanged);
             // 
@@ -112,8 +113,8 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(16, 21);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(20, 26);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 22);
             this.label3.TabIndex = 8;
@@ -123,12 +124,12 @@
             // 
             this.gcKho.DataSource = this.bdsKho;
             this.gcKho.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcKho.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gcKho.Location = new System.Drawing.Point(0, 118);
+            this.gcKho.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcKho.Location = new System.Drawing.Point(0, 123);
             this.gcKho.MainView = this.gridView1;
-            this.gcKho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcKho.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcKho.Name = "gcKho";
-            this.gcKho.Size = new System.Drawing.Size(1824, 843);
+            this.gcKho.Size = new System.Drawing.Size(1824, 838);
             this.gcKho.TabIndex = 2;
             this.gcKho.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -151,6 +152,7 @@
             this.colTENKHO,
             this.colDIACHI,
             this.colMACN});
+            this.gridView1.DetailHeight = 437;
             this.gridView1.GridControl = this.gcKho;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -158,38 +160,38 @@
             // colMAKHO
             // 
             this.colMAKHO.FieldName = "MAKHO";
-            this.colMAKHO.MinWidth = 25;
+            this.colMAKHO.MinWidth = 31;
             this.colMAKHO.Name = "colMAKHO";
             this.colMAKHO.Visible = true;
             this.colMAKHO.VisibleIndex = 0;
-            this.colMAKHO.Width = 93;
+            this.colMAKHO.Width = 116;
             // 
             // colTENKHO
             // 
             this.colTENKHO.FieldName = "TENKHO";
-            this.colTENKHO.MinWidth = 25;
+            this.colTENKHO.MinWidth = 31;
             this.colTENKHO.Name = "colTENKHO";
             this.colTENKHO.Visible = true;
             this.colTENKHO.VisibleIndex = 1;
-            this.colTENKHO.Width = 93;
+            this.colTENKHO.Width = 116;
             // 
             // colDIACHI
             // 
             this.colDIACHI.FieldName = "DIACHI";
-            this.colDIACHI.MinWidth = 25;
+            this.colDIACHI.MinWidth = 31;
             this.colDIACHI.Name = "colDIACHI";
             this.colDIACHI.Visible = true;
             this.colDIACHI.VisibleIndex = 2;
-            this.colDIACHI.Width = 93;
+            this.colDIACHI.Width = 116;
             // 
             // colMACN
             // 
             this.colMACN.FieldName = "MACN";
-            this.colMACN.MinWidth = 25;
+            this.colMACN.MinWidth = 31;
             this.colMACN.Name = "colMACN";
             this.colMACN.Visible = true;
             this.colMACN.VisibleIndex = 3;
-            this.colMACN.Width = 93;
+            this.colMACN.Width = 116;
             // 
             // groupBox1
             // 
@@ -242,8 +244,9 @@
             this.btnPhucHoi,
             this.btnReload,
             this.btnThoat,
-            this.btnSua});
-            this.barManager1.MaxItemId = 8;
+            this.btnSua,
+            this.barButtonItem2});
+            this.barManager1.MaxItemId = 9;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar3
@@ -271,7 +274,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnXoa),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnPhucHoi),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReload),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
             this.bar4.Text = "Custom 5";
             // 
             // btnThem
@@ -493,6 +497,15 @@
             this.bdsDatHang.DataMember = "FK_DatHang_Kho";
             this.bdsDatHang.DataSource = this.bdsKho;
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "Undo";
+            this.barButtonItem2.Id = 8;
+            this.barButtonItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
             // frmKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -570,5 +583,6 @@
         private DevExpress.XtraEditors.TextEdit txtTenKho;
         private DevExpress.XtraEditors.TextEdit txtMaKho;
         private DevExpress.XtraEditors.TextEdit txtMACN;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }

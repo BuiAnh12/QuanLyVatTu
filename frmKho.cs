@@ -17,8 +17,8 @@ namespace QuanLyVatTu
 
         String macn = "";
         int vitri = 0;
-
-
+        Stack<String> undo = null;
+        Boolean isEditing = false;
 
         public frmKho()
         {
@@ -58,6 +58,9 @@ namespace QuanLyVatTu
                 btnThoat.Enabled = btnSua.Enabled = btnThem.Enabled 
                     = btnReload.Enabled = btnXoa.Enabled = true;
             }
+
+            // Tạo stack để lưu thông tin undo
+            undo = new Stack<String>();
         }
 
         private void frmKho_Load(object sender, EventArgs e)
@@ -90,6 +93,7 @@ namespace QuanLyVatTu
             btnReload.Enabled = btnSua.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            isEditing = false; // cài lại giá trị mặc định
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -99,6 +103,7 @@ namespace QuanLyVatTu
             btnReload.Enabled = btnSua.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            isEditing = true; // đang chỉnh sửa 
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -239,26 +244,46 @@ namespace QuanLyVatTu
                 return;
             }
             int viTriConTro = bdsKho.Position;
-            int viTriMaKho = bdsKho.Find("MAKHO", int.Parse(txtMaKho.Text));
+            int viTriMaKho = bdsKho.Find("MAKHO", txtMaKho.Text);
             if (viTriConTro != viTriMaKho && viTriMaKho != -1)
             {
                 MessageBox.Show("Mã kho này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-
-
+            if (this.isEditing)
+            {
+                String maKhoCu = ((DataRowView)bdsKho[viTriConTro])["MAKHO"].ToString();
+                String tenKhoCu = ((DataRowView)bdsKho[viTriConTro])["TENKHO"].ToString();
+                String diaChiCu = ((DataRowView)bdsKho[viTriConTro])["DIACHI"].ToString();
+                String maCNCu   = ((DataRowView)bdsKho[viTriConTro])["MACN"].ToString();
+                String maKhoMoi = txtMaKho.Text;
+                String undoQueryUpdate = "UPDATE Kho SET " +
+                         "MAKHO = '" + maKhoCu + "', " +
+                         "TENKHO = '" + tenKhoCu + "', " +
+                         "DIACHI = '" + diaChiCu + "', " +
+                         "MACN = '" + maCNCu + "' " +
+                         "WHERE MAKHO = '" + maKhoMoi + "'";
+                this.undo.Push(undoQueryUpdate);
+            }
+            else
+            {
+                String maKhoMoi = txtMaKho.Text;
+                String undoQueryDelete = "DELETE FROM Kho WHERE MAKHO = '" + maKhoMoi + "'";
+                this.undo.Push(undoQueryDelete);
+            }
+           
             try
             {
                 foreach (DataRowView rowView in bdsKho)
                 {
                     DataRow row = rowView.Row;
-                    if (row.RowState == DataRowState.Added) // Check if the row is newly added
+                    if (row.RowState == DataRowState.Added) 
                     {
-                        row["MACN"] = cmbChiNhanhMain.SelectedValue.ToString(); // Replace yourMACNValue with the value you want to set for MACN
+                        row["MACN"] = cmbChiNhanhMain.SelectedValue.ToString(); 
                         Console.WriteLine("MACN:", cmbChiNhanhMain.SelectedValue.ToString());
                     }
                 }
-
+                
                 bdsKho.EndEdit();
                 bdsKho.ResetCurrentItem();
                 khoTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -268,6 +293,7 @@ namespace QuanLyVatTu
             {
                 MessageBox.Show("Lỗi ghi kho mới. \n" + ex.Message + ""
                     , "", MessageBoxButtons.OK);
+                this.undo.Pop();
                 return;
             }
             gcKho.Enabled = true;
@@ -275,7 +301,7 @@ namespace QuanLyVatTu
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
             groupBox1.Enabled = false;
-
+            isEditing = false; // Set lại giá trị mặc định 
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -291,6 +317,17 @@ namespace QuanLyVatTu
             if (MessageBox.Show("Bạn thật sự muốn xóa Kho này ?"
                     , "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                String maKhoCu = txtMaKho.Text;
+                String tenKhoCu = txtTenKho.Text;
+                String diaChiCu = txtDiaChi.Text;
+                String maCN = txtMACN.Text;
+                String undoQueryInsert = "INSERT INTO Kho (MAKHO, TENKHO, DIACHI, MACN) " +
+                    "VALUES ('" 
+                    + maKhoCu + "','" 
+                    + tenKhoCu + "','" 
+                    + diaChiCu + "','" 
+                    + maCN + "')";
+                this.undo.Push(undoQueryInsert);
                 try
                 {
                     bdsKho.RemoveCurrent();
@@ -303,6 +340,7 @@ namespace QuanLyVatTu
                     , "", MessageBoxButtons.OK);
                     this.khoTableAdapter.Fill(khoDS.Kho);
                     bdsKho.Position = bdsKho.Find("MAKHO", selectedMAKHO);
+                    this.undo.Pop();
                     return;
                 }
             }
@@ -316,6 +354,28 @@ namespace QuanLyVatTu
         private void mAKHOTextEdit_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.undo.Count <= 0)
+            {
+                MessageBox.Show("Không thể undo vì chưa có hành động nào được thực hiện"
+                    , "", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                if (Program.KetNoi() == 0)
+                {
+                    MessageBox.Show("Không thể kết nối với database để thực hiện tác vụ"
+                    , "", MessageBoxButtons.OK);
+                     return;
+                }
+                String undoQuery = this.undo.Pop();
+                int n = Program.ExecSqlNonQuery(undoQuery);
+                this.khoTableAdapter.Fill(this.khoDS.Kho);
+            }
         }
     }
 }
