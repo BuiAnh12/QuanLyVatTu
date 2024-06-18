@@ -320,5 +320,20 @@ namespace QuanLyVatTu
                 xtraTabControl.SelectedTabPage = tabPage;
             }
         }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmChiTietSoLuongTriGiaHangHoaNhapXuat frpt = new frmChiTietSoLuongTriGiaHangHoaNhapXuat();
+
+            frpt.ShowDialog();
+
+        }
+
+        private void btnTongHopNhapXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frpt_TongHopNhapXuat frpt = new Frpt_TongHopNhapXuat();
+            frpt.ShowDialog();
+
+        }
     }
 }
