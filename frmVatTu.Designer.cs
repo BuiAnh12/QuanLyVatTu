@@ -70,6 +70,7 @@
             this.bdsCTPX = new System.Windows.Forms.BindingSource(this.components);
             this.bdsCTPN = new System.Windows.Forms.BindingSource(this.components);
             this.bdsCTDDH = new System.Windows.Forms.BindingSource(this.components);
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VatTuDS)).BeginInit();
@@ -89,10 +90,10 @@
             // 
             this.gcVatTu.DataSource = this.bdsVatTu;
             this.gcVatTu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcVatTu.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcVatTu.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcVatTu.Location = new System.Drawing.Point(0, 62);
             this.gcVatTu.MainView = this.gridView1;
-            this.gcVatTu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcVatTu.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcVatTu.Name = "gcVatTu";
             this.gcVatTu.Size = new System.Drawing.Size(1824, 888);
             this.gcVatTu.TabIndex = 3;
@@ -117,6 +118,7 @@
             this.colTENVT,
             this.colDVT1,
             this.colSOLUONGTON});
+            this.gridView1.DetailHeight = 437;
             this.gridView1.GridControl = this.gcVatTu;
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", null, "")});
@@ -125,42 +127,42 @@
             // colMAVT
             // 
             this.colMAVT.FieldName = "MAVT";
-            this.colMAVT.MinWidth = 25;
+            this.colMAVT.MinWidth = 31;
             this.colMAVT.Name = "colMAVT";
             this.colMAVT.OptionsColumn.AllowEdit = false;
             this.colMAVT.Visible = true;
             this.colMAVT.VisibleIndex = 0;
-            this.colMAVT.Width = 93;
+            this.colMAVT.Width = 116;
             // 
             // colTENVT
             // 
             this.colTENVT.FieldName = "TENVT";
-            this.colTENVT.MinWidth = 25;
+            this.colTENVT.MinWidth = 31;
             this.colTENVT.Name = "colTENVT";
             this.colTENVT.OptionsColumn.AllowEdit = false;
             this.colTENVT.Visible = true;
             this.colTENVT.VisibleIndex = 1;
-            this.colTENVT.Width = 93;
+            this.colTENVT.Width = 116;
             // 
             // colDVT1
             // 
             this.colDVT1.FieldName = "DVT";
-            this.colDVT1.MinWidth = 25;
+            this.colDVT1.MinWidth = 31;
             this.colDVT1.Name = "colDVT1";
             this.colDVT1.OptionsColumn.AllowEdit = false;
             this.colDVT1.Visible = true;
             this.colDVT1.VisibleIndex = 2;
-            this.colDVT1.Width = 94;
+            this.colDVT1.Width = 117;
             // 
             // colSOLUONGTON
             // 
             this.colSOLUONGTON.FieldName = "SOLUONGTON";
-            this.colSOLUONGTON.MinWidth = 25;
+            this.colSOLUONGTON.MinWidth = 31;
             this.colSOLUONGTON.Name = "colSOLUONGTON";
             this.colSOLUONGTON.OptionsColumn.AllowEdit = false;
             this.colSOLUONGTON.Visible = true;
             this.colSOLUONGTON.VisibleIndex = 3;
-            this.colSOLUONGTON.Width = 93;
+            this.colSOLUONGTON.Width = 116;
             // 
             // groupBox1
             // 
@@ -212,8 +214,9 @@
             this.btnReload,
             this.btnThoat,
             this.btnSua,
-            this.btnIn});
-            this.barManager1.MaxItemId = 9;
+            this.btnIn,
+            this.barButtonItem1});
+            this.barManager1.MaxItemId = 10;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar3
@@ -242,7 +245,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnPhucHoi),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReload),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnIn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
             this.bar4.Text = "Custom 5";
             // 
             // btnThem
@@ -483,6 +487,15 @@
             this.bdsCTDDH.DataMember = "FK_CTDDH_VatTu";
             this.bdsCTDDH.DataSource = this.bdsVatTu;
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Undo";
+            this.barButtonItem1.Id = 9;
+            this.barButtonItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
             // frmVatTu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -558,5 +571,6 @@
         private DevExpress.XtraEditors.TextEdit txtMaVT;
         private DevExpress.XtraEditors.TextEdit txtSoLuongTon;
         private DevExpress.XtraGrid.Columns.GridColumn colDVT1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

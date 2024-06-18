@@ -12,11 +12,14 @@ using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace QuanLyVatTu
 {
+
     public partial class frmVatTu : Form
     {
 
         String VT = "";
         int vitri = 0;
+        Stack<String> undo = null;
+        Boolean isEditing = false;
         public frmVatTu()
         {
             InitializeComponent();
@@ -34,6 +37,8 @@ namespace QuanLyVatTu
                     = btnReload.Enabled = btnXoa.Enabled = true;
             }
             groupBox1.Enabled = false;
+            // Tạo stack để lưu thông tin undo
+            undo = new Stack<String>();
         }
 
         private void gridControl1_Click(object sender, EventArgs e)
@@ -77,9 +82,11 @@ namespace QuanLyVatTu
         {
             vitri = bdsVatTu.Position;
             groupBox1.Enabled = true;
+            gcVatTu.Enabled = false;
             btnReload.Enabled = btnSua.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            isEditing = true; // Set trang thai dang edit
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -137,6 +144,28 @@ namespace QuanLyVatTu
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
+                if (this.isEditing)
+                {
+                    String mavtCu = ((DataRowView)bdsVatTu[viTriConTro])["MAVT"].ToString();
+                    String tenvtCu = ((DataRowView)bdsVatTu[viTriConTro])["TENVT"].ToString();
+                    String dvtCu = ((DataRowView)bdsVatTu[viTriConTro])["DVT"].ToString();
+                    String soluongtonCu = ((DataRowView)bdsVatTu[viTriConTro])["SOLUONGTON"].ToString();
+                    String mavtMoi = txtMaVT.Text;
+                    String undoQueryUpdate = "UPDATE VatTu SET " +
+                             "TENVT = N'" + tenvtCu + "', " +
+                             "DVT = N'" + dvtCu + "', " +
+                             "SOLUONGTON = N'" + soluongtonCu + "', " +
+                             "MAVT = N'" + mavtCu + "' " +
+                             "WHERE MAVT = N'" + mavtMoi + "'";
+                    this.undo.Push(undoQueryUpdate);
+                }
+                else
+                {
+                    String mavtMoi = txtMaVT.Text;
+                    String undoQueryDelete = "DELETE FROM VatTu WHERE MAVT = N'" + mavtMoi + "'";
+                    this.undo.Push(undoQueryDelete);
+                }
+
                 try
                 {
                     bdsVatTu.EndEdit();
@@ -186,6 +215,17 @@ namespace QuanLyVatTu
             if (MessageBox.Show("Bạn thật sự muốn xóa vật tư này ?"
                     , "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                String mavt = txtMaVT.Text;
+                String tenvt = txtTenVT.Text;
+                String dvt = txtDVT.Text;
+                String soluongton = txtSoLuongTon.Text;
+                String undoQueryInsert = "INSERT INTO VatTu (MAVT, TENVT, DVT, SOLUONGTON) " +
+                    "VALUES (N'"
+                    + mavt + "',N'"
+                    + tenvt + "',N'"
+                    + dvt + "',N'"
+                    + soluongton + "')";
+                this.undo.Push(undoQueryInsert);
                 try
                 {
                     bdsVatTu.RemoveCurrent();
@@ -221,6 +261,7 @@ namespace QuanLyVatTu
             btnReload.Enabled = btnSua.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            isEditing = false;
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -275,6 +316,28 @@ namespace QuanLyVatTu
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.undo.Count <= 0)
+            {
+                MessageBox.Show("Không thể undo vì chưa có hành động nào được thực hiện"
+                    , "", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                if (Program.KetNoi() == 0)
+                {
+                    MessageBox.Show("Không thể kết nối với database để thực hiện tác vụ"
+                    , "", MessageBoxButtons.OK);
+                    return;
+                }
+                String undoQuery = this.undo.Pop();
+                int n = Program.ExecSqlNonQuery(undoQuery);
+                this.vattuTableAdapter.Fill(this.VatTuDS.Vattu);
+            }
         }
     }
 }

@@ -99,6 +99,7 @@ namespace QuanLyVatTu
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             vitri = bdsKho.Position;
+            gcKho.Enabled = false;
             groupBox1.Enabled = true;
             btnReload.Enabled = btnSua.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = false;
@@ -125,7 +126,6 @@ namespace QuanLyVatTu
             vitri = bdsKho.Position;
             groupBox1.Enabled = true;
             bdsKho.AddNew();
-
             txtMACN.Text = ((DataRowView)bdsKho[0])["MACN"].ToString();
             btnReload.Enabled =
                 btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;
@@ -258,17 +258,17 @@ namespace QuanLyVatTu
                 String maCNCu   = ((DataRowView)bdsKho[viTriConTro])["MACN"].ToString();
                 String maKhoMoi = txtMaKho.Text;
                 String undoQueryUpdate = "UPDATE Kho SET " +
-                         "MAKHO = '" + maKhoCu + "', " +
-                         "TENKHO = '" + tenKhoCu + "', " +
-                         "DIACHI = '" + diaChiCu + "', " +
-                         "MACN = '" + maCNCu + "' " +
-                         "WHERE MAKHO = '" + maKhoMoi + "'";
+                         "MAKHO = N'" + maKhoCu + "', " +
+                         "TENKHO = N'" + tenKhoCu + "', " +
+                         "DIACHI = N'" + diaChiCu + "', " +
+                         "MACN = N'" + maCNCu + "' " +
+                         "WHERE MAKHO = N'" + maKhoMoi + "'";
                 this.undo.Push(undoQueryUpdate);
             }
             else
             {
                 String maKhoMoi = txtMaKho.Text;
-                String undoQueryDelete = "DELETE FROM Kho WHERE MAKHO = '" + maKhoMoi + "'";
+                String undoQueryDelete = "DELETE FROM Kho WHERE MAKHO = N'" + maKhoMoi + "'";
                 this.undo.Push(undoQueryDelete);
             }
            
@@ -322,10 +322,10 @@ namespace QuanLyVatTu
                 String diaChiCu = txtDiaChi.Text;
                 String maCN = txtMACN.Text;
                 String undoQueryInsert = "INSERT INTO Kho (MAKHO, TENKHO, DIACHI, MACN) " +
-                    "VALUES ('" 
-                    + maKhoCu + "','" 
-                    + tenKhoCu + "','" 
-                    + diaChiCu + "','" 
+                    "VALUES (N'" 
+                    + maKhoCu + "',N'" 
+                    + tenKhoCu + "',N'" 
+                    + diaChiCu + "',N'" 
                     + maCN + "')";
                 this.undo.Push(undoQueryInsert);
                 try
@@ -372,7 +372,7 @@ namespace QuanLyVatTu
                     , "", MessageBoxButtons.OK);
                      return;
                 }
-                String undoQuery = this.undo.Pop();
+                String undoQuery = this.undo.Pop()
                 int n = Program.ExecSqlNonQuery(undoQuery);
                 this.khoTableAdapter.Fill(this.khoDS.Kho);
             }

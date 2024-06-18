@@ -16,6 +16,8 @@ namespace QuanLyVatTu
     {
         String macn = "";
         int vitri = 0;
+        Stack<String> undo = null;
+        Boolean isEditing = false;
         public frmNhanVien()
         {
             InitializeComponent();
@@ -56,7 +58,7 @@ namespace QuanLyVatTu
                 btnThoat.Enabled = btnSua.Enabled = btnThem.Enabled = btnIn.Enabled
                     = btnReload.Enabled = btnXoa.Enabled = true;
             }
-
+            undo = new Stack<String>();
 
         }
 
@@ -89,12 +91,12 @@ namespace QuanLyVatTu
             groupBox1.Enabled = true;
             bdsNhanVien.AddNew();
             checkTrangThaiXoa.Checked = false;
-            cmbChiNhanh.SelectedText = macn;
             DeNgaySinh.EditValue = "";
             btnIn.Enabled = btnReload.Enabled = 
                 btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;
             btnThoat.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = true;
             gcNhanVien.Enabled = false;
+            txtMACN.Text = ((DataRowView)bdsNhanVien[0])["MACN"].ToString();
         }
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -109,6 +111,7 @@ namespace QuanLyVatTu
             btnIn.Enabled = btnReload.Enabled = btnSua.Enabled 
                 = btnThem.Enabled = btnThoat.Enabled  = btnXoa.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            this.isEditing = false;
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -118,6 +121,7 @@ namespace QuanLyVatTu
             btnIn.Enabled = btnReload.Enabled = btnSua.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            this.isEditing = true;
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -164,6 +168,29 @@ namespace QuanLyVatTu
             if (MessageBox.Show("Bạn thật sự muốn xóa nhân viên này ??"
                     , "Xác nhận", MessageBoxButtons.OKCancel)  == DialogResult.OK)
             {
+                int viTriConTro = bdsNhanVien.Position;
+                String manvMoi = ((DataRowView)bdsNhanVien[viTriConTro])["MANV"].ToString();
+                String ho = ((DataRowView)bdsNhanVien[viTriConTro])["HO"].ToString();
+                String ten = ((DataRowView)bdsNhanVien[viTriConTro])["TEN"].ToString();
+                String soCMND = ((DataRowView)bdsNhanVien[viTriConTro])["SOCMND"].ToString();
+                String diachi = ((DataRowView)bdsNhanVien[viTriConTro])["DIACHI"].ToString();
+                String ngaySinh = ((DataRowView)bdsNhanVien[viTriConTro])["NGAYSINH"].ToString();
+                String luong = ((DataRowView)bdsNhanVien[viTriConTro])["LUONG"].ToString();
+                String maCN = ((DataRowView)bdsNhanVien[viTriConTro])["MACN"].ToString();
+                String trangThaiXoa = ((DataRowView)bdsNhanVien[viTriConTro])["TrangThaiXoa"].ToString() == "False" ? "0" : "1";
+                
+                String undoQueryInsert = "INSERT INTO NhanVien (MANV, HO, TEN, SOCMND, DIACHI, NGAYSINH, LUONG, MACN, TrangThaiXoa) " +
+                   "VALUES (N'"
+                   + manvMoi + "',N'"
+                   + ho + "',N'"
+                   + ten + "',N'"
+                   + soCMND + "',N'"
+                   + diachi + "',N'"
+                   + ngaySinh + "',N'"
+                   + luong + "',N'"
+                   + maCN + "',"
+                   + trangThaiXoa + ")";
+                this.undo.Push(undoQueryInsert);
                 try
                 {
                     manv = int.Parse(((DataRowView)bdsNhanVien[bdsNhanVien.Position])["MANV"].ToString());
@@ -235,6 +262,38 @@ namespace QuanLyVatTu
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (dr == DialogResult.OK)
                 {
+                    if (this.isEditing)
+                    {
+                        int viTriConTro = bdsNhanVien.Position;
+                        String maNVCu = ((DataRowView)bdsNhanVien[viTriConTro])["MANV"].ToString();
+                        String ho = ((DataRowView)bdsNhanVien[viTriConTro])["HO"].ToString();
+                        String ten = ((DataRowView)bdsNhanVien[viTriConTro])["TEN"].ToString();
+                        String soCMND = ((DataRowView)bdsNhanVien[viTriConTro])["SOCMND"].ToString();
+                        String diachi = ((DataRowView)bdsNhanVien[viTriConTro])["DIACHI"].ToString();
+                        String ngaySinh = ((DataRowView)bdsNhanVien[viTriConTro])["NGAYSINH"].ToString();
+                        String luong = ((DataRowView)bdsNhanVien[viTriConTro])["LUONG"].ToString();
+                        String maCN = ((DataRowView)bdsNhanVien[viTriConTro])["MACN"].ToString();
+                        String trangThaiXoa = ((DataRowView)bdsNhanVien[viTriConTro])["TrangThaiXoa"].ToString() == "False" ? "0" : "1";
+                        String maNVMoi = txtMANV.Text;
+                        String undoQueryUpdate = "UPDATE NhanVien SET " +
+                                 "MANV = N'" + maNVCu + "', " +
+                                 "HO = N'" + ho + "', " +
+                                 "TEN = N'" + ten + "', " +
+                                 "DIACHI = N'" + diachi + "', " +
+                                 "SOCMND = N'" + soCMND + "', " +
+                                 "NGAYSINH = N'" + ngaySinh + "', " +
+                                 "LUONG = N'" + luong + "', " +
+                                 "MACN = N'" + maCN + "' " +
+                                 "TrangThaiXoa = " + trangThaiXoa + " " +
+                                 "WHERE MANV = N'" + maNVMoi + "'";
+                        this.undo.Push(undoQueryUpdate);
+                    }
+                    else
+                    {
+                        String maNVMoi = txtMANV.Text;
+                        String undoQueryDelete = "DELETE FROM NhanVien WHERE MANV = N'" + maNVMoi + "'";
+                        this.undo.Push(undoQueryDelete);
+                    }
                     try
                     {
                         bdsNhanVien.EndEdit();
@@ -452,6 +511,28 @@ namespace QuanLyVatTu
         private void label10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.undo.Count <= 0)
+            {
+                MessageBox.Show("Không thể undo vì chưa có hành động nào được thực hiện"
+                    , "", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                if (Program.KetNoi() == 0)
+                {
+                    MessageBox.Show("Không thể kết nối với database để thực hiện tác vụ"
+                    , "", MessageBoxButtons.OK);
+                    return;
+                }
+                String undoQuery = this.undo.Pop();
+                int n = Program.ExecSqlNonQuery(undoQuery);
+                this.nhanVienTableAdapter.Fill(this.nhanVienDS.NhanVien);
+            }
         }
     }
 }
