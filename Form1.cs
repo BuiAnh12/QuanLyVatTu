@@ -103,16 +103,15 @@ namespace QuanLyVatTu
                 reportPage.Visible = false;
                 btnTaoTk.Enabled = false;
                 XtraTabControl tabControl = FindTabControl(this);
-
+                btnDangXuat.Enabled = false;
+                btnDangNhap.Enabled = true;
+                btnDangNhap.PerformClick();
                 if (tabControl != null)
                 {
                     // Clear all tab pages
                     tabControl.TabPages.Clear();
                 }
             }
-            btnDangXuat.Enabled = false;
-            btnDangNhap.Enabled = true;
-            btnDangNhap.PerformClick();
         }
 
         private XtraTabControl FindTabControl(Control control)

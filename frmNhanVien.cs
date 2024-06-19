@@ -59,7 +59,7 @@ namespace QuanLyVatTu
                     = btnReload.Enabled = btnXoa.Enabled = true;
             }
             undo = new Stack<String>();
-
+            groupBox1.Enabled = false;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -533,6 +533,36 @@ namespace QuanLyVatTu
                 int n = Program.ExecSqlNonQuery(undoQuery);
                 this.nhanVienTableAdapter.Fill(this.nhanVienDS.NhanVien);
             }
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            String macnLuanChuyen = txtMACN.Text.Trim() == "CN1" ? "CN2" : "CN1";
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn luân chuyển nhân viên có MSNV: " + txtMANV.Text + " CN tới: " + macnLuanChuyen, "Thông báo",
+                       MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                if (Program.KetNoi() == 0)
+                {
+                    MessageBox.Show("Không thể kết nối với database để thực hiện tác vụ"
+                    , "", MessageBoxButtons.OK);
+                    return;
+                }
+                try
+                {
+                    String query = "exec sp_luanChuyenNV " + txtMANV.Text + ", '" + macnLuanChuyen + "'";
+                    MessageBox.Show(query, "", MessageBoxButtons.OK);
+                    int n = Program.ExecSqlNonQuery(query);
+                    this.nhanVienTableAdapter.Fill(this.nhanVienDS.NhanVien);
+                    MessageBox.Show("Luân chuyển nhân viên thành công", "", MessageBoxButtons.OK);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Luân chuyển nhân viên gặp lỗi !\n" + ex, "", MessageBoxButtons.OK);
+                }
+            }
+                
+            
         }
     }
 }

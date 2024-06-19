@@ -372,7 +372,7 @@ namespace QuanLyVatTu
                     , "", MessageBoxButtons.OK);
                      return;
                 }
-                String undoQuery = this.undo.Pop()
+                String undoQuery = this.undo.Pop();
                 int n = Program.ExecSqlNonQuery(undoQuery);
                 this.khoTableAdapter.Fill(this.khoDS.Kho);
             }
