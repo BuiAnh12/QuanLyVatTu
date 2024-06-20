@@ -38,6 +38,7 @@
             this.btnPhieuNhanVienLapTheoNam = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTongHopNhapXuat = new DevExpress.XtraBars.BarButtonItem();
             this.systemPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.groupAction = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.categoryPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -52,7 +53,6 @@
             this.hoten = new System.Windows.Forms.ToolStripStatusLabel();
             this.nhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.btnTongHopNhapXuat = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnReportCTSL)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -64,6 +64,7 @@
             this.btnReportCTSL.ExpandCollapseItem.Id = 0;
             this.btnReportCTSL.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btnReportCTSL.ExpandCollapseItem,
+            this.btnReportCTSL.SearchEditItem,
             this.btnDangNhap,
             this.btnTaoTk,
             this.btnDangXuat,
@@ -73,7 +74,6 @@
             this.btnPhieuNhanVienLapTheoNam,
             this.barButtonItem1,
             this.barButtonItem2,
-            this.btnReportCTSL.SearchEditItem,
             this.btnTongHopNhapXuat});
             this.btnReportCTSL.Location = new System.Drawing.Point(0, 0);
             this.btnReportCTSL.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
@@ -149,6 +149,13 @@
             this.barButtonItem2.Id = 9;
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
+            // btnTongHopNhapXuat
+            // 
+            this.btnTongHopNhapXuat.Caption = "Tổng hợp nhập xuất";
+            this.btnTongHopNhapXuat.Id = 10;
+            this.btnTongHopNhapXuat.Name = "btnTongHopNhapXuat";
+            this.btnTongHopNhapXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTongHopNhapXuat_ItemClick);
             // 
             // systemPage
             // 
@@ -258,13 +265,6 @@
             this.xtraTabControl.Size = new System.Drawing.Size(1384, 568);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.Click += new System.EventHandler(this.xtraTabControl_Click);
-            // 
-            // btnTongHopNhapXuat
-            // 
-            this.btnTongHopNhapXuat.Caption = "Tổng hợp nhập xuất";
-            this.btnTongHopNhapXuat.Id = 10;
-            this.btnTongHopNhapXuat.Name = "btnTongHopNhapXuat";
-            this.btnTongHopNhapXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTongHopNhapXuat_ItemClick);
             // 
             // Form1
             // 

@@ -48,6 +48,14 @@ namespace QuanLyVatTu
                 conn_publisher.Close();
             }
         }
+
+        private Form CheckExists(Type ftype)
+        {
+            foreach (Form f in this.MdiChildren)
+                if (f.GetType() == ftype)
+                    return f;
+            return null;
+        }
         public frmDangNhap()
         {
             InitializeComponent();
