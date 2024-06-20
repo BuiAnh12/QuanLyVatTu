@@ -140,12 +140,41 @@ namespace QuanLyVatTu
                 MessageBox.Show("Mã vật tư này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn ghi dữ liệu vào cơ sở dữ liệu ?", "Thông báo",
+            DialogResult dr = DialogResult.Cancel;
+            if (this.isEditing)
+            {
+                String thongBao = "Vật tư này đã có trong: \n";
+                if (bdsCTPN.Count > 0)
+                {
+                    thongBao += "    - Phiếu nhập\n";
+                }
+                if (bdsCTPX.Count > 0)
+                {
+                    thongBao += "    - Phiếu xuất\n";
+                }
+                if (bdsCTDDH.Count > 0)
+                {
+                    thongBao += "   - Đơn đặt hàng\n";
+                }
+                if (bdsCTPN.Count <= 0 && bdsCTPX.Count <= 0 && bdsCTDDH.Count <= 0 )
+                {
+                    thongBao = "";
+                }
+                thongBao += "Bạn có chắc chắn muốn thay đổi vật tư này ?";
+                dr = MessageBox.Show(thongBao, "Thông báo",
+                       MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            }
+            else
+            {
+                dr = MessageBox.Show("Bạn có chắc muốn ghi dữ liệu vào cơ sở dữ liệu ?", "Thông báo",
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            }
             if (dr == DialogResult.OK)
             {
                 if (this.isEditing)
                 {
+                    
+                    // Chức năng Undo
                     String mavtCu = ((DataRowView)bdsVatTu[viTriConTro])["MAVT"].ToString();
                     String tenvtCu = ((DataRowView)bdsVatTu[viTriConTro])["TENVT"].ToString();
                     String dvtCu = ((DataRowView)bdsVatTu[viTriConTro])["DVT"].ToString();

@@ -538,8 +538,8 @@ namespace QuanLyVatTu
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String macnLuanChuyen = txtMACN.Text.Trim() == "CN1" ? "CN2" : "CN1";
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn luân chuyển nhân viên có MSNV: " + txtMANV.Text + " CN tới: " + macnLuanChuyen, "Thông báo",
-                       MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn luân chuyển nhân viên có MSNV: " + txtMANV.Text + " CN tới: " + macnLuanChuyen 
+                + "\nHành động này sẽ không được hoàn tác", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
                 if (Program.KetNoi() == 0)

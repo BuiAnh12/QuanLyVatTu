@@ -133,14 +133,14 @@ namespace QuanLyVatTu
                     MessageBox.Show("Bạn format Cell lại cột \"Ngày Thi\" qua kiểu Number hoặc mở File Excel.");
                 }
                 else if (ex.Message.Contains("The server principal")){
-                    // Extract the username from the error message
+                    
                     string startTag = "The server principal '";
                     string endTag = "' already exists.";
                     int startIndex = ex.Message.IndexOf(startTag) + startTag.Length;
                     int endIndex = ex.Message.IndexOf(endTag);
                     string existingUsername = ex.Message.Substring(startIndex, endIndex - startIndex);
 
-                    // Show a user-friendly message
+                    
                     MessageBox.Show($"Tên username '{existingUsername}' bị trùng. Xin vui lòng chọn tên khác", "Lỗi", MessageBoxButtons.OK);
                 } else MessageBox.Show(ex.Message);
                 conn.Close();

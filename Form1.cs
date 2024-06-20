@@ -105,12 +105,13 @@ namespace QuanLyVatTu
                 XtraTabControl tabControl = FindTabControl(this);
                 btnDangXuat.Enabled = false;
                 btnDangNhap.Enabled = true;
-                btnDangNhap.PerformClick();
+                
                 if (tabControl != null)
                 {
                     // Clear all tab pages
                     tabControl.TabPages.Clear();
                 }
+                btnDangNhap.PerformClick();
             }
         }
 

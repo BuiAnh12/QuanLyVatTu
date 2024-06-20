@@ -1,6 +1,7 @@
 ﻿using DevExpress.DXTemplateGallery.Extensions;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraTab;
 using System;
 using System.Collections.Generic;
@@ -78,42 +79,51 @@ namespace QuanLyVatTu
             }
             else
             {
-                Program.mlogin = txtTaiKhoang.Text;
-                Program.password = txtMatKhau.Text;
-                if (Program.KetNoi() == 0)
+                try
                 {
-                    return;
-                }
-                Program.mChinhanh = cmbChiNhanh.SelectedIndex;
-                Program.mloginDN = Program.mlogin;
-                Program.passwordDN = Program.password;
-                string strLenh = "EXECUTE SP_LayThongTinNhanVien '" + Program.mlogin + "'";
+                    Program.mlogin = txtTaiKhoang.Text;
+                    Program.password = txtMatKhau.Text;
+                    if (Program.KetNoi() == 0)
+                    {
+                        return;
+                    }
+                    Program.mChinhanh = cmbChiNhanh.SelectedIndex;
+                    Program.mloginDN = Program.mlogin;
+                    Program.passwordDN = Program.password;
+                    string strLenh = "EXECUTE SP_LayThongTinNhanVien '" + Program.mlogin + "'";
 
-                Program.myReader = Program.ExecSqlDataReader(strLenh);
-                if (Program.myReader == null)
+                    Program.myReader = Program.ExecSqlDataReader(strLenh);
+                    if (Program.myReader == null)
+                    {
+                        return;
+                    }
+                    Program.myReader.Read();
+
+
+                    Program.username = Program.myReader.GetString(0);
+                    if (Convert.IsDBNull(Program.username))
+                    {
+                        MessageBox.Show("Bạn không có quyền truy cập dữ liệu");
+                        return;
+                    }
+                    Program.mHoten = Program.myReader.GetString(1);
+                    Program.mGroup = Program.myReader.GetString(2);
+                    Program.myReader.Close();
+                    Program.conn.Close();
+
+                    Program.frmChinh.HienThiMenu();
+                    MessageBox.Show("Bạn đã đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK);
+                    if (Program.mGroup == "USER")
+                    {
+
+                    }
+                }
+                catch (Exception ex)
                 {
-                    return;
+                    MessageBox.Show("Đã xảy ra lỗi!" + ex, "Thông báo", MessageBoxButtons.OK);
+                    throw;
                 }
-                Program.myReader.Read();
-
-
-                Program.username = Program.myReader.GetString(0);
-                if (Convert.IsDBNull(Program.username))
-                {
-                    MessageBox.Show("Bạn không có quyền truy cập dữ liệu");
-                    return;
-                }
-                Program.mHoten = Program.myReader.GetString(1);
-                Program.mGroup = Program.myReader.GetString(2);
-                Program.myReader.Close();
-                Program.conn.Close();
-
-                Program.frmChinh.HienThiMenu();
-                MessageBox.Show("Bạn đã đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK);
-                if (Program.mGroup == "USER")
-                {
-                    
-                }
+                
             }
         }
 

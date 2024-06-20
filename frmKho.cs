@@ -250,58 +250,82 @@ namespace QuanLyVatTu
                 MessageBox.Show("Mã kho này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
+            DialogResult dr = DialogResult.Cancel;
             if (this.isEditing)
             {
-                String maKhoCu = ((DataRowView)bdsKho[viTriConTro])["MAKHO"].ToString();
-                String tenKhoCu = ((DataRowView)bdsKho[viTriConTro])["TENKHO"].ToString();
-                String diaChiCu = ((DataRowView)bdsKho[viTriConTro])["DIACHI"].ToString();
-                String maCNCu   = ((DataRowView)bdsKho[viTriConTro])["MACN"].ToString();
-                String maKhoMoi = txtMaKho.Text;
-                String undoQueryUpdate = "UPDATE Kho SET " +
-                         "MAKHO = N'" + maKhoCu + "', " +
-                         "TENKHO = N'" + tenKhoCu + "', " +
-                         "DIACHI = N'" + diaChiCu + "', " +
-                         "MACN = N'" + maCNCu + "' " +
-                         "WHERE MAKHO = N'" + maKhoMoi + "'";
-                this.undo.Push(undoQueryUpdate);
+                String thongBao = "Kho này đã có trong: ";
+                if (bdsDatHang.Count > 0)
+                {
+                    thongBao += "Đơn đặt hàng\n";
+                }
+                if (bdsDatHang.Count <= 0)
+                {
+                    thongBao = "";
+                }
+                thongBao += "Bạn có chắc chắn muốn thay đổi kho này ?";
+                dr = MessageBox.Show(thongBao, "Thông báo",
+                       MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             }
             else
             {
-                String maKhoMoi = txtMaKho.Text;
-                String undoQueryDelete = "DELETE FROM Kho WHERE MAKHO = N'" + maKhoMoi + "'";
-                this.undo.Push(undoQueryDelete);
+                dr = MessageBox.Show("Bạn có chắc muốn ghi dữ liệu vào cơ sở dữ liệu ?", "Thông báo",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             }
-           
-            try
+            if (dr == DialogResult.OK)
             {
-                foreach (DataRowView rowView in bdsKho)
+                if (this.isEditing)
                 {
-                    DataRow row = rowView.Row;
-                    if (row.RowState == DataRowState.Added) 
-                    {
-                        row["MACN"] = cmbChiNhanhMain.SelectedValue.ToString(); 
-                        Console.WriteLine("MACN:", cmbChiNhanhMain.SelectedValue.ToString());
-                    }
+                    String maKhoCu = ((DataRowView)bdsKho[viTriConTro])["MAKHO"].ToString();
+                    String tenKhoCu = ((DataRowView)bdsKho[viTriConTro])["TENKHO"].ToString();
+                    String diaChiCu = ((DataRowView)bdsKho[viTriConTro])["DIACHI"].ToString();
+                    String maCNCu = ((DataRowView)bdsKho[viTriConTro])["MACN"].ToString();
+                    String maKhoMoi = txtMaKho.Text;
+                    String undoQueryUpdate = "UPDATE Kho SET " +
+                             "MAKHO = N'" + maKhoCu + "', " +
+                             "TENKHO = N'" + tenKhoCu + "', " +
+                             "DIACHI = N'" + diaChiCu + "', " +
+                             "MACN = N'" + maCNCu + "' " +
+                             "WHERE MAKHO = N'" + maKhoMoi + "'";
+                    this.undo.Push(undoQueryUpdate);
                 }
-                
-                bdsKho.EndEdit();
-                bdsKho.ResetCurrentItem();
-                khoTableAdapter.Connection.ConnectionString = Program.connstr;
-                khoTableAdapter.Update(this.khoDS.Kho);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi ghi kho mới. \n" + ex.Message + ""
-                    , "", MessageBoxButtons.OK);
-                this.undo.Pop();
-                return;
-            }
-            gcKho.Enabled = true;
-            btnReload.Enabled = btnSua.Enabled
-                = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
-            btnGhi.Enabled = btnPhucHoi.Enabled = false;
-            groupBox1.Enabled = false;
-            isEditing = false; // Set lại giá trị mặc định 
+                else
+                {
+                    String maKhoMoi = txtMaKho.Text;
+                    String undoQueryDelete = "DELETE FROM Kho WHERE MAKHO = N'" + maKhoMoi + "'";
+                    this.undo.Push(undoQueryDelete);
+                }
+
+                try
+                {
+                    foreach (DataRowView rowView in bdsKho)
+                    {
+                        DataRow row = rowView.Row;
+                        if (row.RowState == DataRowState.Added)
+                        {
+                            row["MACN"] = cmbChiNhanhMain.SelectedValue.ToString();
+                            Console.WriteLine("MACN:", cmbChiNhanhMain.SelectedValue.ToString());
+                        }
+                    }
+
+                    bdsKho.EndEdit();
+                    bdsKho.ResetCurrentItem();
+                    khoTableAdapter.Connection.ConnectionString = Program.connstr;
+                    khoTableAdapter.Update(this.khoDS.Kho);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi ghi kho mới. \n" + ex.Message + ""
+                        , "", MessageBoxButtons.OK);
+                    this.undo.Pop();
+                    return;
+                }
+                gcKho.Enabled = true;
+                btnReload.Enabled = btnSua.Enabled
+                    = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
+                btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                groupBox1.Enabled = false;
+                isEditing = false; // Set lại giá trị mặc định 
+            }     
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
