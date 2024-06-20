@@ -53,6 +53,8 @@
             this.hoten = new System.Windows.Forms.ToolStripStatusLabel();
             this.nhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.chiTietNhanVien = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnReportCTSL)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -74,10 +76,11 @@
             this.btnPhieuNhanVienLapTheoNam,
             this.barButtonItem1,
             this.barButtonItem2,
-            this.btnTongHopNhapXuat});
+            this.btnTongHopNhapXuat,
+            this.chiTietNhanVien});
             this.btnReportCTSL.Location = new System.Drawing.Point(0, 0);
             this.btnReportCTSL.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.btnReportCTSL.MaxItemId = 11;
+            this.btnReportCTSL.MaxItemId = 12;
             this.btnReportCTSL.Name = "btnReportCTSL";
             this.btnReportCTSL.OptionsMenuMinWidth = 1155;
             this.btnReportCTSL.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -211,7 +214,8 @@
             // reportPage
             // 
             this.reportPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.ribbonPageGroup5});
             this.reportPage.Name = "reportPage";
             this.reportPage.Text = "Báo cáo";
             this.reportPage.Visible = false;
@@ -266,6 +270,19 @@
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.Click += new System.EventHandler(this.xtraTabControl_Click);
             // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.chiTietNhanVien);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
+            // 
+            // chiTietNhanVien
+            // 
+            this.chiTietNhanVien.Caption = "Chi tiết hoạt động của nhân viên";
+            this.chiTietNhanVien.Id = 11;
+            this.chiTietNhanVien.Name = "chiTietNhanVien";
+            this.chiTietNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.chiTietNhanVien_ItemClick);
+            // 
             // Form1
             // 
             this.Appearance.Options.UseFont = true;
@@ -317,6 +334,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem btnTongHopNhapXuat;
+        private DevExpress.XtraBars.BarButtonItem chiTietNhanVien;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
     }
 }
 

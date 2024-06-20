@@ -330,5 +330,11 @@ namespace QuanLyVatTu
             frpt.ShowDialog();
 
         }
+
+        private void chiTietNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frpt_HoatDongNhanVien frpt = new Frpt_HoatDongNhanVien();
+            frpt.ShowDialog();
+        }
     }
 }

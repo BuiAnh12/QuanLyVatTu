@@ -48,6 +48,12 @@ namespace QuanLyVatTu
                 deEnd.Focus();
                 return;
             }
+            if (deStart.DateTime >= deEnd.DateTime)
+            {
+                MessageBox.Show("Phải nhập ngày bắt đầu nhỏ hơn ngày kết thúc", "", MessageBoxButtons.OK);
+                deStart.Focus();
+                return;
+            }
             DateTime start = deStart.DateTime;
             DateTime end = deEnd.DateTime;
 
