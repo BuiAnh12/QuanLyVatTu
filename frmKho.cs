@@ -243,9 +243,38 @@ namespace QuanLyVatTu
                 txtMaKho.Focus();
                 return;
             }
+            String query =
+                "DECLARE	@result int " +
+                "EXEC @result = [dbo].[sp_KiemTraMaKho] '" +
+                txtMaKho.Text + "' " +
+                "SELECT 'Value' = @result";
+            int res = 1;
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(query);
+                /*khong co ket qua tra ve thi ket thuc luon*/
+                if (Program.myReader == null)
+                {
+                    return;
+                }
+                Program.myReader.Read();
+                res = int.Parse(Program.myReader.GetValue(0).ToString());
+                Program.myReader.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thực thi database thất bại!\n\n" + ex.Message, "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
+
+
             int viTriConTro = bdsKho.Position;
             int viTriMaKho = bdsKho.Find("MAKHO", txtMaKho.Text);
-            if (viTriConTro != viTriMaKho && viTriMaKho != -1)
+            if (viTriConTro != viTriMaKho  && res == 1)
             {
                 MessageBox.Show("Mã kho này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
                 return;

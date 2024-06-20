@@ -1,8 +1,10 @@
-﻿using DevExpress.XtraTab;
+﻿using DevExpress.Xpo.DB.Helpers;
+using DevExpress.XtraTab;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -102,6 +104,7 @@ namespace QuanLyVatTu
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsNhanVien.CancelEdit();
+            this.nhanVienTableAdapter.Fill(this.nhanVienDS.NhanVien);
             if (btnThem.Enabled == false)
             {
                 bdsNhanVien.Position = vitri;
@@ -401,14 +404,47 @@ namespace QuanLyVatTu
             int viTriConTro = bdsNhanVien.Position;
             int viTriMNV = bdsNhanVien.Find("MANV", int.Parse(txtMANV.Text));
             int viTriCMND = bdsNhanVien.Find("SOCMND", long.Parse(txtCMND.Text));
-            if (viTriConTro != viTriMNV && viTriMNV != -1)
+
+            
+            // Query tìm kiếm MANV ở các chi nhánh
+            String query =
+                    "DECLARE	@result int " +
+                    "EXEC @result = [dbo].[sp_KiemTraMaNV] '" +
+                    txtMANV.Text + "' " +
+                    "SELECT 'Value' = @result";
+            int res = 1;
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(query);
+                /*khong co ket qua tra ve thi ket thuc luon*/
+                if (Program.myReader == null)
+                {
+                    return false;
+                }
+                Program.myReader.Read();
+                res = int.Parse(Program.myReader.GetValue(0).ToString());
+                Program.myReader.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thực thi database thất bại!\n\n" + ex.Message, "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+            
+            
+            if (viTriConTro != viTriMNV && res == 1)
             {
                 MessageBox.Show("Mã nhân viên này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
                 return false;
             }
+            
             if (viTriConTro != viTriCMND && viTriCMND != -1)
             {
-                MessageBox.Show("CMND này đã được sử dụng !", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("CMND này đã được sử dụng trên chí nhánh này rồi!", "Thông báo", MessageBoxButtons.OK);
                 return false;
             }
             return true;
