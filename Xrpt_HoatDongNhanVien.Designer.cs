@@ -268,7 +268,9 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[THANGNAM]")});
             this.tableCell2.Name = "tableCell2";
             this.tableCell2.StyleName = "GroupData1";
+            this.tableCell2.TextFormatString = "{0:MM/yyyy}";
             this.tableCell2.Weight = 0.92248234719621924D;
+            this.tableCell2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell2_BeforePrint);
             // 
             // GroupHeader2
             // 
