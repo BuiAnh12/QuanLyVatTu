@@ -1,0 +1,10 @@
+CREATE PROCEDURE SP_InsertCTDDH
+    @MasoDDH nchar(8),
+    @MAVT nchar(4),
+    @SOLUONG INT,
+    @DONGIA float
+AS
+BEGIN
+    INSERT INTO CTDDH (MasoDDH, MAVT, SOLUONG, DONGIA)
+    VALUES (@MasoDDH, @MAVT, @SOLUONG, @DONGIA);
+END;

@@ -36,10 +36,12 @@
             this.khoBtn = new DevExpress.XtraBars.BarButtonItem();
             this.vatTuBtn = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhieuNhanVienLapTheoNam = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.systemPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.groupAction = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.categoryPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.businessPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.reportPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -49,8 +51,8 @@
             this.hoten = new System.Windows.Forms.ToolStripStatusLabel();
             this.nhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.phieuNhapBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -70,10 +72,11 @@
             this.khoBtn,
             this.vatTuBtn,
             this.btnPhieuNhanVienLapTheoNam,
-            this.barButtonItem1});
+            this.barButtonItem1,
+            this.phieuNhapBtn});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.ribbonControl1.MaxItemId = 9;
+            this.ribbonControl1.MaxItemId = 10;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 605;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -132,6 +135,13 @@
             this.btnPhieuNhanVienLapTheoNam.Name = "btnPhieuNhanVienLapTheoNam";
             this.btnPhieuNhanVienLapTheoNam.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhieuNhanVienLapTheoNam_ItemClick);
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Đặt hàng";
+            this.barButtonItem1.Id = 8;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick_1);
+            // 
             // systemPage
             // 
             this.systemPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -150,7 +160,8 @@
             // 
             this.categoryPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
-            this.ribbonPageGroup4});
+            this.ribbonPageGroup4,
+            this.ribbonPageGroup5});
             this.categoryPage.Name = "categoryPage";
             this.categoryPage.Text = "Danh mục";
             this.categoryPage.Visible = false;
@@ -162,6 +173,12 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.vatTuBtn);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "ribbonPageGroup2";
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
             // 
             // businessPage
             // 
@@ -233,18 +250,18 @@
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.Click += new System.EventHandler(this.xtraTabControl_Click);
             // 
-            // ribbonPageGroup4
+            // ribbonPageGroup5
             // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem1);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
+            this.ribbonPageGroup5.ItemLinks.Add(this.phieuNhapBtn);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
             // 
-            // barButtonItem1
+            // phieuNhapBtn
             // 
-            this.barButtonItem1.Caption = "Đặt hàng";
-            this.barButtonItem1.Id = 8;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick_1);
+            this.phieuNhapBtn.Caption = "Phiếu Nhập";
+            this.phieuNhapBtn.Id = 9;
+            this.phieuNhapBtn.Name = "phieuNhapBtn";
+            this.phieuNhapBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.phieuNhapBtn_ItemClick);
             // 
             // Form1
             // 
@@ -295,6 +312,8 @@
         private DevExpress.XtraBars.BarButtonItem btnPhieuNhanVienLapTheoNam;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.BarButtonItem phieuNhapBtn;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
     }
 }
 

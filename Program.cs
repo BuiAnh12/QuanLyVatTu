@@ -38,6 +38,11 @@ namespace QuanLyVatTu
         public static String maKhodcChon = "";
         public static String maVatTudcChon = "";
         public static String tenVattudcChon = "";
+        public static String MaDDHmoi = "";
+
+        //PhieuNhap
+        public static String maDDHdcChonTrongPhieuNhap = "";
+        public static String maKhodcChonTrongPhieuNhap = "";
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
         public static Form1 frmChinh;
@@ -66,7 +71,33 @@ namespace QuanLyVatTu
             }
         }
 
-        
+        public static string ExecuteStoredProcedureFromMainSide( string storedProcedureName)
+        {
+            string result = null;
+
+            using (SqlConnection connection = new SqlConnection(Program.connstr_publisher))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            // Assuming the stored procedure returns a single value
+                            reader.Read();
+                            result = reader.GetString(0); // Adjust the index if necessary
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
             SqlDataReader myreader;

@@ -95,6 +95,7 @@
             this.colMACN});
             this.gridView1.GridControl = this.khoGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colMAKHO
             // 
