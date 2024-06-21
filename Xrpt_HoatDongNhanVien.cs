@@ -65,6 +65,11 @@ namespace QuanLyVatTu
         private void tableCell2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             String input = tableCell2.Text;
+
+            if (input == "")
+            {
+                return;
+            }
             String nam = input.Substring(0, 4);
             String thang = input.Substring(5, 2);
             tableCell2.Text = thang + "-" + nam;
