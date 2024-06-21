@@ -89,6 +89,9 @@ namespace QuanLyVatTu
             {
                 try
                 {
+                    /*
+                        Login bằng cách cập nhập mLogin và password -> nhận bởi Program.KetNoi() -> kết nối với db -> cred sai thì báo ko kết nối được
+                    */
                     Program.mlogin = txtTaiKhoang.Text;
                     Program.password = txtMatKhau.Text;
                     if (Program.KetNoi() == 0)
@@ -98,6 +101,9 @@ namespace QuanLyVatTu
                     Program.mChinhanh = cmbChiNhanh.SelectedIndex;
                     Program.mloginDN = Program.mlogin;
                     Program.passwordDN = Program.password;
+                    /*
+                        Login được -> truy xuất thông tin cơ bản của nv đăng nhập bằng SP_LayThongTinNhanVien với login đã cho
+                    */
                     string strLenh = "EXECUTE SP_LayThongTinNhanVien '" + Program.mlogin + "'";
 
                     Program.myReader = Program.ExecSqlDataReader(strLenh);
