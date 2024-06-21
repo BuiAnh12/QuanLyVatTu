@@ -44,6 +44,7 @@
             this.categoryPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.businessPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.reportPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -60,7 +61,10 @@
 // =======
             this.chiTietNhanVien = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnReportCTSL)).BeginInit();
-
+=========
+            this.phieuNhapBtn = new DevExpress.XtraBars.BarButtonItem();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+>>>>>>>>> Temporary merge branch 2
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.SuspendLayout();
@@ -80,15 +84,6 @@
             this.vatTuBtn,
             this.btnPhieuNhanVienLapTheoNam,
             this.barButtonItem1,
-// <<<<<<< HEAD
-            // this.phieuNhapBtn});
-            // this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            // this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
-            // this.ribbonControl1.MaxItemId = 10;
-            // this.ribbonControl1.Name = "ribbonControl1";
-            // this.ribbonControl1.OptionsMenuMinWidth = 605;
-            // this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-// =======
             this.barButtonItem2,
             this.btnTongHopNhapXuat,
             this.chiTietNhanVien});
@@ -98,7 +93,6 @@
             this.btnReportCTSL.Name = "btnReportCTSL";
             this.btnReportCTSL.OptionsMenuMinWidth = 1155;
             this.btnReportCTSL.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-// >>>>>>> 792ccfc0b905ab191e4fc4452c9545d4a228bdc1
             this.systemPage,
             this.categoryPage,
             this.businessPage,
@@ -288,18 +282,6 @@
             // 
             // ribbonPageGroup5
             // 
-// <<<<<<< HEAD
-//             this.ribbonPageGroup5.ItemLinks.Add(this.phieuNhapBtn);
-//             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-//             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
-//             // 
-//             // phieuNhapBtn
-//             // 
-//             this.phieuNhapBtn.Caption = "Phiếu Nhập";
-//             this.phieuNhapBtn.Id = 9;
-//             this.phieuNhapBtn.Name = "phieuNhapBtn";
-//             this.phieuNhapBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.phieuNhapBtn_ItemClick);
-// =======
             this.ribbonPageGroup5.ItemLinks.Add(this.chiTietNhanVien);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
@@ -310,7 +292,6 @@
             this.chiTietNhanVien.Id = 11;
             this.chiTietNhanVien.Name = "chiTietNhanVien";
             this.chiTietNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.chiTietNhanVien_ItemClick);
-// >>>>>>> 792ccfc0b905ab191e4fc4452c9545d4a228bdc1
             // 
             // Form1
             // 
@@ -361,13 +342,9 @@
         private DevExpress.XtraBars.BarButtonItem btnPhieuNhanVienLapTheoNam;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
-// <<<<<<< HEAD
-//         private DevExpress.XtraBars.BarButtonItem phieuNhapBtn;
-// =======
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem btnTongHopNhapXuat;
         private DevExpress.XtraBars.BarButtonItem chiTietNhanVien;
-// >>>>>>> 792ccfc0b905ab191e4fc4452c9545d4a228bdc1
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
     }
 }

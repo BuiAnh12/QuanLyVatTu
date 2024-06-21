@@ -5,6 +5,7 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyVatTu", "QuanLyVatTu.csproj", "{6C492B79-77BC-4338-9268-EA79EAC0F1D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLVT", "D:\E\DAI HOC 2021-2026\HOC KY 6\DU LIEU PHAN TAN\DetaiThamkhao\PTIT-Co-So-Du-Lieu-Phan-Tan-Quan-Ly-Vat-Tu\QLTVT\QLVT.csproj", "{40A706CE-1BA0-480E-9C78-1E8359C68BF9}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLVT", "..\..\ProjectRef\PTIT-Co-So-Du-Lieu-Phan-Tan-Quan-Ly-Vat-Tu\QLTVT\QLVT.csproj", "{40A706CE-1BA0-480E-9C78-1E8359C68BF9}"
 EndProject
 Global
