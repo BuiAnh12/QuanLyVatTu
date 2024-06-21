@@ -1,6 +1,7 @@
 ﻿using DevExpress.DXTemplateGallery.Extensions;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraTab;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,14 @@ namespace QuanLyVatTu
                 conn_publisher.Close();
             }
         }
+
+        private Form CheckExists(Type ftype)
+        {
+            foreach (Form f in this.MdiChildren)
+                if (f.GetType() == ftype)
+                    return f;
+            return null;
+        }
         public frmDangNhap()
         {
             InitializeComponent();
@@ -78,39 +87,57 @@ namespace QuanLyVatTu
             }
             else
             {
-                Program.mlogin = txtTaiKhoang.Text;
-                Program.password = txtMatKhau.Text;
-                if (Program.KetNoi() == 0)
+                try
                 {
-                    return;
-                }
-                Program.mChinhanh = cmbChiNhanh.SelectedIndex;
-                Program.mloginDN = Program.mlogin;
-                Program.passwordDN = Program.password;
-                string strLenh = "EXECUTE SP_LayThongTinNhanVien '" + Program.mlogin + "'";
+                    /*
+                        Login bằng cách cập nhập mLogin và password -> nhận bởi Program.KetNoi() -> kết nối với db -> cred sai thì báo ko kết nối được
+                    */
+                    Program.mlogin = txtTaiKhoang.Text;
+                    Program.password = txtMatKhau.Text;
+                    if (Program.KetNoi() == 0)
+                    {
+                        return;
+                    }
+                    Program.mChinhanh = cmbChiNhanh.SelectedIndex;
+                    Program.mloginDN = Program.mlogin;
+                    Program.passwordDN = Program.password;
+                    /*
+                        Login được -> truy xuất thông tin cơ bản của nv đăng nhập bằng SP_LayThongTinNhanVien với login đã cho
+                    */
+                    string strLenh = "EXECUTE SP_LayThongTinNhanVien '" + Program.mlogin + "'";
 
-                Program.myReader = Program.ExecSqlDataReader(strLenh);
-                if (Program.myReader == null)
+                    Program.myReader = Program.ExecSqlDataReader(strLenh);
+                    if (Program.myReader == null)
+                    {
+                        return;
+                    }
+                    Program.myReader.Read();
+
+
+                    Program.username = Program.myReader.GetString(0);
+                    if (Convert.IsDBNull(Program.username))
+                    {
+                        MessageBox.Show("Bạn không có quyền truy cập dữ liệu");
+                        return;
+                    }
+                    Program.mHoten = Program.myReader.GetString(1);
+                    Program.mGroup = Program.myReader.GetString(2);
+                    Program.myReader.Close();
+                    Program.conn.Close();
+
+                    Program.frmChinh.HienThiMenu();
+                    MessageBox.Show("Bạn đã đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK);
+                    if (Program.mGroup == "USER")
+                    {
+
+                    }
+                }
+                catch (Exception ex)
                 {
-                    return;
+                    MessageBox.Show("Đã xảy ra lỗi!" + ex, "Thông báo", MessageBoxButtons.OK);
+                    throw;
                 }
-                Program.myReader.Read();
-
-
-                Program.username = Program.myReader.GetString(0);
-                if (Convert.IsDBNull(Program.username))
-                {
-                    MessageBox.Show("Bạn không có quyền truy cập dữ liệu");
-                    return;
-                }
-                Program.mHoten = Program.myReader.GetString(1);
-                Program.mGroup = Program.myReader.GetString(2);
-                Program.myReader.Close();
-                Program.conn.Close();
-
-                Program.frmChinh.HienThiMenu();
-
-               
+                
             }
         }
 

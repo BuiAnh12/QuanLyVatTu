@@ -15,17 +15,28 @@ namespace QuanLyVatTu
         /// </summary>
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
-        public static String connstr_publisher = "Data Source=GODHART-NGUYEN;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
+        
 
         public static SqlDataReader myReader;
         public static String servername = "";
         public static String username = "";
         public static String mlogin = "";
         public static String password = "";
-            
+
+        /* DBao Connnection
+        public static String connstr_publisher = "Data Source=GODHART-NGUYEN;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
         public static String database = "QLVT_DATHANG";
         public static String remotelogin = "HTKN1";
         public static String remotepassword = "12";
+        */
+
+
+        // TAnh Connection
+        public static String connstr_publisher = "Data Source=DESKTOP-1MDUK92\\MSSQLSERVER1;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
+        public static String database = "QLVT_DATHANG";
+        public static String remotelogin = "HOTROKETNOI";
+        public static String remotepassword = "123";
+
 
         public static String mloginDN = "";
         public static String passwordDN = "";
@@ -66,7 +77,7 @@ namespace QuanLyVatTu
 
             catch (Exception e)
             {
-                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nBạn xem lại user name và password.\n " + e.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nBạn xem lại user name và password.\n ","Thông báo", MessageBoxButtons.OK);
                 return 0;
             }
         }
@@ -149,8 +160,20 @@ namespace QuanLyVatTu
             catch (SqlException ex)
             {
                 if (ex.Message.Contains("Error converting data type varchar to int"))
+                {
                     MessageBox.Show("Bạn format Cell lại cột \"Ngày Thi\" qua kiểu Number hoặc mở File Excel.");
-                else MessageBox.Show(ex.Message);
+                }
+                else if (ex.Message.Contains("The server principal")){
+                    
+                    string startTag = "The server principal '";
+                    string endTag = "' already exists.";
+                    int startIndex = ex.Message.IndexOf(startTag) + startTag.Length;
+                    int endIndex = ex.Message.IndexOf(endTag);
+                    string existingUsername = ex.Message.Substring(startIndex, endIndex - startIndex);
+
+                    
+                    MessageBox.Show($"Tên username '{existingUsername}' bị trùng. Xin vui lòng chọn tên khác", "Lỗi", MessageBoxButtons.OK);
+                } else MessageBox.Show(ex.Message);
                 conn.Close();
                 return ex.State; // trang thai lỗi gởi từ RAISERROR trong SQL Server qua
             }
