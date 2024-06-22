@@ -1,4 +1,6 @@
 ﻿using DevExpress.CodeParser;
+using DevExpress.Diagram.Core.Shapes;
+using DevExpress.XtraReports.UI;
 using DevExpress.XtraTab;
 using System;
 using System.Collections.Generic;
@@ -367,6 +369,26 @@ namespace QuanLyVatTu
             Frpt_HoatDongNhanVien frpt = new Frpt_HoatDongNhanVien();
             frpt.ShowDialog();
 // >>>>>>> 792ccfc0b905ab191e4fc4452c9545d4a228bdc1
+        }
+
+        private void btnDanhSachNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frpt_DanhSachNhanVien frpt = new Frpt_DanhSachNhanVien();
+            frpt.ShowDialog();
+
+        }
+
+        private void btnDanhSachVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Xrpt_DanhSachVatTu xrpt = new Xrpt_DanhSachVatTu();
+            ReportPrintTool print = new ReportPrintTool(xrpt);
+            print.ShowPreviewDialog();
+        }
+
+        private void btnDonHangKoPhieuNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frpt_DDHChuaCoPhieuNhap frpt = new Frpt_DDHChuaCoPhieuNhap();
+            frpt.ShowDialog();
         }
     }
 }
