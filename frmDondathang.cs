@@ -480,7 +480,7 @@ namespace QuanLyVatTu
                 {
                     //Generate maddh
                     String maddh = Program.ExecuteStoredProcedureFromMainSide("SP_GenerateMDDH");
-
+                    
                     DataRowView newddhrow = (DataRowView)bdsDathang.AddNew();
                     newddhrow["masoddh"] = maddh;
                     newddhrow["ngay"] = DateTime.Today;
@@ -705,41 +705,7 @@ namespace QuanLyVatTu
         }
 
         private void updateRowCTDDH_Click(object sender, EventArgs e)
-        {
-            //// Get data from selected row and update this data row
-            //GridView gridView2 = (GridView)cTDDHGridControl.MainView; // Replace with your actual GridControl and GridView names
-            //DataRow selectedRow = gridView2.GetFocusedDataRow();
-            //int index = gridView2.FocusedRowHandle;
-
-            //// Only update quantity and price
-            //string maVT = maVatTutxt.Text;
-            //int soLuong = int.Parse(soLuongtxt.Text);
-            //double donGia = double.Parse(donGiatxt.Text);
-
-            //// Update the selected row
-            //if (selectedRow != null)
-            //{
-            //    selectedRow["MAVT"] = maVT;
-            //    selectedRow["SOLUONG"] = soLuong;
-            //    selectedRow["DONGIA"] = donGia;
-
-            //    gridView2.RefreshRow(index);
-            //}
-            //foreach (DataRow row in tempDataTable.Rows)
-            //{
-            //    Console.WriteLine("-----");
-            //    // Assuming "MAVT" is a column name in your DataTable
-            //    Console.WriteLine("Ma Vt: " + row["MAVT"]);
-            //    // Print other columns similarly
-            //    Console.WriteLine("So Luong: " + row["SOLUONG"]);
-            //    Console.WriteLine("Don Gia: " + row["DONGIA"]);
-
-            //    // Add more columns as needed
-            //}
-            //maVatTutxt.Text = "";
-            //soLuongtxt.Text = "";
-            //donGiatxt.Text = "";
-               
+        {          
         }
 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -23,19 +23,19 @@ namespace QuanLyVatTu
         public static String mlogin = "";
         public static String password = "";
 
-        /* DBao Connnection
+        //DBao Connnection
         public static String connstr_publisher = "Data Source=GODHART-NGUYEN;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
         public static String database = "QLVT_DATHANG";
         public static String remotelogin = "HTKN1";
         public static String remotepassword = "12";
-        */
+
 
 
         // TAnh Connection
-        public static String connstr_publisher = "Data Source=DESKTOP-1MDUK92\\MSSQLSERVER1;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
-        public static String database = "QLVT_DATHANG";
-        public static String remotelogin = "HOTROKETNOI";
-        public static String remotepassword = "123";
+        //public static String connstr_publisher = "Data Source=DESKTOP-1MDUK92\\MSSQLSERVER1;Initial Catalog=QLVT_DATHANG;Integrated Security=True";
+        //public static String database = "QLVT_DATHANG";
+        //public static String remotelogin = "HOTROKETNOI";
+        //public static String remotepassword = "123";
 
 
         public static String mloginDN = "";

@@ -39,12 +39,13 @@
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.btnTongHopNhapXuat = new DevExpress.XtraBars.BarButtonItem();
+            this.chiTietNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.systemPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.groupAction = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.categoryPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.businessPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.reportPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -54,17 +55,8 @@
             this.hoten = new System.Windows.Forms.ToolStripStatusLabel();
             this.nhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-// <<<<<<< HEAD
-//             this.phieuNhapBtn = new DevExpress.XtraBars.BarButtonItem();
-//             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
-// =======
-            this.chiTietNhanVien = new DevExpress.XtraBars.BarButtonItem();
-            ((System.ComponentModel.ISupportInitialize)(this.btnReportCTSL)).BeginInit();
-=========
             this.phieuNhapBtn = new DevExpress.XtraBars.BarButtonItem();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
->>>>>>>>> Temporary merge branch 2
+            ((System.ComponentModel.ISupportInitialize)(this.btnReportCTSL)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.SuspendLayout();
@@ -86,10 +78,11 @@
             this.barButtonItem1,
             this.barButtonItem2,
             this.btnTongHopNhapXuat,
-            this.chiTietNhanVien});
+            this.chiTietNhanVien,
+            this.phieuNhapBtn});
             this.btnReportCTSL.Location = new System.Drawing.Point(0, 0);
             this.btnReportCTSL.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.btnReportCTSL.MaxItemId = 12;
+            this.btnReportCTSL.MaxItemId = 13;
             this.btnReportCTSL.Name = "btnReportCTSL";
             this.btnReportCTSL.OptionsMenuMinWidth = 1155;
             this.btnReportCTSL.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -97,7 +90,7 @@
             this.categoryPage,
             this.businessPage,
             this.reportPage});
-            this.btnReportCTSL.Size = new System.Drawing.Size(1384, 193);
+            this.btnReportCTSL.Size = new System.Drawing.Size(1384, 158);
             // 
             // btnDangNhap
             // 
@@ -169,6 +162,13 @@
             this.btnTongHopNhapXuat.Name = "btnTongHopNhapXuat";
             this.btnTongHopNhapXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTongHopNhapXuat_ItemClick);
             // 
+            // chiTietNhanVien
+            // 
+            this.chiTietNhanVien.Caption = "Chi tiết hoạt động của nhân viên";
+            this.chiTietNhanVien.Id = 11;
+            this.chiTietNhanVien.Name = "chiTietNhanVien";
+            this.chiTietNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.chiTietNhanVien_ItemClick);
+            // 
             // systemPage
             // 
             this.systemPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -204,8 +204,15 @@
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup4.ItemLinks.Add(this.phieuNhapBtn);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "ribbonPageGroup4";
+            // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.chiTietNhanVien);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
             // 
             // businessPage
             // 
@@ -244,59 +251,54 @@
             this.manv,
             this.hoten,
             this.nhom});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 761);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 765);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 25, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1384, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1384, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // manv
             // 
             this.manv.Name = "manv";
-            this.manv.Size = new System.Drawing.Size(52, 20);
+            this.manv.Size = new System.Drawing.Size(42, 17);
             this.manv.Text = "MANV";
             // 
             // hoten
             // 
             this.hoten.Name = "hoten";
-            this.hoten.Size = new System.Drawing.Size(57, 20);
+            this.hoten.Size = new System.Drawing.Size(45, 17);
             this.hoten.Text = "HOTEN";
             // 
             // nhom
             // 
             this.nhom.Name = "nhom";
-            this.nhom.Size = new System.Drawing.Size(55, 20);
+            this.nhom.Size = new System.Drawing.Size(45, 17);
             this.nhom.Text = "NHOM";
             // 
             // xtraTabControl
             // 
             this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal;
-            this.xtraTabControl.Location = new System.Drawing.Point(0, 193);
+            this.xtraTabControl.Location = new System.Drawing.Point(0, 158);
             this.xtraTabControl.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.xtraTabControl.Name = "xtraTabControl";
-            this.xtraTabControl.Size = new System.Drawing.Size(1384, 568);
+            this.xtraTabControl.Size = new System.Drawing.Size(1384, 607);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.Click += new System.EventHandler(this.xtraTabControl_Click);
             // 
-            // ribbonPageGroup5
+            // phieuNhapBtn
             // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.chiTietNhanVien);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
-            // 
-            // chiTietNhanVien
-            // 
-            this.chiTietNhanVien.Caption = "Chi tiết hoạt động của nhân viên";
-            this.chiTietNhanVien.Id = 11;
-            this.chiTietNhanVien.Name = "chiTietNhanVien";
-            this.chiTietNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.chiTietNhanVien_ItemClick);
+            this.phieuNhapBtn.Caption = "Phiếu Nhập";
+            this.phieuNhapBtn.Id = 12;
+            this.phieuNhapBtn.Name = "phieuNhapBtn";
+            this.phieuNhapBtn.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+            this.phieuNhapBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.phieuNhapBtn_ItemClick);
             // 
             // Form1
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1384, 787);
             this.Controls.Add(this.xtraTabControl);
@@ -346,6 +348,7 @@
         private DevExpress.XtraBars.BarButtonItem btnTongHopNhapXuat;
         private DevExpress.XtraBars.BarButtonItem chiTietNhanVien;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.BarButtonItem phieuNhapBtn;
     }
 }
 

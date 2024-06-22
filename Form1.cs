@@ -47,7 +47,7 @@ namespace QuanLyVatTu
             return null;
         }
         private void btnDangNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        { 
+        {
             if (Program.mlogin != "")
             {
                 btnDangNhap.Enabled = false;
@@ -81,7 +81,7 @@ namespace QuanLyVatTu
 
                 btnDangXuat.Enabled = true;
             }
-            
+
         }
 
         public void HienThiMenu()
@@ -117,7 +117,7 @@ namespace QuanLyVatTu
                 XtraTabControl tabControl = FindTabControl(this);
                 btnDangXuat.Enabled = false;
                 btnDangNhap.Enabled = true;
-                
+
                 if (tabControl != null)
                 {
                     // Clear all tab pages
@@ -316,37 +316,37 @@ namespace QuanLyVatTu
             }
         }
 
-// <<<<<<< HEAD
-//         private void phieuNhapBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-//         {
-//             Form frm = this.CheckExists(typeof(frmPhieuNhap));
-//             if (frm != null) frm.Activate();
-//             else
-//             {
+        // <<<<<<< HEAD
+        //         private void phieuNhapBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        //         {
+        //             Form frm = this.CheckExists(typeof(frmPhieuNhap));
+        //             if (frm != null) frm.Activate();
+        //             else
+        //             {
 
-//                 frmPhieuNhap f = new frmPhieuNhap();
-//                 f.TopLevel = false; // Set TopLevel to false
-//                 f.FormBorderStyle = FormBorderStyle.None; // Optionally remove border
+        //                 frmPhieuNhap f = new frmPhieuNhap();
+        //                 f.TopLevel = false; // Set TopLevel to false
+        //                 f.FormBorderStyle = FormBorderStyle.None; // Optionally remove border
 
-//                 XtraTabPage tabPage = new XtraTabPage();
-//                 tabPage.Text = "Đặt hàng"; // Set the tab page text
+        //                 XtraTabPage tabPage = new XtraTabPage();
+        //                 tabPage.Text = "Đặt hàng"; // Set the tab page text
 
-//                 // Create a panel to host the form
-//                 Panel panel = new Panel();
-//                 panel.Dock = DockStyle.Fill; // Dock the panel to fill the tab page
-//                 tabPage.Controls.Add(panel); // Add the panel to the tab page
-//                 f.Parent = panel; // Set the panel as the parent of the form
+        //                 // Create a panel to host the form
+        //                 Panel panel = new Panel();
+        //                 panel.Dock = DockStyle.Fill; // Dock the panel to fill the tab page
+        //                 tabPage.Controls.Add(panel); // Add the panel to the tab page
+        //                 f.Parent = panel; // Set the panel as the parent of the form
 
-//                 // Show the form
-//                 f.Show();
+        //                 // Show the form
+        //                 f.Show();
 
 
 
-//                 xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
-//                 xtraTabControl.SelectedTabPage = tabPage;
+        //                 xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
+        //                 xtraTabControl.SelectedTabPage = tabPage;
 
-//             }
-// =======
+        //             }
+        // =======
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmChiTietSoLuongTriGiaHangHoaNhapXuat frpt = new frmChiTietSoLuongTriGiaHangHoaNhapXuat();
@@ -366,7 +366,37 @@ namespace QuanLyVatTu
         {
             Frpt_HoatDongNhanVien frpt = new Frpt_HoatDongNhanVien();
             frpt.ShowDialog();
-// >>>>>>> 792ccfc0b905ab191e4fc4452c9545d4a228bdc1
+            // >>>>>>> 792ccfc0b905ab191e4fc4452c9545d4a228bdc1
+        }
+
+        private void phieuNhapBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmPhieuNhap));
+            if (frm != null) frm.Activate();
+            else
+            {
+
+                frmPhieuNhap f = new frmPhieuNhap();
+                f.TopLevel = false; // Set TopLevel to false
+                f.FormBorderStyle = FormBorderStyle.None; // Optionally remove border
+
+                XtraTabPage tabPage = new XtraTabPage();
+                tabPage.Text = "Phiếu Nhập"; // Set the tab page text
+
+                // Create a panel to host the form
+                Panel panel = new Panel();
+                panel.Dock = DockStyle.Fill; // Dock the panel to fill the tab page
+                tabPage.Controls.Add(panel); // Add the panel to the tab page
+                f.Parent = panel; // Set the panel as the parent of the form
+
+                // Show the form
+                f.Show();
+
+
+
+                xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
+                xtraTabControl.SelectedTabPage = tabPage;
+            }
         }
     }
 }
