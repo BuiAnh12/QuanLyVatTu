@@ -52,7 +52,7 @@ namespace QuanLyVatTu
                 cmbChiNhanhMain.Enabled = btnThoat.Enabled = true;
                 btnGhi.Enabled = btnIn.Enabled = btnPhucHoi.Enabled 
                     = btnReload.Enabled = btnSua.Enabled = btnThem.Enabled 
-                    = btnXoa.Enabled = false;
+                    = btnXoa.Enabled = btnHoanTac.Enabled = btnLuanChuyen.Enabled = false;
             }
             else
             {
@@ -95,7 +95,7 @@ namespace QuanLyVatTu
             checkTrangThaiXoa.Checked = false;
             DeNgaySinh.EditValue = "";
             btnIn.Enabled = btnReload.Enabled = 
-                btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;
+                btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = btnHoanTac.Enabled = btnLuanChuyen.Enabled = false;
             btnThoat.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = true;
             gcNhanVien.Enabled = false;
             txtMACN.Text = ((DataRowView)bdsNhanVien[0])["MACN"].ToString();
@@ -112,7 +112,7 @@ namespace QuanLyVatTu
             gcNhanVien.Enabled = true;
             groupBox1.Enabled = false;
             btnIn.Enabled = btnReload.Enabled = btnSua.Enabled 
-                = btnThem.Enabled = btnThoat.Enabled  = btnXoa.Enabled = true;
+                = btnThem.Enabled = btnThoat.Enabled  = btnXoa.Enabled = btnHoanTac.Enabled = btnLuanChuyen.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
             this.isEditing = false;
         }
@@ -122,7 +122,7 @@ namespace QuanLyVatTu
             vitri = bdsNhanVien.Position;
             groupBox1.Enabled = true;
             btnIn.Enabled = btnReload.Enabled = btnSua.Enabled
-                = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = false;
+                = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = btnHoanTac.Enabled = btnLuanChuyen.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
             this.isEditing = true;
         }
@@ -221,17 +221,6 @@ namespace QuanLyVatTu
 
         private void frmNhanVien_Load(object sender, EventArgs e)
         {
-            
-            // TODO: This line of code loads data into the 'nhanVienDS.DatHang' table. You can move, or remove it, as needed.
-            this.datHangTableAdapter.Fill(this.nhanVienDS.DatHang);
-            // TODO: This line of code loads data into the 'nhanVienDS.CTPX' table. You can move, or remove it, as needed.
-            this.CTPXTableAdapter.Fill(this.nhanVienDS.CTPX);
-            // TODO: This line of code loads data into the 'nhanVienDS.CTPN' table. You can move, or remove it, as needed.
-            this.CTPNTableAdapter.Fill(this.nhanVienDS.CTPN);
-
-
-            
-
 
             nhanVienDS.EnforceConstraints = false;
 
@@ -340,16 +329,16 @@ namespace QuanLyVatTu
                 txtMANV.Focus();
                 return false;
             }
-            if (txtHo.Text.Trim() == "")
+            if (txtHo.Text.Trim() == "" && txtHo.Text.Length > 40)
             {
-                MessageBox.Show("Họ không được để trống"
+                MessageBox.Show("Họ không được để trống và không quá 40 ký tự"
                     , "", MessageBoxButtons.OK);
                 txtHo.Focus();
                 return false;
             }
-            if (txtTen.Text.Trim() == "")
+            if (txtTen.Text.Trim() == "" && txtTen.Text.Length > 10)
             {
-                MessageBox.Show("Tên không được để trống"
+                MessageBox.Show("Tên không được để trống và không quá 10 ký tự"
                     , "", MessageBoxButtons.OK);
                 txtTen.Focus();
                 return false;
@@ -363,7 +352,7 @@ namespace QuanLyVatTu
             }
             if (txtDiaChi.Text.Trim() == "")
             {
-                MessageBox.Show("Địa chỉ không được để trống"
+                MessageBox.Show("Địa chỉ không được để trống và không quá 100 ký tự"
                     , "", MessageBoxButtons.OK);
                 txtDiaChi.Focus();
                 return false;
@@ -444,7 +433,7 @@ namespace QuanLyVatTu
             
             if (viTriConTro != viTriCMND && viTriCMND != -1)
             {
-                MessageBox.Show("CMND này đã được sử dụng trên chí nhánh này rồi!", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("CMND này đã được sử dụng trên chí nhánh này !", "Thông báo", MessageBoxButtons.OK);
                 return false;
             }
             return true;
@@ -574,7 +563,7 @@ namespace QuanLyVatTu
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String macnLuanChuyen = txtMACN.Text.Trim() == "CN1" ? "CN2" : "CN1";
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn luân chuyển nhân viên có MSNV: " + txtMANV.Text + " CN tới: " + macnLuanChuyen 
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn luân chuyển nhân viên có MSNV: " + txtMANV.Text + "tới CN : " + macnLuanChuyen 
                 + "\nHành động này sẽ không được hoàn tác", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {

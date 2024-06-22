@@ -53,6 +53,7 @@
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHoanTac = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -69,7 +70,6 @@
             this.tableAdapterManager = new QuanLyVatTu.KhoDSTableAdapters.TableAdapterManager();
             this.datHangTableAdapter = new QuanLyVatTu.KhoDSTableAdapters.DatHangTableAdapter();
             this.bdsDatHang = new System.Windows.Forms.BindingSource(this.components);
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControl)).BeginInit();
             this.PanelControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcKho)).BeginInit();
@@ -102,7 +102,7 @@
             this.cmbChiNhanhMain.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.cmbChiNhanhMain.FormattingEnabled = true;
             this.cmbChiNhanhMain.Location = new System.Drawing.Point(140, 22);
-            this.cmbChiNhanhMain.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cmbChiNhanhMain.Margin = new System.Windows.Forms.Padding(5);
             this.cmbChiNhanhMain.Name = "cmbChiNhanhMain";
             this.cmbChiNhanhMain.Size = new System.Drawing.Size(368, 30);
             this.cmbChiNhanhMain.TabIndex = 9;
@@ -245,7 +245,7 @@
             this.btnReload,
             this.btnThoat,
             this.btnSua,
-            this.barButtonItem2});
+            this.btnHoanTac});
             this.barManager1.MaxItemId = 9;
             this.barManager1.StatusBar = this.bar3;
             // 
@@ -275,7 +275,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnPhucHoi),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReload),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnHoanTac)});
             this.bar4.Text = "Custom 5";
             // 
             // btnThem
@@ -354,6 +354,15 @@
             this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnThoat.Size = new System.Drawing.Size(80, 50);
             this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
+            // 
+            // btnHoanTac
+            // 
+            this.btnHoanTac.Caption = "Hoàn tác";
+            this.btnHoanTac.Id = 8;
+            this.btnHoanTac.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.btnHoanTac.Name = "btnHoanTac";
+            this.btnHoanTac.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnHoanTac.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -497,15 +506,6 @@
             this.bdsDatHang.DataMember = "FK_DatHang_Kho";
             this.bdsDatHang.DataSource = this.bdsKho;
             // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "Undo";
-            this.barButtonItem2.Id = 8;
-            this.barButtonItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
-            // 
             // frmKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -583,6 +583,6 @@
         private DevExpress.XtraEditors.TextEdit txtTenKho;
         private DevExpress.XtraEditors.TextEdit txtMaKho;
         private DevExpress.XtraEditors.TextEdit txtMACN;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem btnHoanTac;
     }
 }

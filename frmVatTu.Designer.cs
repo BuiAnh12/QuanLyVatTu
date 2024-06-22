@@ -51,6 +51,7 @@
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHoanTac = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -70,7 +71,6 @@
             this.bdsCTPX = new System.Windows.Forms.BindingSource(this.components);
             this.bdsCTPN = new System.Windows.Forms.BindingSource(this.components);
             this.bdsCTDDH = new System.Windows.Forms.BindingSource(this.components);
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VatTuDS)).BeginInit();
@@ -215,7 +215,7 @@
             this.btnThoat,
             this.btnSua,
             this.btnIn,
-            this.barButtonItem1});
+            this.btnHoanTac});
             this.barManager1.MaxItemId = 10;
             this.barManager1.StatusBar = this.bar3;
             // 
@@ -246,7 +246,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReload),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnIn),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnHoanTac)});
             this.bar4.Text = "Custom 5";
             // 
             // btnThem
@@ -331,6 +331,15 @@
             this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnThoat.Size = new System.Drawing.Size(80, 50);
             this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
+            // 
+            // btnHoanTac
+            // 
+            this.btnHoanTac.Caption = "Hoàn tác";
+            this.btnHoanTac.Id = 9;
+            this.btnHoanTac.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnHoanTac.Name = "btnHoanTac";
+            this.btnHoanTac.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnHoanTac.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -487,15 +496,6 @@
             this.bdsCTDDH.DataMember = "FK_CTDDH_VatTu";
             this.bdsCTDDH.DataSource = this.bdsVatTu;
             // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "Undo";
-            this.barButtonItem1.Id = 9;
-            this.barButtonItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
-            // 
             // frmVatTu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -571,6 +571,6 @@
         private DevExpress.XtraEditors.TextEdit txtMaVT;
         private DevExpress.XtraEditors.TextEdit txtSoLuongTon;
         private DevExpress.XtraGrid.Columns.GridColumn colDVT1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnHoanTac;
     }
 }

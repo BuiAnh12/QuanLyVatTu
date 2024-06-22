@@ -21,6 +21,7 @@ namespace QuanLyVatTu
             InitializeComponent();
             this.IsMdiContainer = true;
             btnTaoTk.Enabled = false;
+            btnDangXuat.Enabled = false;
             btnDangNhap.PerformClick();
 
         }
@@ -81,7 +82,7 @@ namespace QuanLyVatTu
 
 
 
-                btnDangXuat.Enabled = true;
+                
             }
             
         }
@@ -92,9 +93,9 @@ namespace QuanLyVatTu
             nhom.Text = "Nhóm: " + Program.mGroup;
             hoten.Text = "Họ tên nhân viên: " + Program.mHoten;
             categoryPage.Visible = true;
-            businessPage.Visible = true;
             reportPage.Visible = true;
             btnTaoTk.Enabled = true;
+            btnDangXuat.Enabled = true;
         }
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -113,7 +114,6 @@ namespace QuanLyVatTu
                 Program.mHoten = "";
                 Program.username = "";
                 categoryPage.Visible = false;
-                businessPage.Visible = false;
                 reportPage.Visible = false;
                 btnTaoTk.Enabled = false;
                 XtraTabControl tabControl = FindTabControl(this);
@@ -126,6 +126,7 @@ namespace QuanLyVatTu
                     tabControl.TabPages.Clear();
                 }
                 btnDangNhap.PerformClick();
+                btnDangXuat.Enabled = false;
             }
         }
 
@@ -359,8 +360,7 @@ namespace QuanLyVatTu
 
         private void btnTongHopNhapXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Frpt_TongHopNhapXuat frpt = new Frpt_TongHopNhapXuat();
-            frpt.ShowDialog();
+            
 
         }
 
@@ -388,6 +388,17 @@ namespace QuanLyVatTu
         private void btnDonHangKoPhieuNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Frpt_DDHChuaCoPhieuNhap frpt = new Frpt_DDHChuaCoPhieuNhap();
+            frpt.ShowDialog();
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnTHNX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Frpt_TongHopNhapXuat frpt = new Frpt_TongHopNhapXuat();
             frpt.ShowDialog();
         }
     }
