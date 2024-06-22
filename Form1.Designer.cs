@@ -55,8 +55,13 @@
             this.hoten = new System.Windows.Forms.ToolStripStatusLabel();
             this.nhom = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.phieuNhapBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+//             this.phieuNhapBtn = new DevExpress.XtraBars.BarButtonItem();
+//             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            this.chiTietNhanVien = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnReportCTSL)).BeginInit();
+//            this.phieuNhapBtn = new DevExpress.XtraBars.BarButtonItem();
+//            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.SuspendLayout();
