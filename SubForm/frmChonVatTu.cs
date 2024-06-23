@@ -48,6 +48,8 @@ namespace QuanLyVatTu.SubForm
             {
                 Program.maVatTudcChon = currentDataRowView["MAVT"].ToString();
                 Program.tenVattudcChon = currentDataRowView["TENVT"].ToString();
+                Program.soluongtonvattu = Convert.ToInt32(currentDataRowView["SOLUONGTON"]);
+
             }
             this.Close();
         }
