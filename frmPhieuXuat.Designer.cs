@@ -81,6 +81,9 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.xoaCTPXBtn = new System.Windows.Forms.Button();
             this.themCTPXBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             mAPXLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             hOTENKHLabel = new System.Windows.Forms.Label();
@@ -106,52 +109,53 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mAPXLabel
             // 
             mAPXLabel.AutoSize = true;
-            mAPXLabel.Location = new System.Drawing.Point(50, 53);
+            mAPXLabel.Location = new System.Drawing.Point(10, 59);
             mAPXLabel.Name = "mAPXLabel";
-            mAPXLabel.Size = new System.Drawing.Size(38, 13);
+            mAPXLabel.Size = new System.Drawing.Size(105, 16);
             mAPXLabel.TabIndex = 0;
-            mAPXLabel.Text = "MAPX:";
+            mAPXLabel.Text = "Mã Phiếu Xuất:";
             // 
             // nGAYLabel
             // 
             nGAYLabel.AutoSize = true;
-            nGAYLabel.Location = new System.Drawing.Point(50, 155);
+            nGAYLabel.Location = new System.Drawing.Point(61, 135);
             nGAYLabel.Name = "nGAYLabel";
-            nGAYLabel.Size = new System.Drawing.Size(38, 13);
+            nGAYLabel.Size = new System.Drawing.Size(48, 16);
             nGAYLabel.TabIndex = 2;
-            nGAYLabel.Text = "NGAY:";
+            nGAYLabel.Text = "Ngày :";
             // 
             // hOTENKHLabel
             // 
             hOTENKHLabel.AutoSize = true;
-            hOTENKHLabel.Location = new System.Drawing.Point(277, 101);
+            hOTENKHLabel.Location = new System.Drawing.Point(261, 98);
             hOTENKHLabel.Name = "hOTENKHLabel";
-            hOTENKHLabel.Size = new System.Drawing.Size(58, 13);
+            hOTENKHLabel.Size = new System.Drawing.Size(97, 16);
             hOTENKHLabel.TabIndex = 4;
-            hOTENKHLabel.Text = "HOTENKH:";
+            hOTENKHLabel.Text = "Họ và Tên KH:";
             // 
             // mANVLabel
             // 
             mANVLabel.AutoSize = true;
-            mANVLabel.Location = new System.Drawing.Point(49, 101);
+            mANVLabel.Location = new System.Drawing.Point(10, 101);
             mANVLabel.Name = "mANVLabel";
-            mANVLabel.Size = new System.Drawing.Size(39, 13);
+            mANVLabel.Size = new System.Drawing.Size(99, 16);
             mANVLabel.TabIndex = 6;
-            mANVLabel.Text = "MANV:";
+            mANVLabel.Text = "Mã Nhân Viên:";
             // 
             // mAKHOLabel
             // 
             mAKHOLabel.AutoSize = true;
-            mAKHOLabel.Location = new System.Drawing.Point(277, 49);
+            mAKHOLabel.Location = new System.Drawing.Point(299, 56);
             mAKHOLabel.Name = "mAKHOLabel";
-            mAKHOLabel.Size = new System.Drawing.Size(47, 13);
+            mAKHOLabel.Size = new System.Drawing.Size(59, 16);
             mAKHOLabel.TabIndex = 8;
-            mAKHOLabel.Text = "MAKHO:";
+            mAKHOLabel.Text = "Mã Kho:";
             // 
             // barManager1
             // 
@@ -195,8 +199,8 @@
             // 
             this.themBtn.Caption = "Thêm";
             this.themBtn.Id = 0;
-            this.themBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.themBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.themBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("themBtn.ImageOptions.Image")));
+            this.themBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("themBtn.ImageOptions.LargeImage")));
             this.themBtn.Name = "themBtn";
             this.themBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
@@ -204,8 +208,8 @@
             // 
             this.suaBtn.Caption = "Sửa";
             this.suaBtn.Id = 1;
-            this.suaBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.suaBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.suaBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("suaBtn.ImageOptions.Image")));
+            this.suaBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("suaBtn.ImageOptions.LargeImage")));
             this.suaBtn.Name = "suaBtn";
             this.suaBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
@@ -213,8 +217,8 @@
             // 
             this.ghiBtn.Caption = "Ghi";
             this.ghiBtn.Id = 2;
-            this.ghiBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.ghiBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.ghiBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ghiBtn.ImageOptions.Image")));
+            this.ghiBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("ghiBtn.ImageOptions.LargeImage")));
             this.ghiBtn.Name = "ghiBtn";
             this.ghiBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
             // 
@@ -232,8 +236,8 @@
             // 
             this.reloadBtn.Caption = "Làm mới";
             this.reloadBtn.Id = 3;
-            this.reloadBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
-            this.reloadBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
+            this.reloadBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("reloadBtn.ImageOptions.Image")));
+            this.reloadBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("reloadBtn.ImageOptions.LargeImage")));
             this.reloadBtn.Name = "reloadBtn";
             this.reloadBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
@@ -241,8 +245,8 @@
             // 
             this.thoatBtn.Caption = "Thoát";
             this.thoatBtn.Id = 5;
-            this.thoatBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
-            this.thoatBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
+            this.thoatBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("thoatBtn.ImageOptions.Image")));
+            this.thoatBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("thoatBtn.ImageOptions.LargeImage")));
             this.thoatBtn.Name = "thoatBtn";
             this.thoatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
             // 
@@ -410,17 +414,8 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.chonKhoBtn);
-            this.panelControl2.Controls.Add(mAKHOLabel);
-            this.panelControl2.Controls.Add(this.maKhoTxt);
-            this.panelControl2.Controls.Add(mANVLabel);
-            this.panelControl2.Controls.Add(this.maNVTxt);
-            this.panelControl2.Controls.Add(hOTENKHLabel);
-            this.panelControl2.Controls.Add(this.tenKHTxt);
-            this.panelControl2.Controls.Add(nGAYLabel);
-            this.panelControl2.Controls.Add(this.ngayTxt);
-            this.panelControl2.Controls.Add(mAPXLabel);
-            this.panelControl2.Controls.Add(this.maPxTxt);
+            this.panelControl2.Controls.Add(this.groupBox1);
+            this.panelControl2.Controls.Add(this.label2);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl2.Location = new System.Drawing.Point(0, 298);
             this.panelControl2.Name = "panelControl2";
@@ -429,9 +424,10 @@
             // 
             // chonKhoBtn
             // 
-            this.chonKhoBtn.Location = new System.Drawing.Point(341, 140);
+            this.chonKhoBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chonKhoBtn.Location = new System.Drawing.Point(364, 146);
             this.chonKhoBtn.Name = "chonKhoBtn";
-            this.chonKhoBtn.Size = new System.Drawing.Size(89, 23);
+            this.chonKhoBtn.Size = new System.Drawing.Size(89, 32);
             this.chonKhoBtn.TabIndex = 10;
             this.chonKhoBtn.Text = "Chọn Kho";
             this.chonKhoBtn.UseVisualStyleBackColor = true;
@@ -441,7 +437,7 @@
             // 
             this.maKhoTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuXuat, "MAKHO", true));
             this.maKhoTxt.Enabled = false;
-            this.maKhoTxt.Location = new System.Drawing.Point(341, 46);
+            this.maKhoTxt.Location = new System.Drawing.Point(364, 55);
             this.maKhoTxt.MenuManager = this.barManager1;
             this.maKhoTxt.Name = "maKhoTxt";
             this.maKhoTxt.Size = new System.Drawing.Size(100, 20);
@@ -456,7 +452,7 @@
             0,
             0});
             this.maNVTxt.Enabled = false;
-            this.maNVTxt.Location = new System.Drawing.Point(113, 98);
+            this.maNVTxt.Location = new System.Drawing.Point(135, 97);
             this.maNVTxt.MenuManager = this.barManager1;
             this.maNVTxt.Name = "maNVTxt";
             this.maNVTxt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -467,7 +463,7 @@
             // tenKHTxt
             // 
             this.tenKHTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuXuat, "HOTENKH", true));
-            this.tenKHTxt.Location = new System.Drawing.Point(341, 98);
+            this.tenKHTxt.Location = new System.Drawing.Point(364, 97);
             this.tenKHTxt.MenuManager = this.barManager1;
             this.tenKHTxt.Name = "tenKHTxt";
             this.tenKHTxt.Size = new System.Drawing.Size(100, 20);
@@ -478,7 +474,7 @@
             this.ngayTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuXuat, "NGAY", true));
             this.ngayTxt.EditValue = null;
             this.ngayTxt.Enabled = false;
-            this.ngayTxt.Location = new System.Drawing.Point(113, 152);
+            this.ngayTxt.Location = new System.Drawing.Point(135, 134);
             this.ngayTxt.MenuManager = this.barManager1;
             this.ngayTxt.Name = "ngayTxt";
             this.ngayTxt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -492,7 +488,7 @@
             // 
             this.maPxTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuXuat, "MAPX", true));
             this.maPxTxt.Enabled = false;
-            this.maPxTxt.Location = new System.Drawing.Point(113, 46);
+            this.maPxTxt.Location = new System.Drawing.Point(135, 58);
             this.maPxTxt.MenuManager = this.barManager1;
             this.maPxTxt.Name = "maPxTxt";
             this.maPxTxt.Size = new System.Drawing.Size(100, 20);
@@ -578,6 +574,7 @@
             // 
             // xoaCTPXBtn
             // 
+            this.xoaCTPXBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xoaCTPXBtn.Location = new System.Drawing.Point(111, 3);
             this.xoaCTPXBtn.Name = "xoaCTPXBtn";
             this.xoaCTPXBtn.Size = new System.Drawing.Size(75, 23);
@@ -588,6 +585,7 @@
             // 
             // themCTPXBtn
             // 
+            this.themCTPXBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.themCTPXBtn.Location = new System.Drawing.Point(6, 3);
             this.themCTPXBtn.Name = "themCTPXBtn";
             this.themCTPXBtn.Size = new System.Drawing.Size(75, 23);
@@ -595,6 +593,49 @@
             this.themCTPXBtn.Text = "Thêm";
             this.themCTPXBtn.UseVisualStyleBackColor = true;
             this.themCTPXBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(201, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 19);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Phiếu Xuất";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(mAPXLabel);
+            this.groupBox1.Controls.Add(this.maPxTxt);
+            this.groupBox1.Controls.Add(this.chonKhoBtn);
+            this.groupBox1.Controls.Add(mANVLabel);
+            this.groupBox1.Controls.Add(this.tenKHTxt);
+            this.groupBox1.Controls.Add(hOTENKHLabel);
+            this.groupBox1.Controls.Add(this.maKhoTxt);
+            this.groupBox1.Controls.Add(mAKHOLabel);
+            this.groupBox1.Controls.Add(this.maNVTxt);
+            this.groupBox1.Controls.Add(this.ngayTxt);
+            this.groupBox1.Controls.Add(nGAYLabel);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(2, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(493, 434);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thông tin";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(199, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 19);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Phiếu Xuất";
             // 
             // frmPhieuXuat
             // 
@@ -635,6 +676,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -688,5 +731,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSOLUONGTON;
         private System.Windows.Forms.Button chonKhoBtn;
         private DevExpress.XtraBars.BarButtonItem xoaBtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

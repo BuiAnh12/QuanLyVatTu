@@ -133,45 +133,45 @@
             // mAPNLabel
             // 
             mAPNLabel.AutoSize = true;
-            mAPNLabel.Location = new System.Drawing.Point(22, 47);
+            mAPNLabel.Location = new System.Drawing.Point(22, 66);
             mAPNLabel.Name = "mAPNLabel";
-            mAPNLabel.Size = new System.Drawing.Size(82, 13);
+            mAPNLabel.Size = new System.Drawing.Size(106, 16);
             mAPNLabel.TabIndex = 2;
             mAPNLabel.Text = "Mã Phiếu Nhập:";
             // 
             // nGAYLabel
             // 
             nGAYLabel.AutoSize = true;
-            nGAYLabel.Location = new System.Drawing.Point(309, 43);
+            nGAYLabel.Location = new System.Drawing.Point(300, 64);
             nGAYLabel.Name = "nGAYLabel";
-            nGAYLabel.Size = new System.Drawing.Size(39, 13);
+            nGAYLabel.Size = new System.Drawing.Size(48, 16);
             nGAYLabel.TabIndex = 4;
             nGAYLabel.Text = "Ngày :";
             // 
             // mANVLabel
             // 
             mANVLabel.AutoSize = true;
-            mANVLabel.Location = new System.Drawing.Point(22, 86);
+            mANVLabel.Location = new System.Drawing.Point(22, 103);
             mANVLabel.Name = "mANVLabel";
-            mANVLabel.Size = new System.Drawing.Size(78, 13);
+            mANVLabel.Size = new System.Drawing.Size(102, 16);
             mANVLabel.TabIndex = 6;
             mANVLabel.Text = "Mã nhân viên :";
             // 
             // mAKHOLabel
             // 
             mAKHOLabel.AutoSize = true;
-            mAKHOLabel.Location = new System.Drawing.Point(22, 127);
+            mAKHOLabel.Location = new System.Drawing.Point(66, 139);
             mAKHOLabel.Name = "mAKHOLabel";
-            mAKHOLabel.Size = new System.Drawing.Size(48, 13);
+            mAKHOLabel.Size = new System.Drawing.Size(62, 16);
             mAKHOLabel.TabIndex = 8;
             mAKHOLabel.Text = "Mã kho :";
             // 
             // masoDDHLabel
             // 
             masoDDHLabel.AutoSize = true;
-            masoDDHLabel.Location = new System.Drawing.Point(22, 177);
+            masoDDHLabel.Location = new System.Drawing.Point(10, 177);
             masoDDHLabel.Name = "masoDDHLabel";
-            masoDDHLabel.Size = new System.Drawing.Size(106, 13);
+            masoDDHLabel.Size = new System.Drawing.Size(140, 16);
             masoDDHLabel.TabIndex = 9;
             masoDDHLabel.Text = "Mã số đơn đặt hàng:";
             // 
@@ -450,6 +450,7 @@
             // 
             // xoactpnBtn
             // 
+            this.xoactpnBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xoactpnBtn.Location = new System.Drawing.Point(5, 5);
             this.xoactpnBtn.Name = "xoactpnBtn";
             this.xoactpnBtn.Size = new System.Drawing.Size(75, 31);
@@ -552,6 +553,7 @@
             this.groupBox1.Controls.Add(this.maPNTxt);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(2, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(485, 370);
@@ -573,7 +575,7 @@
             // chondonhangBtn
             // 
             this.chondonhangBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chondonhangBtn.Location = new System.Drawing.Point(337, 86);
+            this.chondonhangBtn.Location = new System.Drawing.Point(337, 105);
             this.chondonhangBtn.Name = "chondonhangBtn";
             this.chondonhangBtn.Size = new System.Drawing.Size(117, 23);
             this.chondonhangBtn.TabIndex = 11;
@@ -585,7 +587,7 @@
             // 
             this.maDDHTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuNhap, "MasoDDH", true));
             this.maDDHTxt.Enabled = false;
-            this.maDDHTxt.Location = new System.Drawing.Point(134, 174);
+            this.maDDHTxt.Location = new System.Drawing.Point(156, 174);
             this.maDDHTxt.MenuManager = this.barManager1;
             this.maDDHTxt.Name = "maDDHTxt";
             this.maDDHTxt.Size = new System.Drawing.Size(100, 20);
@@ -595,7 +597,7 @@
             // 
             this.maKhoTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuNhap, "MAKHO", true));
             this.maKhoTxt.Enabled = false;
-            this.maKhoTxt.Location = new System.Drawing.Point(134, 124);
+            this.maKhoTxt.Location = new System.Drawing.Point(156, 138);
             this.maKhoTxt.MenuManager = this.barManager1;
             this.maKhoTxt.Name = "maKhoTxt";
             this.maKhoTxt.Size = new System.Drawing.Size(100, 20);
@@ -605,7 +607,7 @@
             // 
             this.maNVTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuNhap, "MANV", true));
             this.maNVTxt.Enabled = false;
-            this.maNVTxt.Location = new System.Drawing.Point(134, 83);
+            this.maNVTxt.Location = new System.Drawing.Point(156, 102);
             this.maNVTxt.MenuManager = this.barManager1;
             this.maNVTxt.Name = "maNVTxt";
             this.maNVTxt.Size = new System.Drawing.Size(100, 20);
@@ -616,7 +618,7 @@
             this.ngayPNTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuNhap, "NGAY", true));
             this.ngayPNTxt.EditValue = null;
             this.ngayPNTxt.Enabled = false;
-            this.ngayPNTxt.Location = new System.Drawing.Point(354, 40);
+            this.ngayPNTxt.Location = new System.Drawing.Point(354, 60);
             this.ngayPNTxt.MenuManager = this.barManager1;
             this.ngayPNTxt.Name = "ngayPNTxt";
             this.ngayPNTxt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -630,7 +632,7 @@
             // 
             this.maPNTxt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPhieuNhap, "MAPN", true));
             this.maPNTxt.Enabled = false;
-            this.maPNTxt.Location = new System.Drawing.Point(135, 44);
+            this.maPNTxt.Location = new System.Drawing.Point(156, 63);
             this.maPNTxt.MenuManager = this.barManager1;
             this.maPNTxt.Name = "maPNTxt";
             this.maPNTxt.Size = new System.Drawing.Size(100, 20);

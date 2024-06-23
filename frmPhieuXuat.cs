@@ -209,51 +209,65 @@ namespace QuanLyVatTu
 
             return flag;
         }
+        private bool ContainsDigitsOrSpecialChars(string input)
+        {
+            bool containsDigit = input.Any(char.IsDigit);
+            bool containsSpecialChar = input.Any(ch => !char.IsLetterOrDigit(ch));
+
+            return containsDigit || containsSpecialChar;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            frmChonVatTu frm = new frmChonVatTu();       
-            frm.ShowDialog();
-
-            
-            String mavt = Program.maVatTudcChon;
-            String mapx = Program.ExecuteStoredProcedureFromMainSide("SP_generatePhieuXuat");
-            int soluongton = Program.soluongtonvattu;
-
-            if (mavt != "")
+            if (this.tenKHTxt.Text.Equals(""))
             {
-                if (checkExistVattu(mavt) == false)
-                {
-                    DataRow newRow = ctpxTable.NewRow();
-                    newRow["MAPX"] = mapx;
-                    newRow["MAVT"] = mavt;
-                    newRow["SOLUONG"] = 0;
-                    newRow["DONGIA"] = 0.0;
-                    newRow["SOLUONGTON"] = soluongton;
-                    ctpxTable.Rows.Add(newRow);
-                }
+                MessageBox.Show("Không được để trống họ và tên khách hàng!");
             }
+            else if (ContainsDigitsOrSpecialChars(this.tenKHTxt.Text.ToString()))
+            {
+                MessageBox.Show("Không được chứa chữ số và ký tự đặc biệt trong họ và tên khách hàng!");
+            }
+            else
+            {
+                frmChonVatTu frm = new frmChonVatTu();
+                frm.ShowDialog();
 
 
-            cTPXGridControl.DataSource = ctpxTable;
-            cTPXGridControl.RefreshDataSource();
+                String mavt = Program.maVatTudcChon;
+                String mapx = Program.ExecuteStoredProcedureFromMainSide("SP_generatePhieuXuat");
+                int soluongton = Program.soluongtonvattu;
 
-            //SET BUTTON
-            themBtn.Enabled = false;
-            suaBtn.Enabled = false;
-            ghiBtn.Enabled = true;
-            xoaBtn.Enabled = false;
-            reloadBtn.Enabled = true;
-            thoatBtn.Enabled = true;
-            chonKhoBtn.Enabled = false;
-            themCTPXBtn.Enabled = true;
-            xoaCTPXBtn.Enabled = true;
-           
+                if (mavt != "")
+                {
+                    if (checkExistVattu(mavt) == false)
+                    {
+                        DataRow newRow = ctpxTable.NewRow();
+                        newRow["MAPX"] = mapx;
+                        newRow["MAVT"] = mavt;
+                        newRow["SOLUONG"] = 0;
+                        newRow["DONGIA"] = 0.0;
+                        newRow["SOLUONGTON"] = soluongton;
+                        ctpxTable.Rows.Add(newRow);
+                    }
+                }
+                cTPXGridControl.DataSource = ctpxTable;
+                cTPXGridControl.RefreshDataSource();
 
-            //SET GRIDCONTROL
-            phieuXuatGridControl.Enabled = false;
-            cTPXGridControl.Enabled = true;
+                //SET BUTTON
+                themBtn.Enabled = false;
+                suaBtn.Enabled = false;
+                ghiBtn.Enabled = true;
+                xoaBtn.Enabled = false;
+                reloadBtn.Enabled = true;
+                thoatBtn.Enabled = true;
+                chonKhoBtn.Enabled = false;
+                themCTPXBtn.Enabled = true;
+                xoaCTPXBtn.Enabled = true;
 
+
+                //SET GRIDCONTROL
+                phieuXuatGridControl.Enabled = false;
+                cTPXGridControl.Enabled = true;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -47,7 +47,7 @@ namespace QuanLyVatTu
         public void setButtonCTDDH()
         {
             themCTDDHbtn.Enabled = ghiCTDDHbtn.Enabled = suaCTDDHbtn.Enabled = false;
-            xoaCTDDHbtn.Enabled = phuchoiCTDDHbtn.Enabled = false;
+            xoaCTDDHbtn.Enabled = false;
         }
         public frmDondathang()
         {   
@@ -68,8 +68,8 @@ namespace QuanLyVatTu
 
             if (Program.mGroup == "CONGTY")
             {
-                ThemBtn.Enabled = SuaBtn.Enabled = GhiBtn.Enabled = XoaBtn.Enabled = false;
-                PhuchoiBtn.Enabled = reloadBtn.Enabled = false;
+                ThemBtn.Enabled = SuaBtn.Enabled = XoaBtn.Enabled = false;
+                reloadBtn.Enabled = false;
                 ThoatBtn.Enabled =CbChiNhanh.Enabled= true;
                 hoantatBtn.Enabled = false;
 
@@ -80,8 +80,8 @@ namespace QuanLyVatTu
             }
             else if (Program.mGroup == "USER")
             {
-                ThemBtn.Enabled = SuaBtn.Enabled = GhiBtn.Enabled = XoaBtn.Enabled = false;
-                PhuchoiBtn.Enabled = false;
+                ThemBtn.Enabled = SuaBtn.Enabled =  XoaBtn.Enabled = false;
+              
                 CbChiNhanh.Enabled = false;
                 ThoatBtn.Enabled  = true;
                 reloadBtn.Enabled = true;
@@ -90,9 +90,9 @@ namespace QuanLyVatTu
             }
             else if (Program.mGroup == "CHINHANH")
             {
-                GhiBtn.Enabled = XoaBtn.Enabled = false;
+                XoaBtn.Enabled = false;
                 XoaBtn.Enabled = true;
-                PhuchoiBtn.Enabled  =CbChiNhanh.Enabled= false;
+                CbChiNhanh.Enabled= false;
                 ThoatBtn.Enabled =ThemBtn.Enabled=reloadBtn.Enabled=true;
                 SuaBtn.Enabled = true;
                 hoantatBtn.Enabled = false;
@@ -263,7 +263,7 @@ namespace QuanLyVatTu
                 ngayTxt.Text = DateTime.Now.ToString("yyyy/MM/dd");
                 maNVtxt.Text = Program.username;
                 // Hien thi Form CTDDH 
-                themCTDDHbtn.Enabled = phuchoiCTDDHbtn.Enabled = true;
+                themCTDDHbtn.Enabled = true;
                 cTDDHGridControl.Enabled = true;
             }
             else if(this.loaithaotac==0)
@@ -359,28 +359,6 @@ namespace QuanLyVatTu
         private int getSoluongTonVT(string maVT)
         {
             int soluongton = -1;
-            //string query = "SP_GetSOLUONGTONByMAVT";
-            //try
-            //{
-            //    if (Program.KetNoi() == 1)
-            //    {
-            //        SqlCommand cmd = new SqlCommand(query, Program.conn);
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@MAVT", maVT);
-
-            //        SqlDataReader reader = cmd.ExecuteReader();
-            //        if (reader.Read())
-            //        {
-            //            soluongton = reader.GetInt32(0);
-            //        }
-            //        reader.Close();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Lỗi khi thực thi stored procedure lấy số lượng tồn. \n" + ex.Message, "", MessageBoxButtons.OK);
-            //    return -1;
-            //}
 
             return soluongton;
         }
@@ -392,11 +370,6 @@ namespace QuanLyVatTu
                 MessageBox.Show("Không được để Trống các trường !"
                  , "", MessageBoxButtons.OK);
             }
-            //else if (int.Parse(soLuongtxt.Text)>getSoluongTonVT(maVatTutxt.Text))
-            //{
-            //    MessageBox.Show("Số lượng hàng tồn vật tư không đủ ! Vui lòng nhập số lượng nhỏ hơn !"
-            //    , "", MessageBoxButtons.OK);
-            //}
             else
             {   
                 //Add new CTDDDH
@@ -452,24 +425,7 @@ namespace QuanLyVatTu
         }
         private void updateSoluongTonVT(String maVT,int soluongton)
         {
-            //try
-            //{
-            //    if (Program.KetNoi() == 1)
-            //    {
-            //        SqlCommand cmd = new SqlCommand("SP_UpdateSOLUONGTONVT", Program.conn);
-            //        cmd.CommandType=CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@MAVT ", maVT);
-            //        cmd.Parameters.AddWithValue("@SOLUONGTON", soluongton);
-            //        cmd.ExecuteNonQuery();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Lỗi Update số lượng tồn. \n" + ex.Message + ""
-            //      , "", MessageBoxButtons.OK);
-            //    return;
-            //}
-      
+
         }
         private void HoantatBtn(object sender, EventArgs e)
         {
@@ -508,17 +464,15 @@ namespace QuanLyVatTu
                 }
                 if (Program.KetNoi() == 1)
                 {
+                    SqlTransaction transaction = null;
                     try
                     {
+                        transaction = Program.conn.BeginTransaction();
                         foreach (DataRow row in tempDataTable.Rows)
                         {       
-                            ////Update Soluongton
-                            //int tmp = getSoluongTonVT(row["MAVT"].ToString());
-                            //int soluongmoi=tmp - Convert.ToInt32(row["SOLUONG"]);
-                            //updateSoluongTonVT(row["MAVT"].ToString(), soluongmoi);
 
                             //Action insert to CTDDH
-                            SqlCommand cmd = new SqlCommand("SP_InsertCTDDH", Program.conn);
+                            SqlCommand cmd = new SqlCommand("SP_InsertCTDDH", Program.conn, transaction);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@MasoDDH ", MaDontxt.Text);
                             cmd.Parameters.AddWithValue("@MAVT", row["MAVT"]);
@@ -526,6 +480,7 @@ namespace QuanLyVatTu
                             cmd.Parameters.AddWithValue("@DONGIA ", row["DONGIA"]);
                             cmd.ExecuteNonQuery();
                         }
+                        transaction.Commit();
                         MessageBox.Show("Ghi đơn hàng thành công.!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Program.conn.Close();
                     }
@@ -533,6 +488,11 @@ namespace QuanLyVatTu
                     {
                         MessageBox.Show("Lỗi ghi CTDDH Dat Hang. \n" + ex.Message + ""
                             , "", MessageBoxButtons.OK);
+                        if (transaction != null)
+                        {
+                            transaction.Rollback();
+                        }
+                       
                         return;
                     }
                 }
@@ -557,8 +517,10 @@ namespace QuanLyVatTu
 
                 if (Program.KetNoi() == 1)
                 {
+                    SqlTransaction transaction = null;
                     try
-                    {                 
+                    {
+                        transaction = Program.conn.BeginTransaction();
                         foreach (DataRow row in tempDataTable.Rows)
                         {
                             //Update Soluongton in VATTU
@@ -566,7 +528,7 @@ namespace QuanLyVatTu
                             //int soluongmoi = tmp - Convert.ToInt32(row["SOLUONG"]);
                             //updateSoluongTonVT(row["MAVT"].ToString(), soluongmoi);
                             //Action to CTDDH
-                            SqlCommand cmd = new SqlCommand("SP_UpdateCTDDH", Program.conn);
+                            SqlCommand cmd = new SqlCommand("SP_UpdateCTDDH", Program.conn,transaction);
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@MasoDDH ", this.MaDontxt.Text);
                             cmd.Parameters.AddWithValue("@MAVT", row["MAVT"]);
@@ -574,15 +536,21 @@ namespace QuanLyVatTu
                             cmd.Parameters.AddWithValue("@DONGIA ", row["DONGIA"]);
                             cmd.ExecuteNonQuery();
                         }
-                        Program.conn.Close();                       
+                        transaction.Commit();
+                        Program.conn.Close();
+                        MessageBox.Show("Cập nhật đơn hàng thành công.!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Lỗi cập nhật Dat Hang ! \n" + ex.Message + ""
                             , "", MessageBoxButtons.OK);
+                        if (transaction != null)
+                        {
+                            transaction.Rollback();
+                        }
                         return;
                     }
-                    MessageBox.Show("Cập nhật đơn hàng thành công.!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 this.tempDataTable.Clear();
                 tableAdapterManager.UpdateAll(datHangDS);
@@ -598,7 +566,7 @@ namespace QuanLyVatTu
             datHangGridControl.Enabled = true;
             groupBox3.Enabled = groupBox2.Enabled = false;
             themCTDDHbtn.Enabled = ghiCTDDHbtn.Enabled = suaCTDDHbtn.Enabled = false;
-            xoaCTDDHbtn.Enabled = phuchoiCTDDHbtn.Enabled = false;
+            xoaCTDDHbtn.Enabled  = false;
             hoantatBtn.Enabled = false;
 
             //Hold Connection String 
@@ -671,7 +639,7 @@ namespace QuanLyVatTu
                     this.loaithaotac = 0;
                     datHangGridControl.Enabled = false;
                     groupBox2.Enabled = true;
-                    ThemBtn.Enabled = SuaBtn.Enabled = GhiBtn.Enabled = XoaBtn.Enabled = PhuchoiBtn.Enabled = false;
+                    ThemBtn.Enabled = SuaBtn.Enabled = XoaBtn.Enabled  = false;
                     reloadBtn.Enabled = ThoatBtn.Enabled = true;
 
                 }
@@ -777,62 +745,33 @@ namespace QuanLyVatTu
         private void actionIncreateSoluongton()
         {
             String masoDDH = MaDontxt.Text;
-            ////GetChiTietDonHang
-            //AddNewtmpDataTable();
-            //// Get data from gridView2 and fill tempDataTable
-            //GridView gridView2 = (GridView)cTDDHGridControl.MainView;
-            //if (gridView2.RowCount != 0)
-            //{
-            //    for (int i = 0; i < gridView2.RowCount; i++)
-            //    {
-            //        DataRow gridRow = gridView2.GetDataRow(i);
-            //        DataRow newRow = tempDataTable.NewRow();
-            //        newRow["MasoDDH"] = gridRow["MasoDDH"];
-            //        newRow["MAVT"] = gridRow["MAVT"];
-            //        newRow["SOLUONG"] = gridRow["SOLUONG"];
-            //        newRow["DONGIA"] = gridRow["DONGIA"];
-            //        tempDataTable.Rows.Add(newRow);
-            //    }
-            //}
-            ////Action With 
-            //foreach(DataRow row in tempDataTable.Rows)
-            //{
-            //    try
-            //    {
-            //        //InCreateSoluongTon
-            //        String maVT = row["MAVT"].ToString();
-            //        int soluong = Convert.ToInt32(row["SOLUONG"]);
-
-            //        SqlCommand cmd = new SqlCommand("SP_IncreaseSOLUONGTON", Program.conn);
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.Parameters.AddWithValue("@MAVT", maVT);
-            //        cmd.Parameters.AddWithValue("@IncreaseAmount  ", soluong);
-            //        cmd.ExecuteNonQuery();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(" Lỗi action số lương!",ex.Message);
-            //        return;
-            //    }
-
-            //}
+            SqlTransaction transaction = null;         
             try
             {
-                //ActionXoa CTDDH
-                SqlCommand cmd1 = new SqlCommand("SP_DeleteCTDDH", Program.conn);
-                cmd1.CommandType = CommandType.StoredProcedure;
-                cmd1.Parameters.AddWithValue("@MasoDDH ", masoDDH);
-                cmd1.ExecuteNonQuery();
-                //Action Xoa Dathang
-                SqlCommand cmd2 = new SqlCommand("SP_DeleteDatHangByMasoDDH", Program.conn);
-                cmd2.CommandType = CommandType.StoredProcedure;
-                cmd2.Parameters.AddWithValue("@MasoDDH ", masoDDH);
-                cmd2.ExecuteNonQuery();
+                if (Program.KetNoi() == 1)
+                {
+                    transaction = Program.conn.BeginTransaction();
+                    //ActionXoa CTDDH
+                    SqlCommand cmd1 = new SqlCommand("SP_DeleteCTDDH", Program.conn,transaction);
+                    cmd1.CommandType = CommandType.StoredProcedure;
+                    cmd1.Parameters.AddWithValue("@MasoDDH ", masoDDH);
+                    cmd1.ExecuteNonQuery();
+                    //Action Xoa Dathang
+                    SqlCommand cmd2 = new SqlCommand("SP_DeleteDatHangByMasoDDH", Program.conn);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+                    cmd2.Parameters.AddWithValue("@MasoDDH ", masoDDH);
+                    cmd2.ExecuteNonQuery();
+                    transaction.Commit();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(" Lỗi action DeleteCTDDH !", ex.Message);
                 return;
+                if (transaction != null)
+                {
+                    transaction.Rollback();
+                }
 
             }
             datHangTableAdapter.Fill(this.datHangDS.DatHang);
@@ -857,12 +796,16 @@ namespace QuanLyVatTu
                     {
                         
                         String Masoddh = row["MasoDDH"].ToString();
+                        SqlTransaction transaction = null;
                         try
                         {
+
                             if (Program.KetNoi() == 1)
                             {
                                 String query = "DELETE FROM LINK0.QLVT_DATHANG.dbo.CTDDH WHERE MasoDDH = @MasoDDH AND MAVT=@MAVT";
-                                SqlCommand cmd = new SqlCommand(query, Program.conn);
+                                transaction = Program.conn.BeginTransaction();
+
+                                SqlCommand cmd = new SqlCommand(query, Program.conn,transaction);
                                 cmd.CommandType = CommandType.Text;
                                 cmd.Parameters.AddWithValue("@MasoDDH", Masoddh);
                                 cmd.Parameters.AddWithValue("@MAVT", mavt);
@@ -872,25 +815,43 @@ namespace QuanLyVatTu
                                     tempDataTable.AcceptChanges();
                                     cTDDHGridControl.RefreshDataSource();
                                 }
+                                transaction.Commit();
                             }
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Lỗi xóa dòng CTDDH.\n" + ex.Message + ""
                         , "", MessageBoxButtons.OK);
+                            if (transaction != null)
+                            {
+                                transaction.Rollback();
+                            }
                             return;
                         }
                         break; // Exit the loop once the row is found and deleted
 
                     }
-                }
-               
-
+                }            
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn dòng CTDDH cần xóa!", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+        }
+
+        private void PhuchoiBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void GhiBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void phuchoiCTDDHbtn_Click(object sender, EventArgs e)
+        {
 
         }
     }

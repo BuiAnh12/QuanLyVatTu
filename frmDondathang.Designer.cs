@@ -34,9 +34,7 @@
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.ThemBtn = new DevExpress.XtraBars.BarLargeButtonItem();
             this.SuaBtn = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.GhiBtn = new DevExpress.XtraBars.BarLargeButtonItem();
             this.XoaBtn = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.PhuchoiBtn = new DevExpress.XtraBars.BarLargeButtonItem();
             this.reloadBtn = new DevExpress.XtraBars.BarLargeButtonItem();
             this.ThoatBtn = new DevExpress.XtraBars.BarLargeButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -109,7 +107,6 @@
             this.colMAVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDONGIA = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.phuchoiCTDDHbtn = new DevExpress.XtraEditors.SimpleButton();
             this.suaCTDDHbtn = new DevExpress.XtraEditors.SimpleButton();
             this.xoaCTDDHbtn = new DevExpress.XtraEditors.SimpleButton();
             this.ghiCTDDHbtn = new DevExpress.XtraEditors.SimpleButton();
@@ -175,9 +172,7 @@
             this.ThemBtn,
             this.SuaBtn,
             this.barLargeButtonItem6,
-            this.GhiBtn,
             this.XoaBtn,
-            this.PhuchoiBtn,
             this.reloadBtn,
             this.ThoatBtn,
             this.barButtonItem7,
@@ -195,9 +190,7 @@
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.ThemBtn, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.SuaBtn, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.GhiBtn, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.XoaBtn),
-            new DevExpress.XtraBars.LinkPersistInfo(this.PhuchoiBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.reloadBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.ThoatBtn)});
             this.bar2.OptionsBar.MultiLine = true;
@@ -223,15 +216,6 @@
             this.SuaBtn.Name = "SuaBtn";
             this.SuaBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SuaBtn_ItemClick);
             // 
-            // GhiBtn
-            // 
-            this.GhiBtn.Caption = "Ghi";
-            this.GhiBtn.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.GhiBtn.Id = 20;
-            this.GhiBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("GhiBtn.ImageOptions.SvgImage")));
-            this.GhiBtn.Name = "GhiBtn";
-            this.GhiBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            // 
             // XoaBtn
             // 
             this.XoaBtn.Caption = "Xóa";
@@ -241,14 +225,6 @@
             this.XoaBtn.Name = "XoaBtn";
             this.XoaBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.XoaBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.XoaBtn_ItemClick);
-            // 
-            // PhuchoiBtn
-            // 
-            this.PhuchoiBtn.Caption = "Phục hồi";
-            this.PhuchoiBtn.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.PhuchoiBtn.Id = 22;
-            this.PhuchoiBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("PhuchoiBtn.ImageOptions.SvgImage")));
-            this.PhuchoiBtn.Name = "PhuchoiBtn";
             // 
             // reloadBtn
             // 
@@ -831,7 +807,6 @@
             // 
             this.panelControl5.Controls.Add(this.hoantatBtn);
             this.panelControl5.Controls.Add(this.cTDDHGridControl);
-            this.panelControl5.Controls.Add(this.phuchoiCTDDHbtn);
             this.panelControl5.Controls.Add(this.suaCTDDHbtn);
             this.panelControl5.Controls.Add(this.xoaCTDDHbtn);
             this.panelControl5.Controls.Add(this.ghiCTDDHbtn);
@@ -904,18 +879,6 @@
             this.colDONGIA.Name = "colDONGIA";
             this.colDONGIA.Visible = true;
             this.colDONGIA.VisibleIndex = 3;
-            // 
-            // phuchoiCTDDHbtn
-            // 
-            this.phuchoiCTDDHbtn.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.phuchoiCTDDHbtn.Appearance.Options.UseFont = true;
-            this.phuchoiCTDDHbtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("phuchoiCTDDHbtn.ImageOptions.Image")));
-            this.phuchoiCTDDHbtn.Location = new System.Drawing.Point(513, 5);
-            this.phuchoiCTDDHbtn.Name = "phuchoiCTDDHbtn";
-            this.phuchoiCTDDHbtn.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.phuchoiCTDDHbtn.Size = new System.Drawing.Size(101, 39);
-            this.phuchoiCTDDHbtn.TabIndex = 28;
-            this.phuchoiCTDDHbtn.Text = "Phục Hồi";
             // 
             // suaCTDDHbtn
             // 
@@ -1106,9 +1069,7 @@
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem4;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem6;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem5;
-        private DevExpress.XtraBars.BarLargeButtonItem GhiBtn;
         private DevExpress.XtraBars.BarLargeButtonItem XoaBtn;
-        private DevExpress.XtraBars.BarLargeButtonItem PhuchoiBtn;
         private DevExpress.XtraBars.BarLargeButtonItem reloadBtn;
         private DevExpress.XtraBars.BarLargeButtonItem ThoatBtn;
         private DevExpress.XtraEditors.PanelControl panelControl1;
@@ -1178,6 +1139,5 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraGrid.Columns.GridColumn colMasoDDH2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
-        private DevExpress.XtraEditors.SimpleButton phuchoiCTDDHbtn;
     }
 }
