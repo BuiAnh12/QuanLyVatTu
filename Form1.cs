@@ -393,13 +393,23 @@ namespace QuanLyVatTu
 
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            // Khong đụng vào nha
         }
 
         private void btnTHNX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Frpt_TongHopNhapXuat frpt = new Frpt_TongHopNhapXuat();
             frpt.ShowDialog();
+        }
+
+        private void barButtonItem3_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // Phieu nhap
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // Phieu xuat
         }
     }
 }
