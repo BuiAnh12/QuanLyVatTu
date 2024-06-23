@@ -26,7 +26,7 @@ namespace QuanLyVatTu
             if (Program.mGroup == "CONGTY")
             {
                 btnThoat.Enabled = true;
-                btnGhi.Enabled = btnIn.Enabled = btnPhucHoi.Enabled
+                btnGhi.Enabled = btnIn.Enabled = btnPhucHoi.Enabled = btnHoanTac.Enabled
                     = btnReload.Enabled = btnSua.Enabled = btnThem.Enabled
                     = btnXoa.Enabled = false;
             }
@@ -34,7 +34,7 @@ namespace QuanLyVatTu
             {
                 btnGhi.Enabled = btnPhucHoi.Enabled = false;
                 btnThoat.Enabled = btnSua.Enabled = btnThem.Enabled = btnIn.Enabled
-                    = btnReload.Enabled = btnXoa.Enabled = true;
+                 = btnHoanTac.Enabled = btnReload.Enabled = btnXoa.Enabled = true;
             }
             groupBox1.Enabled = false;
             // Tạo stack để lưu thông tin undo
@@ -72,7 +72,7 @@ namespace QuanLyVatTu
             bdsVatTu.AddNew();
             txtMaVT.Text = txtTenVT.Text = txtDVT.Text = "";
             txtSoLuongTon.Text = "1";
-            btnReload.Enabled =
+            btnReload.Enabled = btnHoanTac.Enabled =
                 btnSua.Enabled = btnThem.Enabled = btnXoa.Enabled = false;
             btnThoat.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = true;
             gcVatTu.Enabled = false;
@@ -83,7 +83,7 @@ namespace QuanLyVatTu
             vitri = bdsVatTu.Position;
             groupBox1.Enabled = true;
             gcVatTu.Enabled = false;
-            btnReload.Enabled = btnSua.Enabled
+            btnReload.Enabled = btnSua.Enabled = btnHoanTac.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
             isEditing = true; // Set trang thai dang edit
@@ -108,14 +108,14 @@ namespace QuanLyVatTu
             }
             if (txtTenVT.Text.Trim() == "")
             {
-                MessageBox.Show("Tên vật tư không được để trống"
+                MessageBox.Show("Tên vật tư không được để trống và không quá 30 ký tự"
                     , "", MessageBoxButtons.OK);
                 txtTenVT.Focus();
                 return;
             }
             if (txtDVT.Text.Trim() == "")
             {
-                MessageBox.Show("Đơn vị tính không được để trống"
+                MessageBox.Show("Đơn vị tính không được để trống và không quá 15 ký tự"
                     , "", MessageBoxButtons.OK);
                 txtDVT.Focus();
                 return;
@@ -123,6 +123,13 @@ namespace QuanLyVatTu
             if (txtSoLuongTon.Text.Trim() == "")
             {
                 MessageBox.Show("Số lượng tồn không được để trống"
+                    , "", MessageBoxButtons.OK);
+                txtDVT.Focus();
+                return;
+            }
+            if (int.Parse(txtSoLuongTon.Text) >= int.MaxValue)
+            {
+                MessageBox.Show("Số lượng tồn quá lớn xin vui lòng nhập lại"
                     , "", MessageBoxButtons.OK);
                 txtDVT.Focus();
                 return;
@@ -239,7 +246,7 @@ namespace QuanLyVatTu
                     return;
                 }
                 gcVatTu.Enabled = true;
-                btnReload.Enabled = btnSua.Enabled
+                btnReload.Enabled = btnSua.Enabled = btnHoanTac.Enabled
                     = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
                 btnGhi.Enabled = btnPhucHoi.Enabled = false;
                 groupBox1.Enabled = false;
@@ -317,7 +324,7 @@ namespace QuanLyVatTu
             }
             gcVatTu.Enabled = true;
             groupBox1.Enabled = false;
-            btnReload.Enabled = btnSua.Enabled
+            btnReload.Enabled = btnSua.Enabled = btnHoanTac.Enabled
                 = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
             isEditing = false;

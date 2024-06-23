@@ -280,6 +280,7 @@
             this.GroupHeader2.HeightF = 28F;
             this.GroupHeader2.Level = 2;
             this.GroupHeader2.Name = "GroupHeader2";
+            this.GroupHeader2.RepeatEveryPage = true;
             // 
             // table2
             // 

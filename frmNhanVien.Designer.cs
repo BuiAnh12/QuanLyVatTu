@@ -50,7 +50,8 @@
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHoanTac = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLuanChuyen = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -95,7 +96,6 @@
             this.phieuNhapTableAdapter = new QuanLyVatTu.NhanVienDSTableAdapters.PhieuNhapTableAdapter();
             this.bdsPhieuXuat = new System.Windows.Forms.BindingSource(this.components);
             this.phieuXuatTableAdapter = new QuanLyVatTu.NhanVienDSTableAdapters.PhieuXuatTableAdapter();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             mANVLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControl)).BeginInit();
             this.PanelControl.SuspendLayout();
@@ -250,8 +250,8 @@
             this.btnThoat,
             this.btnSua,
             this.btnIn,
-            this.barButtonItem1,
-            this.barButtonItem2});
+            this.btnHoanTac,
+            this.btnLuanChuyen});
             this.barManager1.MaxItemId = 11;
             this.barManager1.StatusBar = this.bar3;
             // 
@@ -282,8 +282,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReload),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnIn),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnHoanTac),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnLuanChuyen)});
             this.bar4.Text = "Custom 5";
             // 
             // btnThem
@@ -369,14 +369,23 @@
             this.btnThoat.Size = new System.Drawing.Size(80, 50);
             this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
-            // barButtonItem1
+            // btnHoanTac
             // 
-            this.barButtonItem1.Caption = "Hoàn tác";
-            this.barButtonItem1.Id = 9;
-            this.barButtonItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.btnHoanTac.Caption = "Hoàn tác";
+            this.btnHoanTac.Id = 9;
+            this.btnHoanTac.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnHoanTac.Name = "btnHoanTac";
+            this.btnHoanTac.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnHoanTac.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
+            // btnLuanChuyen
+            // 
+            this.btnLuanChuyen.Caption = "Luân chuyển";
+            this.btnLuanChuyen.Id = 10;
+            this.btnLuanChuyen.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.btnLuanChuyen.Name = "btnLuanChuyen";
+            this.btnLuanChuyen.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnLuanChuyen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -795,15 +804,6 @@
             // 
             this.phieuXuatTableAdapter.ClearBeforeFill = true;
             // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "Luân chuyển";
-            this.barButtonItem2.Id = 10;
-            this.barButtonItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
-            // 
             // frmNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -915,7 +915,7 @@
         private NhanVienDSTableAdapters.PhieuXuatTableAdapter phieuXuatTableAdapter;
         private DevExpress.XtraEditors.TextEdit txtMACN;
         private System.Windows.Forms.Label label10;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem btnHoanTac;
+        private DevExpress.XtraBars.BarButtonItem btnLuanChuyen;
     }
 }
