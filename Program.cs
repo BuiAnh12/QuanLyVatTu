@@ -55,6 +55,9 @@ namespace QuanLyVatTu
         public static String maDDHdcChonTrongPhieuNhap = "";
         public static String maKhodcChonTrongPhieuNhap = "";
 
+        //PhieuXuat
+        public static int soluongtonvattu = 0;
+
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
         public static Form1 frmChinh;
 

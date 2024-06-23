@@ -826,7 +826,6 @@
         private DevExpress.XtraEditors.TextEdit maNVTxt;
         private DevExpress.XtraEditors.DateEdit ngayPNTxt;
         private DevExpress.XtraEditors.TextEdit maPNTxt;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button hienthiCTDDHBtn;
         private System.Windows.Forms.Button chondonhangBtn;
         private System.Windows.Forms.BindingSource bdsCTDDH;
@@ -847,5 +846,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControl10;
         private DevExpress.XtraBars.BarDockControl barDockControl12;
         private DevExpress.XtraGrid.Columns.GridColumn colSOLUONG;
+        private System.Windows.Forms.Label label2;
     }
 }
