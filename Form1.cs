@@ -263,29 +263,26 @@ namespace QuanLyVatTu
                 MessageBox.Show("User không có quyền truy cập chức năng này! ", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-            Form frm = this.CheckExists(typeof(frmTaoTaiKhoan));
-            if (frm != null) frm.Activate();
+            XtraTabPage frm = this.CheckExistsXtra(typeof(frmTaoTaiKhoan));
+            if (frm != null) xtraTabControl.SelectedTabPage = frm;
             else
             {
 
                 frmTaoTaiKhoan f = new frmTaoTaiKhoan();
+                f.MdiParent = this;
+
                 f.TopLevel = false; // Set TopLevel to false
-                f.FormBorderStyle = FormBorderStyle.None; // Optionally remove border
+                f.FormBorderStyle = FormBorderStyle.None; // bỏ khung border
 
                 XtraTabPage tabPage = new XtraTabPage();
-                tabPage.Text = "Tạo tài khoản"; // Set the tab page text
+                tabPage.Text = "Tạo tài khoảng"; // Tiêu đề
 
-                // Create a panel to host the form
-                Panel panel = new Panel();
-                panel.Dock = DockStyle.Fill; // Dock the panel to fill the tab page
-                tabPage.Controls.Add(panel); // Add the panel to the tab page
-                f.Parent = panel; // Set the panel as the parent of the form
 
-                // Show the form
-                f.Show();
-
-                xtraTabControl.TabPages.Add(tabPage); // Add the tab page to the tab control
+                tabPage.Controls.Add(f); // thêm tab đó vào 
+                f.Show(); // Hiển thị form
+                xtraTabControl.TabPages.Add(tabPage); // Thêm nó vào tab control
                 xtraTabControl.SelectedTabPage = tabPage;
+
             }
         }
 
@@ -410,7 +407,7 @@ namespace QuanLyVatTu
 
         private void btnDanhSachVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Xrpt_DanhSachVatTu xrpt = new Xrpt_DanhSachVatTu();
+            DanhSachVT xrpt = new DanhSachVT();
             ReportPrintTool print = new ReportPrintTool(xrpt);
             print.ShowPreviewDialog();
         }
@@ -435,11 +432,58 @@ namespace QuanLyVatTu
         private void barButtonItem3_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // Phieu nhap
+            XtraTabPage frm = this.CheckExistsXtra(typeof(frmPhieuNhap));
+            if (frm != null) xtraTabControl.SelectedTabPage = frm;
+            else
+            {
+
+                frmPhieuNhap f = new frmPhieuNhap();
+                f.MdiParent = this;
+
+                f.TopLevel = false; // Set TopLevel to false
+                f.FormBorderStyle = FormBorderStyle.None; // bỏ khung border
+
+                XtraTabPage tabPage = new XtraTabPage();
+                tabPage.Text = "Phiếu nhập"; // Tiêu đề
+
+
+                tabPage.Controls.Add(f); // thêm tab đó vào 
+                f.Show(); // Hiển thị form
+                xtraTabControl.TabPages.Add(tabPage); // Thêm nó vào tab control
+                xtraTabControl.SelectedTabPage = tabPage;
+
+            }
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // Phieu xuat
+            XtraTabPage frm = this.CheckExistsXtra(typeof(frmPhieuXuat));
+            if (frm != null) xtraTabControl.SelectedTabPage = frm;
+            else
+            {
+
+                frmPhieuXuat f = new frmPhieuXuat();
+                f.MdiParent = this;
+
+                f.TopLevel = false; // Set TopLevel to false
+                f.FormBorderStyle = FormBorderStyle.None; // bỏ khung border
+
+                XtraTabPage tabPage = new XtraTabPage();
+                tabPage.Text = "Phiếu xuất"; // Tiêu đề
+
+
+                tabPage.Controls.Add(f); // thêm tab đó vào 
+                f.Show(); // Hiển thị form
+                xtraTabControl.TabPages.Add(tabPage); // Thêm nó vào tab control
+                xtraTabControl.SelectedTabPage = tabPage;
+
+            }
+        }
+
+        private void S_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

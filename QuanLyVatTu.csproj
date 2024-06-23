@@ -95,6 +95,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConvertMoney.cs" />
+    <Compile Include="DanhSachNV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DanhSachNV.Designer.cs">
+      <DependentUpon>DanhSachNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DanhSachVT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DanhSachVT.Designer.cs">
+      <DependentUpon>DanhSachVT.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatHangDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,6 +300,12 @@
     <Compile Include="Xrpt_TongHopNhapXuat.Designer.cs">
       <DependentUpon>Xrpt_TongHopNhapXuat.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DanhSachNV.resx">
+      <DependentUpon>DanhSachNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhSachVT.resx">
+      <DependentUpon>DanhSachVT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPhieuXuat.resx">
       <DependentUpon>frmPhieuXuat.cs</DependentUpon>
     </EmbeddedResource>

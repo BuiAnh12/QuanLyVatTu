@@ -67,7 +67,7 @@ namespace QuanLyVatTu
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Xrpt_DanhSachNhanVien xrpt = new Xrpt_DanhSachNhanVien();
+            DanhSachNV xrpt = new DanhSachNV();
             ReportPrintTool print = new ReportPrintTool(xrpt);
             print.ShowPreviewDialog();
         }
