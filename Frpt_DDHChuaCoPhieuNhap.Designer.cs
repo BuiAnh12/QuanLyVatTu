@@ -36,6 +36,7 @@
             // 
             // cmbChiNhanhMain
             // 
+            this.cmbChiNhanhMain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChiNhanhMain.Enabled = false;
             this.cmbChiNhanhMain.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.cmbChiNhanhMain.FormattingEnabled = true;

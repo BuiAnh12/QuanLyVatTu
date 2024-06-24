@@ -300,7 +300,7 @@ namespace QuanLyVatTu
                         return;
                     }
                     gcNhanVien.Enabled = true;
-                    btnIn.Enabled = btnReload.Enabled = btnSua.Enabled
+                    btnIn.Enabled = btnReload.Enabled = btnSua.Enabled  = btnHoanTac.Enabled = btnLuanChuyen.Enabled
                         = btnThem.Enabled = btnThoat.Enabled = btnXoa.Enabled = true;
                     btnGhi.Enabled = btnPhucHoi.Enabled = false;
                     groupBox1.Enabled = false;
@@ -563,7 +563,7 @@ namespace QuanLyVatTu
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String macnLuanChuyen = txtMACN.Text.Trim() == "CN1" ? "CN2" : "CN1";
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn luân chuyển nhân viên có MSNV: " + txtMANV.Text + "tới CN : " + macnLuanChuyen 
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn luân chuyển nhân viên có MSNV: " + txtMANV.Text + " tới CN : " + macnLuanChuyen 
                 + "\nHành động này sẽ không được hoàn tác", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
@@ -576,7 +576,6 @@ namespace QuanLyVatTu
                 try
                 {
                     String query = "exec sp_luanChuyenNV " + txtMANV.Text + ", '" + macnLuanChuyen + "'";
-                    MessageBox.Show(query, "", MessageBoxButtons.OK);
                     int n = Program.ExecSqlNonQuery(query);
                     this.nhanVienTableAdapter.Fill(this.nhanVienDS.NhanVien);
                     MessageBox.Show("Luân chuyển nhân viên thành công", "", MessageBoxButtons.OK);

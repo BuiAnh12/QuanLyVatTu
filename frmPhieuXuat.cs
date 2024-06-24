@@ -211,6 +211,7 @@ namespace QuanLyVatTu
         }
         private bool ContainsDigitsOrSpecialChars(string input)
         {
+            input = input.Replace(" ", "");
             bool containsDigit = input.Any(char.IsDigit);
             bool containsSpecialChar = input.Any(ch => !char.IsLetterOrDigit(ch));
 

@@ -143,6 +143,7 @@
             // 
             // cmbChiNhanhMain
             // 
+            this.cmbChiNhanhMain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbChiNhanhMain.Enabled = false;
             this.cmbChiNhanhMain.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.cmbChiNhanhMain.FormattingEnabled = true;
@@ -373,7 +374,7 @@
             // 
             this.btnHoanTac.Caption = "Hoàn tác";
             this.btnHoanTac.Id = 9;
-            this.btnHoanTac.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnHoanTac.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHoanTac.ImageOptions.SvgImage")));
             this.btnHoanTac.Name = "btnHoanTac";
             this.btnHoanTac.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnHoanTac.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
@@ -382,7 +383,7 @@
             // 
             this.btnLuanChuyen.Caption = "Luân chuyển";
             this.btnLuanChuyen.Id = 10;
-            this.btnLuanChuyen.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.btnLuanChuyen.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLuanChuyen.ImageOptions.SvgImage")));
             this.btnLuanChuyen.Name = "btnLuanChuyen";
             this.btnLuanChuyen.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnLuanChuyen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
